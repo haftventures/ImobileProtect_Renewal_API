@@ -1101,4 +1101,60 @@ exports.payment_success_redirect = async (req, res) => {
     });
   }
 };
+exports.operation_policy_save = async (req, res) => {
+  try {
+    // ✅ Combine destructuring into one line
+    const { policyid, payment_datee, customername, mobile, vehicleno, make, 
+      model, idv, amount, transactionid, merchentorderid, regdate, chasisno,
+       engineno, createby } = req.body;        
+
+    const payment_datee1=convertDate(payment_datee);
+    const regdate1=convertDate(regdate);
+    // 🧩 Execute stored procedure with OUTPUT parameter
+    const query = `
+      DECLARE @InsertedId INT;
+      EXEC operation_policy_save
+        @policyid = ${policyid},
+        @payment_datee = '${payment_datee1}',
+        @customername = '${customername}',
+        @mobile = '${mobile}',
+        @vehicleno = '${vehicleno}',
+        @make = '${make}',
+        @model = '${model}',
+        @idv = ${idv},
+        @amount = ${amount},
+        @transactionid = '${transactionid}',
+        @merchentorderid = '${merchentorderid}',
+        @regdate = '${regdate1}',
+        @chasisno = '${chasisno}',
+        @engineno = '${engineno}',
+        @createby = ${createby},
+        @insertedid = @InsertedId OUTPUT;
+      SELECT @InsertedId AS insertedid;
+    `;
+
+    const [result] = await sequelize.query(query);
+    const insertedId = result?.[0]?.insertedid || null;
+
+    if (insertedId) {
+      return res.json({
+        success: true,
+        message: 'Policy saved successfully',
+        insertedId,
+      });
+    } else {
+      return res.json({
+        success: false,
+        message: 'Policy save failed or returned no ID',
+      });
+    }
+  } catch (err) {
+    console.error('❌ operation_policy_save error:', err);
+    res.status(500).json({
+      success: false,
+      message: 'Internal server error',
+      error: err.message,
+    });
+  }
+};
 
