@@ -4,6 +4,7 @@ const axios = require('axios');
 
 const OAUTH_TOKEN_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
 const CHECKOUT_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/pay';
+const tokenUrl = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
 
 const AUTH_PAYLOAD = {
     client_id: 'TEST-M22AIQQJG6USL_25090',
@@ -81,6 +82,7 @@ const query = `
         @request = :request,
         @merchantorderid = :merchantorderid,     
         @excelid = :excelid,
+        @amount=:amount,
         @idd = @output_id OUTPUT;
     SELECT @output_id AS inserted_id;
 `;
@@ -90,7 +92,8 @@ const [result] = await sequelize.query(query, {
         transactionid: orderDetails.transactionid,        
         request: JSON.stringify(requestBody),
         merchantorderid: merchantOrderId,
-        excelid: orderDetails.id
+        excelid: orderDetails.id,
+        amount: orderDetails.amount
     },
 });
     try {
@@ -181,6 +184,7 @@ exports.getrenewaldata = async (req, res) => {
     });
   } catch (err) {
     console.error('❌ /getrenewaldata controller error:', err.message);
+    errorlog(err, req);
     res.status(500).json({
       success: false,
       error: err.message,
@@ -256,6 +260,7 @@ exports.renewalList = async (req, res) => {
     });
   } catch (err) {
     console.error('❌ /renewalList controller error:', err);
+    errorlog(err, req);
     res.status(500).json({
       success: false,
       error: err.message || 'Unexpected error',
@@ -323,6 +328,7 @@ exports.paymentsuccess = async (req, res) => {
     }
   } catch (err) {
     console.error('❌ Error in paymentsuccess:', err);
+    errorlog(err, req);
     res.status(500).json({
       success: false,
       message: err.message || 'Unexpected error occurred',
@@ -372,6 +378,7 @@ exports.Report = async (req, res) => {
     });
   } catch (err) {
     console.error('❌ /renewalList controller error:', err);
+    errorlog(err, req);
     res.status(500).json({
       success: false,
       error: err.message || 'Unexpected error',
@@ -429,6 +436,7 @@ exports.duration_based_amount = async (req, res) => {
         });
     } catch (err) {
         console.error('❌ /duration_based_amount controller error:', err);
+        errorlog(err, req);
         res.status(500).json({
             success: false,
             error: err.message || 'Unexpected error',
@@ -512,6 +520,7 @@ exports.paymentlink_duration_based = async (req, res) => {
     });
   } catch (err) {
     console.error('❌ /duration_based_amount controller error:', err);
+    errorlog(err, req);
     res.status(500).json({
       success: false,
       error: err.message || 'Unexpected error',
@@ -558,9 +567,538 @@ exports.paymentreport = async (req, res) => {
     });
   } catch (err) {
     console.error('❌ /paymentreport controller error:', err);
+    errorlog(err, req);
     res.status(500).json({
       success: false,
       error: err.message || 'Unexpected error',
     });
   }
 };
+exports.userdetails = async (req, res) => {
+  try {
+    const { userid, status } = req.body;
+
+    // 🧩 Input validation
+    if (!userid || !status) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid or missing user ID or status',
+      });
+    }
+
+    // 🧠 Run your stored procedure
+    const [results] = await sequelize.query(
+      `EXEC get_user_details @userid = :userid, @status = :status`,
+      {
+        replacements: { userid, status },
+      }
+    );
+
+    if (!results || results.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'No data found',
+      });
+    }
+
+    // 🧩 Parse the JSON string
+    const rawJson = results[0]['FullJson'];
+    const EmpCode = results[0]['EmpCode'];
+    const parsedData = JSON.parse(rawJson);
+
+    // 🧾 Separate the lists
+    const { BranchList = [], RoleList = [], UserList = [] } = parsedData;
+
+    // ✅ Send clean structured output
+    res.status(200).json({
+      success: true,
+      message: 'Data fetched successfully',
+      count: UserList.length,
+      BranchList,
+      RoleList,
+      UserList,
+      EmpCode,
+    });
+
+  } catch (err) {
+    console.error('❌ /userdetails controller error:', err);
+    errorlog(err, req);
+    res.status(500).json({
+      success: false,
+      error: err.message || 'Unexpected error',
+    });
+  }
+};
+exports.single_userdetails = async (req, res) => {
+  try {
+    const { userid } = req.body;
+
+    // 🧩 Input validation
+    if (!userid) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid or missing user ID',
+      });
+    }
+
+    // 🧠 Run your stored procedure
+    const [results] = await sequelize.query(
+      `EXEC get_particular_user_details @userid = :userid`,
+      {
+        replacements: { userid },
+      }
+    );
+
+    if (!results || results.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'No data found',
+      });
+    }
+
+    // ✅ Send clean structured output
+    res.status(200).json({
+      success: true,
+      message: 'Data fetched successfully',
+      count: results.length,
+      results,
+    });
+
+  } catch (err) {
+    console.error('❌ /single_userdetails controller error:', err);
+    errorlog(err, req);
+    res.status(500).json({
+      success: false,
+      error: err.message || 'Unexpected error',
+    });
+  }
+};
+exports.operation_policy_prepare = async (req, res) => {
+  try {
+    const { userid } = req.body;
+
+    // 🧩 Input validation
+    if (!userid) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid or missing user ID',
+      });
+    }
+
+    // 🧠 Run your stored procedure
+    const [results] = await sequelize.query(
+      `EXEC operation_policy_prepare @userid = :userid`,
+      {
+        replacements: { userid },
+      }
+    );
+
+    if (!results || results.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: 'No data found',
+      });
+    }
+
+    // ✅ Send clean structured output
+    res.status(200).json({
+      success: true,
+      message: 'Data fetched successfully',
+      count: results.length,
+      results,
+    });
+
+  } catch (err) {
+    console.error('❌ /operation_policy_prepare controller error:', err);
+    errorlog(err, req);
+    res.status(500).json({
+      success: false,
+      error: err.message || 'Unexpected error',
+    });
+  }
+};
+exports.user_insert = async (req, res) => {
+  try {
+    // 🧠 Step 1: Extract data from request body
+    const {
+      name,
+      qualification,
+      fatersname,
+      dob,
+      fatheroccupation,
+      address,
+      permanentaddress,
+      mobile,
+      altmobile1,
+      altmobile2,
+      bloodgroup,
+      emailid,
+      jointdate,
+      salary,
+      pf,
+      esi,
+      td,
+      deduction,
+      bankname,
+      accno,
+      ifsccode,
+      branchid,
+      roleid,
+      username,
+      password,
+      statuss,
+      insertstatus,
+      userid,
+      createdid
+    } = req.body;
+
+    // 🧩 Step 2: Validate mandatory fields
+    if (!username || !address || !mobile || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required fields: name, emailid, or mobile"
+      });
+    }
+    
+    const dob1=convertDate(dob);
+    const jointdate1=convertDate(jointdate);
+
+    // 🧠 Step 3: Prepare SQL query
+    const query = `
+      DECLARE @outputstatus INT;
+      EXEC [dbo].[user_insert_update]
+        @name = :name,
+        @qualification = :qualification,
+        @fatersname = :fatersname,
+        @dob = :dob,
+        @fatheroccupation = :fatheroccupation,
+        @address = :address,
+        @permanentaddress = :permanentaddress,
+        @mobile = :mobile,
+        @altmobile1 = :altmobile1,
+        @altmobile2 = :altmobile2,
+        @bloodgroup = :bloodgroup,
+        @emailid = :emailid,
+        @jointdate = :jointdate,
+        @salary = :salary,
+        @pf = :pf,
+        @esi = :esi,
+        @td = :td,
+        @deduction = :deduction,
+        @bankname = :bankname,
+        @accno = :accno,
+        @ifsccode = :ifsccode,
+        @branchid = :branchid,
+        @roleid = :roleid,
+        @username = :username,
+        @password = :password,
+        @statuss = :statuss,
+        @insertstatus = :insertstatus,
+        @userid = :userid,
+        @createdid = :createdid,
+        @outputstatus = @outputstatus OUTPUT;
+      SELECT @outputstatus AS outputstatus;
+    `;
+
+    // 🧩 Step 4: Execute stored procedure
+    const [result] = await sequelize.query(query, {
+      replacements: {
+        name,
+        qualification,
+        fatersname,
+        dob: dob1,
+        fatheroccupation,
+        address,
+        permanentaddress,
+        mobile,
+        altmobile1,
+        altmobile2,
+        bloodgroup,
+        emailid,
+        jointdate: jointdate1,
+        salary,
+        pf,
+        esi,
+        td,
+        deduction,
+        bankname,
+        accno,
+        ifsccode,
+        branchid,
+        roleid,
+        username,
+        password,
+        statuss,
+        insertstatus,
+        userid,
+        createdid
+      },
+      type: sequelize.QueryTypes.SELECT
+    });
+
+    // 🧠 Step 5: Get output status value
+    const outputstatus = result?.outputstatus ?? null;
+
+    // ✅ Step 6: Send success response
+    if(insertstatus=="1"){
+    res.status(200).json({
+      success: true,
+      message: "User saved successfully",
+      outputstatus
+    });
+  }else{
+    res.status(200).json({
+      success: true,
+      message: "User updated successfully",
+      outputstatus
+    });
+  }
+  } catch (err) {
+    console.error("❌ /user_insert_update error:", err);
+    errorlog(err, req);
+    res.status(500).json({
+      success: false,
+      error: err.message || "Unexpected error occurred"
+    });
+  }
+};
+exports.policy_prepare_pending = async (req, res) => {
+  try {
+    const { userid, id, policystatus } = req.body;
+
+    // 🧩 Input validation
+    if (!userid || !id || !policystatus) {
+      return res.status(400).json({
+        success: false,
+        message: 'Missing user ID, id, or policystatus',
+      });
+    }
+
+    // 🧠 Execute stored procedure (UPDATE)
+    const [results] = await sequelize.query(
+      `EXEC policy_prepare_pending @userid = :userid, @id = :id, @policystatus = :policystatus`,
+      { replacements: { userid, id, policystatus } }
+    );
+
+    // ✅ Check for any message returned from the SP (optional)
+    const message =
+      results?.[0]?.message || 'Policy status updated successfully';
+
+    // ✅ Send proper success response
+    res.status(200).json({
+      success: true,
+      message,
+    });
+  } catch (err) {
+    console.error('❌ /policy_prepare_pending error:', err);
+    errorlog(err, req);
+
+    res.status(500).json({
+      success: false,
+      message: 'Failed to update policy status',
+      error: err.message,
+    });
+  }
+};
+exports.policy_prepare_list = async (req, res) => {
+  try {
+    const { userid } = req.body;
+
+    if (!userid) {
+      return res.status(400).json({
+        success: false,
+        message: 'Missing user ID',
+      });
+    }
+
+    const [results] = await sequelize.query(
+      `EXEC policy_prepare_list @userid = :userid`,
+      { replacements: { userid }, raw: true }
+    );
+
+    // 🔍 Handle SQL JSON alias quirk
+    const jsonKey = Object.keys(results[0] || {}).find(k =>
+      k.startsWith('JSON_F52E2B61')
+    );
+
+    let parsed = {};
+    if (jsonKey) {
+      parsed = JSON.parse(results[0][jsonKey]);
+    }
+
+    // ✅ Parse JSON safely
+    const freshList = parsed.fresh || [];
+    const waitingList = parsed.waiting || [];
+
+    res.status(200).json({
+      success: true,
+      message: 'Policy lists fetched successfully',
+      fresh_count: freshList.length,
+      waiting_count: waitingList.length,
+      fresh: freshList,
+      waiting: waitingList,
+    });
+  } catch (err) {
+    console.error('❌ /policy_prepare_list error:', err);
+    errorlog(err, req);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to fetch policy list',
+      error: err.message,
+    });
+  }
+};
+exports.payment_success_redirect = async (req, res) => {
+  try {
+    const { txnid, excelid } = req.body;
+
+    if (!txnid || !excelid) {
+      return res.status(400).json({
+        success: false,
+        message: 'Missing txnid or excelid',
+      });
+    }
+
+    // 🧩 Step 1: Get Access Token
+    const tokenResponse = await axios.post(
+      tokenUrl,
+      new URLSearchParams(AUTH_PAYLOAD),
+      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+    );
+
+    const accessToken = tokenResponse?.data?.access_token;
+    if (!accessToken) {
+      return res.status(500).json({
+        success: false,
+        message: 'Failed to get access token from PhonePe',
+      });
+    }
+
+    // 🧩 Step 2: Fetch pending transactions
+    const [transactions] = await sequelize.query(`
+      SELECT tg.merchantorderid, tg.transactionid, tg.excelid, tu.customername, 
+             tg.amount, tu.vehicleno, tu.mobile 
+      FROM T_Payment_getway tg
+      INNER JOIN T_Uplodpolicy_excel tu ON tg.excelid = tu.id
+      WHERE  tg.transactionid='${txnid}'
+        AND tg.excelid='${excelid}'
+      ORDER BY tg.id DESC
+    `);
+
+    if (!transactions || transactions.length === 0) {
+      return res.json({
+        success: true,
+        message: 'No pending transactions found',
+      });
+    }
+
+    const insertedIds = [];
+    const whatsappResults = [];
+
+    // 🧩 Step 3: Loop through and check payment status
+    for (const row of transactions) {
+      const { merchantorderid, transactionid, excelid, customername, amount, vehicleno, mobile } = row;
+      const statusUrl = `https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order/${merchantorderid}/status`;
+
+      try {
+        // ✅ Get payment status
+        const response = await axios.get(statusUrl, {
+          headers: {
+            Authorization: `O-Bearer ${accessToken}`,
+            Accept: 'application/json',
+          },
+        });
+
+        const responseBody = JSON.stringify(response.data).replace(/'/g, "''");
+
+        // ✅ Insert gateway response into DB
+        const query = `
+          DECLARE @InsertedId INT;
+          EXEC getway_response 
+            @transactionId='${transactionid}', 
+            @merchantOrderId='${merchantorderid}', 
+            @json='${responseBody}', 
+            @excelid=${excelid}, 
+            @InsertedId=@InsertedId OUTPUT;
+          SELECT @InsertedId AS InsertedId;
+        `;
+
+        const [spResult] = await sequelize.query(query);
+        const insertedId = spResult?.[0]?.InsertedId || null;
+        insertedIds.push({ merchantOrderId: merchantorderid, insertedId });
+
+        // ✅ Only send WhatsApp if DB insert succeeded
+        if (insertedId && insertedId !== 0) {
+          try 
+          {
+            const safeAmount = amount ? amount.toString() : '0';
+            const safeCustomer = customername || '';
+            const safeVehicle = vehicleno || '';
+            const whatsappResponse = await axios.post(
+              'https://api.aoc-portal.com/v1/whatsapp',
+              {
+                from: '+919344118986',
+                campaignName: 'api-test',
+                to: mobile.startsWith('+91') ? mobile : `+91${mobile}`,
+                templateName: 'paymentconfirmation',
+                components: {
+                  body: {
+                    params: [safeCustomer, safeAmount, safeVehicle],
+                  },
+                  header: {
+                    type: 'text',
+                    text: 'Payment Confirmation',
+                  },
+                },
+                type: 'template',
+              },
+              {
+                headers: {
+                  apikey: 'fXsUv7l3Uhxo4YR9ADsx6CTp1TjcX6',
+                  'Content-Type': 'application/json',
+                },
+              }
+            );
+
+            whatsappResults.push({
+              transactionId: transactionid,
+              message: whatsappResponse.data?.message || 'WhatsApp Sent Successfully',
+              whatsappResponse: whatsappResponse.data,
+            });
+          } catch (waErr) {
+            console.error(`❌ WhatsApp send failed for ${transactionid}:`, waErr.message);
+            whatsappResults.push({
+              transactionId: transactionid,
+              error: `WhatsApp send failed: ${waErr.message}`,
+            });
+          }
+        } else {
+          // 🚫 Record not inserted — skip WhatsApp
+          whatsappResults.push({
+            transactionId: transactionid,
+            message: 'Record not inserted — WhatsApp not sent',
+          });
+        }
+      } catch (err) {
+        console.error(`❌ Error checking ${merchantorderid}:`, err.message);
+        errorlog(err, req);
+      }
+    }
+
+    // ✅ Return final summary
+    res.json({
+      success: true,
+      message: 'Payment check completed',
+      insertedRecords: insertedIds,
+      whatsappResults,
+    });
+  } catch (err) {
+    console.error('❌ payment_success_redirect error:', err);
+    errorlog(err, req);
+    res.status(500).json({
+      success: false,
+      error: err.message || 'Unexpected error',
+    });
+  }
+};
+
