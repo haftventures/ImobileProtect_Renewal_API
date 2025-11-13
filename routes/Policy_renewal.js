@@ -19,4 +19,8 @@ router.post('/Policy_renewal/policy_prepare_pending', policyRenewalController.po
 router.post('/Policy_renewal/policy_prepare_list', policyRenewalController.policy_prepare_list);
 router.post('/Policy_renewal/payment_success_redirect', policyRenewalController.payment_success_redirect);
 router.post('/Policy_renewal/operation_policy_save', policyRenewalController.operation_policy_save);
-module.exports = router;
+router.post('/Policy_renewal/login_website', policyRenewalController.login_website);
+router.get('/Policy_renewal/policy_status', policyRenewalController.policy_status);
+router.post('/Policy_renewal/policy_report', policyRenewalController.policy_report);
+
+module.exports = router;    

@@ -2,16 +2,39 @@ const { sequelize } = require('../config/connectdatabase');
 const { convertDate, errorlog } = require('../Models/global_models');
 const axios = require('axios');
 
-const OAUTH_TOKEN_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
-const CHECKOUT_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/pay';
-const tokenUrl = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
+// ---------------------------- testing links ----------------------------
+
+// const OAUTH_TOKEN_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
+// const CHECKOUT_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/pay';
+// const tokenUrl = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
+// const phonepe_success_Url ='https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order';
+
+// const AUTH_PAYLOAD = {
+//     client_id: 'TEST-M22AIQQJG6USL_25090',
+//     client_version: 1,
+//     client_secret: 'ZmUyY2YwOWQtYmJjOC00ZjU2LTliMjAtN2VmNGNmZTc4ZGI2',
+//     grant_type: 'client_credentials',
+// };
+
+// --------------------------------------------------------------------
+
+// ---------------------------- live links ----------------------------
+
+const OAUTH_TOKEN_URL = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
+const CHECKOUT_URL = 'https://api.phonepe.com/apis/pg/checkout/v2/pay';
+const tokenUrl = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
+const phonepe_success_Url ='https://api.phonepe.com/apis/pg/checkout/v2/order';
 
 const AUTH_PAYLOAD = {
-    client_id: 'TEST-M22AIQQJG6USL_25090',
+    client_id: 'SU2511111525407992747471',
     client_version: 1,
-    client_secret: 'ZmUyY2YwOWQtYmJjOC00ZjU2LTliMjAtN2VmNGNmZTc4ZGI2',
+    client_secret: '6aa255b8-59f2-457d-aa02-c96bdbcfd532',
     grant_type: 'client_credentials',
 };
+
+// --------------------------------------------------------------------
+
+
 async function getAccessToken() {
    
 
@@ -53,14 +76,14 @@ async function initiatePayment(accessToken, orderDetails) {
             "udf1": orderDetails.customername,
             "udf2": orderDetails.mobile,
             "udf3": orderDetails.transactionid,
-            "udf4": "dummy value 4",
-            "udf5": "addition infor ref1"
+            "udf4": orderDetails.amount,
+            "udf5": orderDetails.id
         },
         "paymentFlow": {
             "type": "PG_CHECKOUT",
             "message": `Payment for Policy ID: ${orderDetails.id}`,
             "merchantUrls": {
-                "redirectUrl": "http://49.207.186.126:8001/success.html" 
+                "redirectUrl": "http://49.207.186.126:8001/success.html?txnid=" + orderDetails.transactionid + "&excelid=" + orderDetails.id,
             },
             // "paymentModeConfig": {
             //     "disabledPaymentModes": [
@@ -675,21 +698,21 @@ exports.single_userdetails = async (req, res) => {
 };
 exports.operation_policy_prepare = async (req, res) => {
   try {
-    const { userid } = req.body;
+    const { id } = req.body;
 
     // 🧩 Input validation
-    if (!userid) {
+    if (!id) {
       return res.status(400).json({
         success: false,
-        message: 'Invalid or missing user ID',
+        message: 'Invalid or missing ID',
       });
     }
 
     // 🧠 Run your stored procedure
     const [results] = await sequelize.query(
-      `EXEC operation_policy_prepare @userid = :userid`,
+      `EXEC operation_policy_prepare @id = :id`,
       {
-        replacements: { userid },
+        replacements: { id },
       }
     );
 
@@ -998,8 +1021,7 @@ exports.payment_success_redirect = async (req, res) => {
     // 🧩 Step 3: Loop through and check payment status
     for (const row of transactions) {
       const { merchantorderid, transactionid, excelid, customername, amount, vehicleno, mobile } = row;
-      const statusUrl = `https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order/${merchantorderid}/status`;
-
+      const statusUrl = `${phonepe_success_Url}/${merchantorderid}/status`;
       try {
         // ✅ Get payment status
         const response = await axios.get(statusUrl, {
@@ -1106,7 +1128,8 @@ exports.operation_policy_save = async (req, res) => {
     // ✅ Combine destructuring into one line
     const { policyid, payment_datee, customername, mobile, vehicleno, make, 
       model, idv, amount, transactionid, merchentorderid, regdate, chasisno,
-       engineno, createby } = req.body;        
+       engineno, createby,od,tp,netpremium,grosspremium,paymentmode,
+      company,policyno } = req.body;        
 
     const payment_datee1=convertDate(payment_datee);
     const regdate1=convertDate(regdate);
@@ -1129,6 +1152,13 @@ exports.operation_policy_save = async (req, res) => {
         @chasisno = '${chasisno}',
         @engineno = '${engineno}',
         @createby = ${createby},
+        @od = ${od},
+        @tp = ${tp},
+        @netpremium = ${netpremium},
+        @grosspremium = ${grosspremium},
+        @paymentmode = '${paymentmode}',
+        @company = '${company}',
+        @policyno = '${policyno}',
         @insertedid = @InsertedId OUTPUT;
       SELECT @InsertedId AS insertedid;
     `;
@@ -1157,4 +1187,125 @@ exports.operation_policy_save = async (req, res) => {
     });
   }
 };
+exports.login_website = async (req, res) => {
+  try {
+    const { username, password } = req.body;
 
+    // ✅ Input validation
+    if (!username || !password) {
+      return res.status(400).json({
+        success: false,
+        message: 'Username and password are required',
+      });
+    }
+
+    // ✅ Execute stored procedure
+    const [result] = await sequelize.query(
+      `
+      DECLARE @userid INT, @roleid INT, @branchid INT, @name VARCHAR(60);
+      EXEC login_website 
+        @username = :username,
+        @password = :password,
+        @userid = @userid OUTPUT,
+        @roleid = @roleid OUTPUT,
+        @branchid = @branchid OUTPUT,
+        @name = @name OUTPUT;
+      `,
+      {
+        replacements: { username, password },
+      }
+    );
+
+    // ✅ Handle SQL output
+    const row = result?.[0];
+
+    if (!row) {
+      return res.status(401).json({
+        success: false,
+        message: 'Invalid username or password',
+      });
+    }
+
+    if (row.message == 'Login successful') {
+      return res.status(200).json({
+        success: true,
+        message: row.message,
+        userid: row.userid,
+        roleid: row.roleid,
+        branchid: row.branchid,
+        name: row.name,
+      });
+    } else {
+      return res.status(401).json({
+        success: false,
+        message: row.message || 'Invalid login credentials',
+      });
+    }
+  } catch (err) {
+    console.error('Error in login_website:', err);
+    return res.status(500).json({
+      success: false,
+      message: 'Server error while logging in',
+      error: err.message,
+    });
+  }
+};
+exports.policy_status = async (req, res) => {
+  try {   
+    
+    const [results] = await sequelize.query(
+      `select id,policy_status from M_Policy_Status where statuss=1 `     
+    );
+
+    res.status(200).json({
+      success: true,
+      message: 'Policy Status fetched successfully',
+      count: results.length,
+      data: results,
+    });
+  } catch (err) {
+    console.error('❌ /policy_status controller error:', err);
+    errorlog(err, req);
+    res.status(500).json({
+      success: false,
+      error: err.message || 'Unexpected error',
+    });
+  }
+};
+exports.policy_report = async (req, res) => {
+  try {
+    const { fromdate, todate,status } = req.body;
+    
+    // Validation
+    if (!fromdate || !todate || !status) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid or missing date parameters or status',
+      });
+    }   
+    const fromdate1 = convertDate(fromdate);
+    const todate1 = convertDate(todate);
+
+    // Query
+    const [results] = await sequelize.query(
+      ` exec [policy_report] @fromdate = :fromdate, @todate = :todate, @status = :status`,      
+      {
+        replacements: { fromdate: fromdate1, todate: todate1,status:status  },
+      }
+    );
+
+    res.status(200).json({
+      success: true,
+      message: 'Data fetched successfully',
+      count: results.length,
+      data: results,
+    });
+  } catch (err) {
+    console.error('❌ /renewalList controller error:', err);
+    errorlog(err, req);
+    res.status(500).json({
+      success: false,
+      error: err.message || 'Unexpected error',
+    });
+  }
+};
