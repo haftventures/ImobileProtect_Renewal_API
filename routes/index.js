@@ -4,6 +4,7 @@ const router = express.Router();
 // Grouping similar route files together
 const routeFiles = [  
   './Policy_renewal',
+  './renewal',
 ];
 
 // Import and use all route modules

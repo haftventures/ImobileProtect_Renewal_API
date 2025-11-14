@@ -1,10 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
-function convertDate(dateStr) {
-  const [dd, mm, yyyy] = dateStr.split('/');
-  return `${yyyy}-${mm.padStart(2, '0')}-${dd.padStart(2, '0')}`;
-}
+ function convertDate(dateStr) {
+      const [day, month, year] = dateStr.split('/');
+      return `${year}-${month}-${day}`;   // Correct
+    }
+
 function errorlog(error, req = null) {
   const logDir = path.join(__dirname, '..', 'Logs');
   const logFile = path.join(logDir, 'Error.log');

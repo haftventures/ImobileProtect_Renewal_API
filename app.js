@@ -6,12 +6,13 @@ const { connectDB } = require('./config/connectdatabase');
 
 // ✅ Import your router file directly
 const PolicyRenewalRoutes = require('./routes/Policy_renewal');
-
+const RenewalRoutes = require('./routes/renewal');
 const app = express();
 app.use(express.json());
 
 // ✅ Mount the router
 app.use('/api', PolicyRenewalRoutes);
+app.use('/api', RenewalRoutes);
 
 const PORT = process.env.PORT || 8000;
 const HOST = process.env.HOST || 'localhost';

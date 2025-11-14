@@ -4,33 +4,33 @@ const axios = require('axios');
 
 // ---------------------------- testing links ----------------------------
 
-// const OAUTH_TOKEN_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
-// const CHECKOUT_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/pay';
-// const tokenUrl = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
-// const phonepe_success_Url ='https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order';
+const OAUTH_TOKEN_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
+const CHECKOUT_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/pay';
+const tokenUrl = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
+const phonepe_success_Url ='https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order';
 
-// const AUTH_PAYLOAD = {
-//     client_id: 'TEST-M22AIQQJG6USL_25090',
-//     client_version: 1,
-//     client_secret: 'ZmUyY2YwOWQtYmJjOC00ZjU2LTliMjAtN2VmNGNmZTc4ZGI2',
-//     grant_type: 'client_credentials',
-// };
+const AUTH_PAYLOAD = {
+    client_id: 'TEST-M22AIQQJG6USL_25090',
+    client_version: 1,
+    client_secret: 'ZmUyY2YwOWQtYmJjOC00ZjU2LTliMjAtN2VmNGNmZTc4ZGI2',
+    grant_type: 'client_credentials',
+};
 
 // --------------------------------------------------------------------
 
 // ---------------------------- live links ----------------------------
 
-const OAUTH_TOKEN_URL = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
-const CHECKOUT_URL = 'https://api.phonepe.com/apis/pg/checkout/v2/pay';
-const tokenUrl = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
-const phonepe_success_Url ='https://api.phonepe.com/apis/pg/checkout/v2/order';
+// const OAUTH_TOKEN_URL = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
+// const CHECKOUT_URL = 'https://api.phonepe.com/apis/pg/checkout/v2/pay';
+// const tokenUrl = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
+// const phonepe_success_Url ='https://api.phonepe.com/apis/pg/checkout/v2/order';
 
-const AUTH_PAYLOAD = {
-    client_id: 'SU2511111525407992747471',
-    client_version: 1,
-    client_secret: '6aa255b8-59f2-457d-aa02-c96bdbcfd532',
-    grant_type: 'client_credentials',
-};
+// const AUTH_PAYLOAD = {
+//     client_id: 'SU2511111525407992747471',
+//     client_version: 1,
+//     client_secret: '6aa255b8-59f2-457d-aa02-c96bdbcfd532',
+//     grant_type: 'client_credentials',
+// };
 
 // --------------------------------------------------------------------
 
