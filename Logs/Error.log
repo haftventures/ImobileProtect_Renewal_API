@@ -404,3 +404,101 @@ User Host IP  : ::1
 
 --------------------------------*End*------------------------------------------
 
+-----------Exception Details on 11/14/2025, 6:03:07 PM-----------------
+
+Error Line No : at exports.support_process (E:\Renewal\source\Controller\renewalController.js:164:28)
+
+Error Message : dob is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: dob is not defined
+    at exports.support_process (E:\Renewal\source\Controller\renewalController.js:164:28)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Renewal\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Renewal\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Renewal\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Renewal\source\node_modules\router\index.js:295:15
+    at processParams (E:\Renewal\source\node_modules\router\index.js:582:12)
+    at next (E:\Renewal\source\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Renewal\source\node_modules\router\index.js:186:3)
+
+Error Page Url: /api/renewal/support_process
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 6:04:00 PM-----------------
+
+Error Line No : at exports.support_process (E:\Renewal\source\Controller\renewalController.js:164:28)
+
+Error Message : dob is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: dob is not defined
+    at exports.support_process (E:\Renewal\source\Controller\renewalController.js:164:28)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Renewal\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Renewal\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Renewal\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Renewal\source\node_modules\router\index.js:295:15
+    at processParams (E:\Renewal\source\node_modules\router\index.js:582:12)
+    at next (E:\Renewal\source\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Renewal\source\node_modules\router\index.js:186:3)
+
+Error Page Url: /api/renewal/support_process
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 6:04:47 PM-----------------
+
+Error Line No : at exports.support_process (E:\Renewal\source\Controller\renewalController.js:164:28)
+
+Error Message : dob is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: dob is not defined
+    at exports.support_process (E:\Renewal\source\Controller\renewalController.js:164:28)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Renewal\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Renewal\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Renewal\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Renewal\source\node_modules\router\index.js:295:15
+    at processParams (E:\Renewal\source\node_modules\router\index.js:582:12)
+    at next (E:\Renewal\source\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Renewal\source\node_modules\router\index.js:186:3)
+
+Error Page Url: /api/renewal/support_process
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 6:31:30 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'get_payment_status' expects parameter '@status', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.support_report (E:\Renewal\source\Controller\renewalController.js:214:22)
+
+Error Page Url: /api/renewal/support_report
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+

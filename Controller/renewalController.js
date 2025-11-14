@@ -140,4 +140,99 @@ exports.KYC_process = async (req, res) => {
     });
   }
 };
+exports.support_process = async (req, res) => {
+  try {
+    const { txnid, excelid,name,description } = req.body;
 
+    if (!txnid || !excelid || !name || !description) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required fields"
+      });
+    }
+
+    const query = `
+      DECLARE @output INT;
+      EXEC support_process 
+          @txnid = :txnid,
+          @excelid = :excelid,
+          @name = :name,
+          @description = :description,          
+          @insertedid = @output OUTPUT;
+      SELECT @output AS insertedid;
+    `;
+    
+    const result = await sequelize.query(query, {
+      replacements: { txnid, excelid, name,description },
+      type: sequelize.QueryTypes.SELECT
+    });
+
+    const insertedid = result[0].insertedid;
+
+    // ⭐ Check success or failure based on OUTPUT value
+    if (insertedid && insertedid > 0) {
+      return res.status(200).json({
+        success: true,
+        message: "Support inserted successfully",
+        insertedid: insertedid
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Support insertion failed",
+        insertedid: 0
+      });
+    }
+
+  } catch (err) {
+    console.error(err);
+    errorlog(err, req);
+    return res.status(500).json({
+      success: false,
+      message: "Server Error",
+      error: err.message
+    });
+  }
+};
+exports.support_report = async (req, res) => {
+  try {
+    const { fromdate, todate,userid } = req.body;
+    
+    // Validation
+    if (!fromdate || !todate || !userid) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid or missing parameters',
+      });
+    }
+
+   
+    const fromdate1 = convertDate(fromdate);
+    const todate1 = convertDate(todate);
+
+    // Query
+   const [results] = await sequelize.query(
+  `EXEC support_report @fromDate = :fromdate, @toDate = :todate, @userid = :userid`,
+  {
+    replacements: {
+      fromdate: fromdate1, // e.g. '2025-01-01'
+      todate: todate1,     // e.g. '2025-11-01'
+      userid: userid
+    },
+  }
+);
+    res.status(200).json({
+      success: true,
+      message: 'Data fetched successfully',
+      count: results.length,
+      data: results,
+    });
+  } catch (err) {
+    console.error('❌ /support_report controller error:', err);
+    errorlog(err, req);
+    res.status(500).json({
+      success: false,
+      error: err.message || 'Unexpected error',
+    });
+  }
+};

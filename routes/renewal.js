@@ -6,5 +6,7 @@ const RenewalController = require('../Controller/renewalController');
 router.post('/renewal/get_upload_data_list', RenewalController.get_upload_data_list);
 router.post('/renewal/selected_sms_ids', RenewalController.selected_sms_ids);
 router.post('/renewal/KYC_process', RenewalController.KYC_process);
+router.post('/renewal/support_process', RenewalController.support_process);
+router.post('/renewal/support_report', RenewalController.support_report);
 
 module.exports = router;    

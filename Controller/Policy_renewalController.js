@@ -978,32 +978,38 @@ exports.payment_success_redirect = async (req, res) => {
     if (!txnid || !excelid) {
       return res.status(400).json({
         success: false,
-        message: 'Missing txnid or excelid',
+        message: "Missing txnid or excelid",
       });
     }
 
-    // 🧩 Step 1: Get Access Token
+    // ⭐ Step 1: Get Access Token
     const tokenResponse = await axios.post(
       tokenUrl,
       new URLSearchParams(AUTH_PAYLOAD),
-      { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+      { headers: { "Content-Type": "application/x-www-form-urlencoded" } }
     );
 
     const accessToken = tokenResponse?.data?.access_token;
     if (!accessToken) {
       return res.status(500).json({
         success: false,
-        message: 'Failed to get access token from PhonePe',
+        message: "Failed to get access token from PhonePe",
       });
     }
 
-    // 🧩 Step 2: Fetch pending transactions
+    // ⭐ Step 2: Fetch transaction details
     const [transactions] = await sequelize.query(`
-      SELECT tg.merchantorderid, tg.transactionid, tg.excelid, tu.customername, 
-             tg.amount, tu.vehicleno, tu.mobile 
+      SELECT 
+        tg.merchantorderid, 
+        tg.transactionid, 
+        tg.excelid, 
+        tu.customername,
+        tg.amount, 
+        tu.vehicleno, 
+        tu.mobile 
       FROM T_Payment_getway tg
       INNER JOIN T_Uplodpolicy_excel tu ON tg.excelid = tu.id
-      WHERE  tg.transactionid='${txnid}'
+      WHERE tg.transactionid='${txnid}'
         AND tg.excelid='${excelid}'
       ORDER BY tg.id DESC
     `);
@@ -1011,95 +1017,145 @@ exports.payment_success_redirect = async (req, res) => {
     if (!transactions || transactions.length === 0) {
       return res.json({
         success: true,
-        message: 'No pending transactions found',
+        message: "No pending transactions found",
       });
     }
 
     const insertedIds = [];
     const whatsappResults = [];
 
-    // 🧩 Step 3: Loop through and check payment status
+    // ⭐ Step 3: Loop & process each transaction
     for (const row of transactions) {
-      const { merchantorderid, transactionid, excelid, customername, amount, vehicleno, mobile } = row;
+      const {
+        merchantorderid,
+        transactionid,
+        excelid,
+        customername,
+        amount,
+        vehicleno,
+        mobile
+      } = row;
+
       const statusUrl = `${phonepe_success_Url}/${merchantorderid}/status`;
+
       try {
-        // ✅ Get payment status
+        // ⭐ Get payment status from PhonePe
         const response = await axios.get(statusUrl, {
           headers: {
             Authorization: `O-Bearer ${accessToken}`,
-            Accept: 'application/json',
+            Accept: "application/json",
           },
         });
 
         const responseBody = JSON.stringify(response.data).replace(/'/g, "''");
 
-        // ✅ Insert gateway response into DB
+        // ⭐ Insert gateway response
         const query = `
           DECLARE @InsertedId INT;
+
           EXEC getway_response 
-            @transactionId='${transactionid}', 
-            @merchantOrderId='${merchantorderid}', 
-            @json='${responseBody}', 
-            @excelid=${excelid}, 
-            @InsertedId=@InsertedId OUTPUT;
+              @transactionId='${transactionid}', 
+              @merchantOrderId='${merchantorderid}', 
+              @json='${responseBody}', 
+              @excelid=${excelid}, 
+              @InsertedId=@InsertedId OUTPUT;
+
           SELECT @InsertedId AS InsertedId;
         `;
 
         const [spResult] = await sequelize.query(query);
-        const insertedId = spResult?.[0]?.InsertedId || null;
-        insertedIds.push({ merchantOrderId: merchantorderid, insertedId });
+        const insertedId = spResult?.[0]?.InsertedId || 0;
 
-        // ✅ Only send WhatsApp if DB insert succeeded
-        if (insertedId && insertedId !== 0) {
-          try 
-          {
-            const safeAmount = amount ? amount.toString() : '0';
-            const safeCustomer = customername || '';
-            const safeVehicle = vehicleno || '';
-            const whatsappResponse = await axios.post(
-              'https://api.aoc-portal.com/v1/whatsapp',
+        insertedIds.push({
+          merchantOrderId: merchantorderid,
+          insertedId,
+        });
+
+        // ⭐ If DB insert success → send success WhatsApp
+        if (insertedId !== 0) {
+          try {
+            const safeAmount = amount ? amount.toString() : "0";
+            const safeCustomer = customername || "";
+            const safeVehicle = vehicleno || "";
+
+            const waSuccess = await axios.post(
+              "https://api.aoc-portal.com/v1/whatsapp",
               {
-                from: '+919344118986',
-                campaignName: 'api-test',
-                to: mobile.startsWith('+91') ? mobile : `+91${mobile}`,
-                templateName: 'paymentconfirmation',
+                from: "+919344118986",
+                campaignName: "api-test",
+                to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
+                templateName: "paymentconfirmation",
                 components: {
-                  body: {
-                    params: [safeCustomer, safeAmount, safeVehicle],
-                  },
-                  header: {
-                    type: 'text',
-                    text: 'Payment Confirmation',
-                  },
+                  body: { params: [safeCustomer, safeAmount, safeVehicle] },
+                  header: { type: "text", text: "Payment Confirmation" },
                 },
-                type: 'template',
+                type: "template",
               },
               {
                 headers: {
-                  apikey: 'fXsUv7l3Uhxo4YR9ADsx6CTp1TjcX6',
-                  'Content-Type': 'application/json',
+                  apikey: "fXsUv7l3Uhxo4YR9ADsx6CTp1TjcX6",
+                  "Content-Type": "application/json",
                 },
               }
             );
 
             whatsappResults.push({
               transactionId: transactionid,
-              message: whatsappResponse.data?.message || 'WhatsApp Sent Successfully',
-              whatsappResponse: whatsappResponse.data,
+              status: "success",
+              message: waSuccess.data?.message || "WhatsApp sent successfully",
+              response: waSuccess.data,
             });
           } catch (waErr) {
             console.error(`❌ WhatsApp send failed for ${transactionid}:`, waErr.message);
             whatsappResults.push({
               transactionId: transactionid,
-              error: `WhatsApp send failed: ${waErr.message}`,
+              status: "success_whatsapp_failed",
+              error: waErr.message,
             });
           }
-        } else {
-          // 🚫 Record not inserted — skip WhatsApp
-          whatsappResults.push({
-            transactionId: transactionid,
-            message: 'Record not inserted — WhatsApp not sent',
-          });
+        }
+        // ⭐ If DB insert failed → send failure WhatsApp
+        else {
+          try {
+            const safeCustomer = customername || "";
+            const paymentLink = `http://49.207.186.126:8001/payment?txnid=${transactionid}`;
+
+            const waFail = await axios.post(
+              "https://api.aoc-portal.com/v1/whatsapp",
+              {
+                from: "+919344118986",
+                campaignName: "api-test",
+                to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
+                templateName: "payment_faied",
+                components: {
+                  body: { params: [safeCustomer, paymentLink] },
+                  header: { type: "text", text: "text value" },
+                },
+                type: "template",
+              },
+              {
+                headers: {
+                  apikey: "fXsUv7l3Uhxo4YR9ADsx6CTp1TjcX6",
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+
+            whatsappResults.push({
+              transactionId: transactionid,
+              status: "failed_insertid_whatsapp_sent",
+              message: "Payment failed WhatsApp sent",
+              response: waFail.data,
+            });
+          } catch (waErr) {
+            console.error(`❌ WhatsApp failure message failed for ${transactionid}:`, waErr.message);
+
+            whatsappResults.push({
+              transactionId: transactionid,
+              status: "failed_insertid_whatsapp_failed",
+              error: waErr.message,
+            });
+          }
         }
       } catch (err) {
         console.error(`❌ Error checking ${merchantorderid}:`, err.message);
@@ -1107,19 +1163,20 @@ exports.payment_success_redirect = async (req, res) => {
       }
     }
 
-    // ✅ Return final summary
+    // ⭐ Final API Response
     res.json({
       success: true,
-      message: 'Payment check completed',
+      message: "Payment check completed",
       insertedRecords: insertedIds,
       whatsappResults,
     });
   } catch (err) {
-    console.error('❌ payment_success_redirect error:', err);
+    console.error("❌ payment_success_redirect error:", err);
     errorlog(err, req);
+
     res.status(500).json({
       success: false,
-      error: err.message || 'Unexpected error',
+      error: err.message || "Unexpected error",
     });
   }
 };
