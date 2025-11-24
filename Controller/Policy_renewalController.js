@@ -1,39 +1,41 @@
 const { sequelize } = require('../config/connectdatabase');
 const { convertDate, errorlog } = require('../Models/global_models');
 const axios = require('axios');
+const fs = require("fs");
+const path = require("path");
 
 // ---------------------------- testing links ----------------------------
 
-const OAUTH_TOKEN_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
-const CHECKOUT_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/pay';
-const tokenUrl = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
-const phonepe_success_Url ='https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order';
-
-const AUTH_PAYLOAD = {
-    client_id: 'TEST-M22AIQQJG6USL_25090',
-    client_version: 1,
-    client_secret: 'ZmUyY2YwOWQtYmJjOC00ZjU2LTliMjAtN2VmNGNmZTc4ZGI2',
-    grant_type: 'client_credentials',
-};
-
-// --------------------------------------------------------------------
-
-// ---------------------------- live links ----------------------------
-
-// const OAUTH_TOKEN_URL = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
-// const CHECKOUT_URL = 'https://api.phonepe.com/apis/pg/checkout/v2/pay';
-// const tokenUrl = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
-// const phonepe_success_Url ='https://api.phonepe.com/apis/pg/checkout/v2/order';
+// const OAUTH_TOKEN_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
+// const CHECKOUT_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/pay';
+// const tokenUrl = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
+// const phonepe_success_Url ='https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order';
 
 // const AUTH_PAYLOAD = {
-//     client_id: 'SU2511111525407992747471',
+//     client_id: 'TEST-M22AIQQJG6USL_25090',
 //     client_version: 1,
-//     client_secret: '6aa255b8-59f2-457d-aa02-c96bdbcfd532',
+//     client_secret: 'ZmUyY2YwOWQtYmJjOC00ZjU2LTliMjAtN2VmNGNmZTc4ZGI2',
 //     grant_type: 'client_credentials',
 // };
 
 // --------------------------------------------------------------------
 
+// ---------------------------- live links ----------------------------
+
+const OAUTH_TOKEN_URL = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
+const CHECKOUT_URL = 'https://api.phonepe.com/apis/pg/checkout/v2/pay';
+const tokenUrl = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
+const phonepe_success_Url ='https://api.phonepe.com/apis/pg/checkout/v2/order';
+const kyc_url = "https://api.aoc-portal.com/v1/whatsapp";
+
+const AUTH_PAYLOAD = {
+    client_id: 'SU2511111525407992747471',
+    client_version: 1,
+    client_secret: '6aa255b8-59f2-457d-aa02-c96bdbcfd532',
+    grant_type: 'client_credentials',
+};
+
+// --------------------------------------------------------------------
 
 async function getAccessToken() {
    
@@ -74,7 +76,7 @@ async function initiatePayment(accessToken, orderDetails) {
         "expireAfter": 1200,
         "metaInfo": {
             "udf1": orderDetails.customername,
-            "udf2": orderDetails.mobile,
+            "udf2": "",
             "udf3": orderDetails.transactionid,
             "udf4": orderDetails.amount,
             "udf5": orderDetails.id
@@ -83,7 +85,7 @@ async function initiatePayment(accessToken, orderDetails) {
             "type": "PG_CHECKOUT",
             "message": `Payment for Policy ID: ${orderDetails.id}`,
             "merchantUrls": {
-                "redirectUrl": "http://49.207.186.126:8001/success.html?txnid=" + orderDetails.transactionid + "&excelid=" + orderDetails.id,
+                "redirectUrl": "https://pa1innovsource.com/success.html?txnid=" + orderDetails.transactionid + "&excelid=" + orderDetails.id+ "&merchantOrderId=" + merchantOrderId,
             },
             // "paymentModeConfig": {
             //     "disabledPaymentModes": [
@@ -165,30 +167,32 @@ exports.getrenewaldata = async (req, res) => {
     });
 
     if (checkResult.countt > 0) {
-      return res.status(200).json({
-        success: false,
-        message: 'Payment already done for this transaction ID',
-      });
-    }
+
+  const [resultss] = await sequelize.query(
+    `EXEC payment_done @transactionid = :transactionid`,
+  {
+    replacements: {
+      transactionid: txnid       
+    },
+  }
+  );
+
+  return res.status(200).json({
+    success: false,
+    message: "Payment already done for this transaction ID",
+    renewalDatas: resultss[0]  // This is correct ✔
+  });
+}
+
 
     // ✅ 2️⃣ If not paid, fetch renewal data
     const [results] = await sequelize.query(
-      `
-      SELECT TOP 1 
-        id, customername, mobile, vehicleno, make, model, year, idv, cc, 
-        grosspremium, prev_policyno, transactionid, [email],
-        CONVERT(varchar(10), [policyenddate], 103) AS policyenddate,
-        (
-          SELECT
-            [oneyear] AS [1],
-            [twoyear] AS [2],
-            [threeyear] AS [3]
-          FOR JSON PATH, WITHOUT_ARRAY_WRAPPER
-        ) AS PremiumDurations
-      FROM [T_Uplodpolicy_excel]
-      WHERE transactionid = :transactionid 
-      `,
-      { replacements: { transactionid: txnid } }
+      `EXEC [getrenewaldata] @transactionid = :transactionid`,
+  {
+    replacements: {
+      transactionid: txnid       
+    },
+  }
     );
 
     if (results.length === 0) {
@@ -973,12 +977,12 @@ exports.policy_prepare_list = async (req, res) => {
 };
 exports.payment_success_redirect = async (req, res) => {
   try {
-    const { txnid, excelid } = req.body;
-
-    if (!txnid || !excelid) {
+    const { txnid, excelid,merchantOrderId } = req.body;
+    let  responseObj_status="";
+    if (!txnid || !excelid || !merchantOrderId) {
       return res.status(400).json({
         success: false,
-        message: "Missing txnid or excelid",
+        message: "Missing txnid, excelid, or merchantOrderId",
       });
     }
 
@@ -1011,6 +1015,7 @@ exports.payment_success_redirect = async (req, res) => {
       INNER JOIN T_Uplodpolicy_excel tu ON tg.excelid = tu.id
       WHERE tg.transactionid='${txnid}'
         AND tg.excelid='${excelid}'
+        and tg.merchantorderid='${merchantOrderId}'
       ORDER BY tg.id DESC
     `);
 
@@ -1046,9 +1051,9 @@ exports.payment_success_redirect = async (req, res) => {
             Accept: "application/json",
           },
         });
-
+        const responseObj = response.data;  // 👉 JSON Object (use for binding values)
         const responseBody = JSON.stringify(response.data).replace(/'/g, "''");
-
+        responseObj_status = responseObj.state;
         // ⭐ Insert gateway response
         const query = `
           DECLARE @InsertedId INT;
@@ -1072,14 +1077,14 @@ exports.payment_success_redirect = async (req, res) => {
         });
 
         // ⭐ If DB insert success → send success WhatsApp
-        if (insertedId !== 0) {
+        if (responseObj_status !=="FAILED"){
           try {
             const safeAmount = amount ? amount.toString() : "0";
             const safeCustomer = customername || "";
             const safeVehicle = vehicleno || "";
 
             const waSuccess = await axios.post(
-              "https://api.aoc-portal.com/v1/whatsapp",
+              kyc_url,
               {
                 from: "+919344118986",
                 campaignName: "api-test",
@@ -1113,12 +1118,49 @@ exports.payment_success_redirect = async (req, res) => {
               error: waErr.message,
             });
           }
-        }
+
+
+            const safeCustomer = customername || "";
+            const safeVehicle = vehicleno || "";
+          const payload = {
+    from: "+919344118986",
+    campaignName: "api-test",
+    to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
+    templateName: "kyc_update",
+    components: {
+      body: {
+        params: [
+          safeCustomer,
+          safeVehicle,
+          `https://pa1innovsource.com/kyc.html?tnxid=${transactionid}&excelid=${excelid}`
+        ]
+      },
+      header: {
+        type: "text",
+        text: "text value"
+      }
+    },
+    type: "template"
+  };
+
+  try {
+    const response = await axios.post(kyc_url, payload, {
+      headers: {
+        apikey: "fXsUv7l3Uhxo4YR9ADsx6CTp1TjcX6",
+        "Content-Type": "application/json"
+      }
+    });
+
+    console.log("API Response:", response.data);
+  } catch (err) {
+    console.error("Error:", err.response ? err.response.data : err.message);
+  }
+}
         // ⭐ If DB insert failed → send failure WhatsApp
         else {
           try {
             const safeCustomer = customername || "";
-            const paymentLink = `http://49.207.186.126:8001/payment?txnid=${transactionid}`;
+            const paymentLink = `https://pa1innovsource.com/payment?txnid=${transactionid}`;
 
             const waFail = await axios.post(
               "https://api.aoc-portal.com/v1/whatsapp",
@@ -1164,12 +1206,20 @@ exports.payment_success_redirect = async (req, res) => {
     }
 
     // ⭐ Final API Response
+    if (responseObj_status !=="FAILED"){
     res.json({
       success: true,
       message: "Payment check completed",
       insertedRecords: insertedIds,
       whatsappResults,
     });
+  }
+  else{
+     res.json({
+      success: false,
+      message: "Payment not completed",      
+    });
+  }
   } catch (err) {
     console.error("❌ payment_success_redirect error:", err);
     errorlog(err, req);
@@ -1183,46 +1233,59 @@ exports.payment_success_redirect = async (req, res) => {
 exports.operation_policy_save = async (req, res) => {
   try {
     // ✅ Combine destructuring into one line
-    const { policyid, payment_datee, customername, mobile, vehicleno, make, 
-      model, idv, amount, transactionid, merchentorderid, regdate, chasisno,
-       engineno, createby,od,tp,netpremium,grosspremium,paymentmode,
-      company,policyno } = req.body;        
+    const { policyid, amount, transactionid, merchentorderid,
+      od,tp,netpremium,grosspremium,
+      company,policyno,ncb,policystartdate,policyenddate,remarks, createby ,pdfBase64 } = req.body;        
 
-    const payment_datee1=convertDate(payment_datee);
-    const regdate1=convertDate(regdate);
-    // 🧩 Execute stored procedure with OUTPUT parameter
+    const policystartdate1=convertDate(policystartdate);
+    const policyendate1=convertDate(policyenddate);    
+    const amount1 = amount === "" || amount == null ? 0 : amount;
     const query = `
-      DECLARE @InsertedId INT;
-      EXEC operation_policy_save
-        @policyid = ${policyid},
-        @payment_datee = '${payment_datee1}',
-        @customername = '${customername}',
-        @mobile = '${mobile}',
-        @vehicleno = '${vehicleno}',
-        @make = '${make}',
-        @model = '${model}',
-        @idv = ${idv},
-        @amount = ${amount},
-        @transactionid = '${transactionid}',
-        @merchentorderid = '${merchentorderid}',
-        @regdate = '${regdate1}',
-        @chasisno = '${chasisno}',
-        @engineno = '${engineno}',
-        @createby = ${createby},
-        @od = ${od},
-        @tp = ${tp},
-        @netpremium = ${netpremium},
-        @grosspremium = ${grosspremium},
-        @paymentmode = '${paymentmode}',
-        @company = '${company}',
-        @policyno = '${policyno}',
-        @insertedid = @InsertedId OUTPUT;
-      SELECT @InsertedId AS insertedid;
-    `;
+  DECLARE @insertedid INT;
+
+  EXEC operation_policy_save
+      @policyid = ${policyid},
+      @amount = ${amount1},
+      @transactionid = '${transactionid}',
+      @merchentorderid = '${merchentorderid}',
+      @od = ${od},
+      @tp = ${tp},
+      @netpremium = ${netpremium},
+      @grosspremium = ${grosspremium},
+      @company = '${company}',
+      @policyno = '${policyno}',
+      @ncb = '${ncb}',
+      @startdate = '${policystartdate1}',
+      @enddate = '${policyendate1}',
+      @remarks = '${remarks}',
+      @createby = ${createby},
+      @insertedid = @insertedid OUTPUT;
+
+  SELECT @insertedid AS insertedid;
+`;
+
+   var json = JSON.stringify({ query });
+
 
     const [result] = await sequelize.query(query);
     const insertedId = result?.[0]?.insertedid || null;
 
+     // 1️⃣ Save Base64 PDF
+    if (pdfBase64) {
+    const pdfBuffer = Buffer.from(pdfBase64, "base64");
+
+    const folderPath = path.join(__dirname, "../Operation/pdf/policy", String(insertedId));
+
+    if (!fs.existsSync(folderPath)) {
+        fs.mkdirSync(folderPath, { recursive: true });
+    }
+    const filename = `policy_${Date.now()}.pdf`;
+    const filepath = path.join(folderPath, filename);
+
+    fs.writeFileSync(filepath, pdfBuffer);
+
+    savedPdfPath = `uploads/policies/${insertedId}/${filename}`;
+}
     if (insertedId) {
       return res.json({
         success: true,

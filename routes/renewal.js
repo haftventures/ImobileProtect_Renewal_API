@@ -8,5 +8,6 @@ router.post('/renewal/selected_sms_ids', RenewalController.selected_sms_ids);
 router.post('/renewal/KYC_process', RenewalController.KYC_process);
 router.post('/renewal/support_process', RenewalController.support_process);
 router.post('/renewal/support_report', RenewalController.support_report);
-
+router.post('/renewal/show_policy_count', RenewalController.show_policy_count);
+router.post('/renewal/massive_update_ids', RenewalController.massive_update_ids);
 module.exports = router;    

@@ -502,3 +502,251 @@ User Host IP  : ::1
 
 --------------------------------*End*------------------------------------------
 
+-----------Exception Details on 11/19/2025, 6:01:08 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+
+Error Message : responseBody is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: responseBody is not defined
+    at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/19/2025, 6:02:22 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+
+Error Message : responseBody is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: responseBody is not defined
+    at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/19/2025, 6:06:04 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+
+Error Message : responseObj is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: responseObj is not defined
+    at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/19/2025, 6:10:07 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+
+Error Message : responseObj_status is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: responseObj_status is not defined
+    at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/19/2025, 6:11:20 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1052:28)
+
+Error Message : Assignment to constant variable.
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Assignment to constant variable.
+    at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1052:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 12:56:22 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'selected_sms_ids' expects parameter '@userid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.selected_sms_ids (E:\Renewal\source\Controller\renewalController.js:59:20)
+
+Error Page Url: /api/renewal/selected_sms_ids
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 1:59:50 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1128:11)
+
+Error Message : safeCustomer is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: safeCustomer is not defined
+    at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1128:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 4:16:58 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Renewal\source\Controller\Policy_renewalController.js:169:27)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=JTRCG2E2
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 4:17:49 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Renewal\source\Controller\Policy_renewalController.js:169:27)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=JTRCG2E2
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 4:18:17 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Renewal\source\Controller\Policy_renewalController.js:169:27)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=JTRCG2E2
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 4:18:53 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Renewal\source\Controller\Policy_renewalController.js:169:27)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=JTRCG2E2
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 4:20:06 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Invalid object name 't_uploadexcel'.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Renewal\source\Controller\Policy_renewalController.js:170:22)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=JTRCG2E2
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 4:20:16 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Invalid object name 'T_Policy_payment'.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Renewal\source\Controller\Policy_renewalController.js:170:22)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=JTRCG2E2
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
