@@ -3,6 +3,16 @@ const { convertDate, errorlog } = require('../Models/global_models');
 const axios = require('axios');
 const fs = require("fs");
 const path = require("path");
+const multer = require("multer");
+
+// Store PDF in memory → buffer
+const storage = multer.memoryStorage();
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 20 * 1024 * 1024 } // max 20MB
+});
+
 
 // ---------------------------- testing links ----------------------------
 
@@ -943,19 +953,8 @@ exports.policy_prepare_list = async (req, res) => {
       { replacements: { userid }, raw: true }
     );
 
-    // 🔍 Handle SQL JSON alias quirk
-    const jsonKey = Object.keys(results[0] || {}).find(k =>
-      k.startsWith('JSON_F52E2B61')
-    );
-
-    let parsed = {};
-    if (jsonKey) {
-      parsed = JSON.parse(results[0][jsonKey]);
-    }
-
-    // ✅ Parse JSON safely
-    const freshList = parsed.fresh || [];
-    const waitingList = parsed.waiting || [];
+   const freshList = results.filter(r => r.list_type === 'fresh');
+    const waitingList = results.filter(r => r.list_type === 'waiting');
 
     res.status(200).json({
       success: true,
@@ -1077,7 +1076,7 @@ exports.payment_success_redirect = async (req, res) => {
         });
 
         // ⭐ If DB insert success → send success WhatsApp
-        if (responseObj_status !=="FAILED"){
+        if (responseObj_status =="COMPLETED"){
           try {
             const safeAmount = amount ? amount.toString() : "0";
             const safeCustomer = customername || "";
@@ -1163,7 +1162,7 @@ exports.payment_success_redirect = async (req, res) => {
             const paymentLink = `https://pa1innovsource.com/payment?txnid=${transactionid}`;
 
             const waFail = await axios.post(
-              "https://api.aoc-portal.com/v1/whatsapp",
+              kyc_url,
               {
                 from: "+919344118986",
                 campaignName: "api-test",
@@ -1206,7 +1205,7 @@ exports.payment_success_redirect = async (req, res) => {
     }
 
     // ⭐ Final API Response
-    if (responseObj_status !=="FAILED"){
+    if (responseObj_status =="COMPLETED"){
     res.json({
       success: true,
       message: "Payment check completed",
@@ -1235,7 +1234,9 @@ exports.operation_policy_save = async (req, res) => {
     // ✅ Combine destructuring into one line
     const { policyid, amount, transactionid, merchentorderid,
       od,tp,netpremium,grosspremium,
-      company,policyno,ncb,policystartdate,policyenddate,remarks, createby ,pdfBase64 } = req.body;        
+      company,policyno,ncb,policystartdate,policyenddate,remarks, createby,mobile } = req.body;    
+      
+      const pdfFile = req.file; 
 
     const policystartdate1=convertDate(policystartdate);
     const policyendate1=convertDate(policyenddate);    
@@ -1271,22 +1272,61 @@ exports.operation_policy_save = async (req, res) => {
     const insertedId = result?.[0]?.insertedid || null;
 
      // 1️⃣ Save Base64 PDF
-    if (pdfBase64) {
-    const pdfBuffer = Buffer.from(pdfBase64, "base64");
+     // 2️⃣ Save actual PDF on server
+    if (pdfFile) {
+      const folderPath = path.join(__dirname, "../Gallery/Policy_pdf/", String(insertedId));
 
-    const folderPath = path.join(__dirname, "../Operation/pdf/policy", String(insertedId));
-
-    if (!fs.existsSync(folderPath)) {
+      // Create folder if not exists
+      if (!fs.existsSync(folderPath)) {
         fs.mkdirSync(folderPath, { recursive: true });
+      }
+
+      const filename = `${insertedId}.pdf`;
+      const filepath = path.join(folderPath, filename);
+
+      // Save the binary PDF file
+      fs.writeFileSync(filepath, pdfFile.buffer);
+
+      // console.log("PDF Saved:", filepath);
     }
-    const filename = `policy_${Date.now()}.pdf`;
-    const filepath = path.join(folderPath, filename);
-
-    fs.writeFileSync(filepath, pdfBuffer);
-
-    savedPdfPath = `uploads/policies/${insertedId}/${filename}`;
-}
     if (insertedId) {
+
+
+  const finalRedirectUrl = `https://pa1innovsource.com/pdfdownload.html?policyid=${insertedId}`;
+  const whatsappPayload = {
+    from: "+919344118986",
+    campaignName: "api-test",
+   to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
+    templateName: "policy_pdf",
+    components: {
+      body: {
+        params: ["Customer", finalRedirectUrl]
+      },
+      header: {
+        type: "text",
+        text: "Policy PDF"
+      }
+    },
+    type: "template"
+  };
+
+  try {
+    await axios.post(
+      kyc_url,
+      whatsappPayload,
+      {
+        headers: {
+          apikey: "fXsUv7l3Uhxo4YR9ADsx6CTp1TjcX6",
+          "Content-Type": "application/json"
+        }
+      }
+    );
+
+    // console.log("📩 WhatsApp Redirect Link sent");
+  } catch (err) {
+    console.error("❌ WhatsApp sending failed:", err.message);
+  }
+
       return res.json({
         success: true,
         message: 'Policy saved successfully',
@@ -1429,3 +1469,33 @@ exports.policy_report = async (req, res) => {
     });
   }
 };
+exports.get_pdf_path = async (req, res) => {
+  try {
+    const policyid = req.query.policyid;
+    if (!policyid) {
+      return res.json({ success: false, message: "Policy ID required" });
+    }
+
+    const fileName = `${policyid}.pdf`;
+    const pdfRoot = process.env.PDF_ROOT;
+    const localPath = path.join(pdfRoot, policyid.toString(), fileName);
+
+    if (!fs.existsSync(localPath)) {
+      return res.json({ success: false, message: "PDF file not found" });
+    }
+
+    const fileBuffer = fs.readFileSync(localPath);
+    const base64Pdf = fileBuffer.toString("base64");
+
+    return res.json({
+      success: true,
+      base64Pdf,
+      fileName
+    });
+
+  } catch (err) {
+    return res.json({ success: false, message: err.message });
+  }
+};
+
+

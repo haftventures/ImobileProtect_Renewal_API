@@ -750,3 +750,116 @@ User Host IP  : ::1
 
 --------------------------------*End*------------------------------------------
 
+-----------Exception Details on 11/27/2025, 4:20:18 PM-----------------
+
+Error Line No : at JSON.parse (<anonymous>)
+
+Error Message : Unterminated string in JSON at position 2033 (line 1 column 2034)
+
+Exception Type: SyntaxError
+
+Error Stack   : SyntaxError: Unterminated string in JSON at position 2033 (line 1 column 2034)
+    at JSON.parse (<anonymous>)
+    at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:963:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_prepare_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/27/2025, 4:21:21 PM-----------------
+
+Error Line No : at JSON.parse (<anonymous>)
+
+Error Message : Unterminated string in JSON at position 2033 (line 1 column 2034)
+
+Exception Type: SyntaxError
+
+Error Stack   : SyntaxError: Unterminated string in JSON at position 2033 (line 1 column 2034)
+    at JSON.parse (<anonymous>)
+    at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:963:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_prepare_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/27/2025, 4:23:12 PM-----------------
+
+Error Line No : at JSON.parse (<anonymous>)
+
+Error Message : Unterminated string in JSON at position 2033 (line 1 column 2034)
+
+Exception Type: SyntaxError
+
+Error Stack   : SyntaxError: Unterminated string in JSON at position 2033 (line 1 column 2034)
+    at JSON.parse (<anonymous>)
+    at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:963:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_prepare_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/27/2025, 4:33:28 PM-----------------
+
+Error Line No : at JSON.parse (<anonymous>)
+
+Error Message : Unterminated string in JSON at position 2033 (line 1 column 2034)
+
+Exception Type: SyntaxError
+
+Error Stack   : SyntaxError: Unterminated string in JSON at position 2033 (line 1 column 2034)
+    at JSON.parse (<anonymous>)
+    at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:963:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_prepare_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/27/2025, 4:41:42 PM-----------------
+
+Error Line No : at JSON.parse (<anonymous>)
+
+Error Message : Unterminated string in JSON at position 2033 (line 1 column 2034)
+
+Exception Type: SyntaxError
+
+Error Stack   : SyntaxError: Unterminated string in JSON at position 2033 (line 1 column 2034)
+    at JSON.parse (<anonymous>)
+    at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:963:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_prepare_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/27/2025, 4:50:16 PM-----------------
+
+Error Line No : at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:956:22)
+
+Error Message : rows is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: rows is not defined
+    at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:956:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_prepare_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+

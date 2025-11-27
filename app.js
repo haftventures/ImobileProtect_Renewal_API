@@ -3,12 +3,17 @@ const express = require('express');
 const dotenv = require('dotenv');
 require('dotenv').config({ path: './config/config.env' });
 const { connectDB } = require('./config/connectdatabase');
-
+const path = require("path");
+const cors = require("cors");
 // ✅ Import your router file directly
 const PolicyRenewalRoutes = require('./routes/Policy_renewal');
 const RenewalRoutes = require('./routes/renewal');
 const app = express();
 app.use(express.json());
+app.use(cors());
+
+// Serve the Gallery folder publicly
+app.use('/Gallery', express.static(path.join(__dirname, 'Gallery')));
 
 // ✅ Mount the router
 app.use('/api', PolicyRenewalRoutes);

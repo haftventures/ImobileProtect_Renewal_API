@@ -2,6 +2,16 @@
 const express = require('express');
 const router = express.Router();
 const policyRenewalController = require('../Controller/Policy_renewalController');
+const multer = require("multer");
+
+
+// Store PDF in memory → buffer
+const storage = multer.memoryStorage();
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 20 * 1024 * 1024 } // max 20MB
+});
 
 // ✅ Router test
 router.get('/Policy_renewal/getrenewaldata', policyRenewalController.getrenewaldata);
@@ -18,9 +28,18 @@ router.post('/Policy_renewal/user_insert', policyRenewalController.user_insert);
 router.post('/Policy_renewal/policy_prepare_pending', policyRenewalController.policy_prepare_pending);
 router.post('/Policy_renewal/policy_prepare_list', policyRenewalController.policy_prepare_list);
 router.post('/Policy_renewal/payment_success_redirect', policyRenewalController.payment_success_redirect);
-router.post('/Policy_renewal/operation_policy_save', policyRenewalController.operation_policy_save);
+// router.post('/Policy_renewal/operation_policy_save', policyRenewalController.operation_policy_save);
+
 router.post('/Policy_renewal/login_website', policyRenewalController.login_website);
 router.get('/Policy_renewal/policy_status', policyRenewalController.policy_status);
 router.post('/Policy_renewal/policy_report', policyRenewalController.policy_report);
+router.get('/Policy_renewal/get_pdf_path', policyRenewalController.get_pdf_path);
+
+router.post(
+  "/Policy_renewal/operation_policy_save",
+  upload.single("pdfFile"),
+  policyRenewalController.operation_policy_save
+);
+
 
 module.exports = router;    
