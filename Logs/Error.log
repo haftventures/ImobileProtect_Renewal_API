@@ -1,0 +1,985 @@
+-----------Exception Details on 11/14/2025, 11:52:32 AM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to int.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_upload_data_list (E:\Renewal\source\Controller\renewalController.js:23:23)
+
+Error Page Url: /api/renewal/get_upload_data_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 11:54:45 AM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to int.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_upload_data_list (E:\Renewal\source\Controller\renewalController.js:23:23)
+
+Error Page Url: /api/renewal/get_upload_data_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 11:55:06 AM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to int.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_upload_data_list (E:\Renewal\source\Controller\renewalController.js:23:23)
+
+Error Page Url: /api/renewal/get_upload_data_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 11:55:54 AM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to int.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_upload_data_list (E:\Renewal\source\Controller\renewalController.js:23:23)
+
+Error Page Url: /api/renewal/get_upload_data_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 11:56:34 AM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to int.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_upload_data_list (E:\Renewal\source\Controller\renewalController.js:23:23)
+
+Error Page Url: /api/renewal/get_upload_data_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 11:57:04 AM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to int.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_upload_data_list (E:\Renewal\source\Controller\renewalController.js:23:23)
+
+Error Page Url: /api/renewal/get_upload_data_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 11:57:15 AM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to int.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_upload_data_list (E:\Renewal\source\Controller\renewalController.js:23:23)
+
+Error Page Url: /api/renewal/get_upload_data_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 11:57:43 AM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to int.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_upload_data_list (E:\Renewal\source\Controller\renewalController.js:23:23)
+
+Error Page Url: /api/renewal/get_upload_data_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 11:59:32 AM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to int.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_upload_data_list (E:\Renewal\source\Controller\renewalController.js:23:23)
+
+Error Page Url: /api/renewal/get_upload_data_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 12:00:44 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to date.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_upload_data_list (E:\Renewal\source\Controller\renewalController.js:23:23)
+
+Error Page Url: /api/renewal/get_upload_data_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 12:36:37 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to date.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_upload_data_list (E:\Renewal\source\Controller\renewalController.js:23:22)
+
+Error Page Url: /api/renewal/get_upload_data_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 3:45:10 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.selected_sms_ids (E:\Renewal\source\Controller\renewalController.js:60:20)
+
+Error Page Url: /api/renewal/selected_sms_ids
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 3:46:49 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.selected_sms_ids (E:\Renewal\source\Controller\renewalController.js:60:20)
+
+Error Page Url: /api/renewal/selected_sms_ids
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 3:47:21 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.selected_sms_ids (E:\Renewal\source\Controller\renewalController.js:60:20)
+
+Error Page Url: /api/renewal/selected_sms_ids
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 3:49:03 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.selected_sms_ids (E:\Renewal\source\Controller\renewalController.js:60:20)
+
+Error Page Url: /api/renewal/selected_sms_ids
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 3:50:09 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.selected_sms_ids (E:\Renewal\source\Controller\renewalController.js:59:20)
+
+Error Page Url: /api/renewal/selected_sms_ids
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 3:50:17 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.selected_sms_ids (E:\Renewal\source\Controller\renewalController.js:59:20)
+
+Error Page Url: /api/renewal/selected_sms_ids
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 3:53:26 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.selected_sms_ids (E:\Renewal\source\Controller\renewalController.js:59:20)
+
+Error Page Url: /api/renewal/selected_sms_ids
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 4:57:08 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to date.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.KYC_process (E:\Renewal\source\Controller\renewalController.js:111:20)
+
+Error Page Url: /api/renewal/KYC_process
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 4:57:46 PM-----------------
+
+Error Line No : at injectReplacements (E:\Renewal\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+
+Error Message : Named replacement ":dob" has no entry in the replacement map.
+
+Exception Type: Error
+
+Error Stack   : Error: Named replacement ":dob" has no entry in the replacement map.
+    at injectReplacements (E:\Renewal\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+    at Sequelize.query (E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:286:13)
+    at exports.KYC_process (E:\Renewal\source\Controller\renewalController.js:111:36)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Renewal\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Renewal\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Renewal\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Renewal\source\node_modules\router\index.js:295:15
+    at processParams (E:\Renewal\source\node_modules\router\index.js:582:12)
+
+Error Page Url: /api/renewal/KYC_process
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 6:03:07 PM-----------------
+
+Error Line No : at exports.support_process (E:\Renewal\source\Controller\renewalController.js:164:28)
+
+Error Message : dob is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: dob is not defined
+    at exports.support_process (E:\Renewal\source\Controller\renewalController.js:164:28)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Renewal\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Renewal\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Renewal\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Renewal\source\node_modules\router\index.js:295:15
+    at processParams (E:\Renewal\source\node_modules\router\index.js:582:12)
+    at next (E:\Renewal\source\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Renewal\source\node_modules\router\index.js:186:3)
+
+Error Page Url: /api/renewal/support_process
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 6:04:00 PM-----------------
+
+Error Line No : at exports.support_process (E:\Renewal\source\Controller\renewalController.js:164:28)
+
+Error Message : dob is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: dob is not defined
+    at exports.support_process (E:\Renewal\source\Controller\renewalController.js:164:28)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Renewal\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Renewal\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Renewal\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Renewal\source\node_modules\router\index.js:295:15
+    at processParams (E:\Renewal\source\node_modules\router\index.js:582:12)
+    at next (E:\Renewal\source\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Renewal\source\node_modules\router\index.js:186:3)
+
+Error Page Url: /api/renewal/support_process
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 6:04:47 PM-----------------
+
+Error Line No : at exports.support_process (E:\Renewal\source\Controller\renewalController.js:164:28)
+
+Error Message : dob is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: dob is not defined
+    at exports.support_process (E:\Renewal\source\Controller\renewalController.js:164:28)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Renewal\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Renewal\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Renewal\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Renewal\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Renewal\source\node_modules\router\index.js:295:15
+    at processParams (E:\Renewal\source\node_modules\router\index.js:582:12)
+    at next (E:\Renewal\source\node_modules\router\index.js:291:5)
+    at Function.handle (E:\Renewal\source\node_modules\router\index.js:186:3)
+
+Error Page Url: /api/renewal/support_process
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/14/2025, 6:31:30 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'get_payment_status' expects parameter '@status', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.support_report (E:\Renewal\source\Controller\renewalController.js:214:22)
+
+Error Page Url: /api/renewal/support_report
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/19/2025, 6:01:08 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+
+Error Message : responseBody is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: responseBody is not defined
+    at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/19/2025, 6:02:22 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+
+Error Message : responseBody is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: responseBody is not defined
+    at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/19/2025, 6:06:04 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+
+Error Message : responseObj is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: responseObj is not defined
+    at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/19/2025, 6:10:07 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+
+Error Message : responseObj_status is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: responseObj_status is not defined
+    at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1168:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/19/2025, 6:11:20 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1052:28)
+
+Error Message : Assignment to constant variable.
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Assignment to constant variable.
+    at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1052:28)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 12:56:22 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'selected_sms_ids' expects parameter '@userid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.selected_sms_ids (E:\Renewal\source\Controller\renewalController.js:59:20)
+
+Error Page Url: /api/renewal/selected_sms_ids
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 1:59:50 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1128:11)
+
+Error Message : safeCustomer is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: safeCustomer is not defined
+    at exports.payment_success_redirect (E:\Renewal\source\Controller\Policy_renewalController.js:1128:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 4:16:58 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Renewal\source\Controller\Policy_renewalController.js:169:27)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=JTRCG2E2
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 4:17:49 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Renewal\source\Controller\Policy_renewalController.js:169:27)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=JTRCG2E2
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 4:18:17 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Renewal\source\Controller\Policy_renewalController.js:169:27)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=JTRCG2E2
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 4:18:53 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Renewal\source\Controller\Policy_renewalController.js:169:27)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=JTRCG2E2
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 4:20:06 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Invalid object name 't_uploadexcel'.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Renewal\source\Controller\Policy_renewalController.js:170:22)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=JTRCG2E2
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/20/2025, 4:20:16 PM-----------------
+
+Error Line No : at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Invalid object name 'T_Policy_payment'.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Renewal\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Renewal\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Renewal\source\Controller\Policy_renewalController.js:170:22)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=JTRCG2E2
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/27/2025, 4:20:18 PM-----------------
+
+Error Line No : at JSON.parse (<anonymous>)
+
+Error Message : Unterminated string in JSON at position 2033 (line 1 column 2034)
+
+Exception Type: SyntaxError
+
+Error Stack   : SyntaxError: Unterminated string in JSON at position 2033 (line 1 column 2034)
+    at JSON.parse (<anonymous>)
+    at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:963:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_prepare_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/27/2025, 4:21:21 PM-----------------
+
+Error Line No : at JSON.parse (<anonymous>)
+
+Error Message : Unterminated string in JSON at position 2033 (line 1 column 2034)
+
+Exception Type: SyntaxError
+
+Error Stack   : SyntaxError: Unterminated string in JSON at position 2033 (line 1 column 2034)
+    at JSON.parse (<anonymous>)
+    at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:963:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_prepare_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/27/2025, 4:23:12 PM-----------------
+
+Error Line No : at JSON.parse (<anonymous>)
+
+Error Message : Unterminated string in JSON at position 2033 (line 1 column 2034)
+
+Exception Type: SyntaxError
+
+Error Stack   : SyntaxError: Unterminated string in JSON at position 2033 (line 1 column 2034)
+    at JSON.parse (<anonymous>)
+    at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:963:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_prepare_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/27/2025, 4:33:28 PM-----------------
+
+Error Line No : at JSON.parse (<anonymous>)
+
+Error Message : Unterminated string in JSON at position 2033 (line 1 column 2034)
+
+Exception Type: SyntaxError
+
+Error Stack   : SyntaxError: Unterminated string in JSON at position 2033 (line 1 column 2034)
+    at JSON.parse (<anonymous>)
+    at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:963:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_prepare_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/27/2025, 4:41:42 PM-----------------
+
+Error Line No : at JSON.parse (<anonymous>)
+
+Error Message : Unterminated string in JSON at position 2033 (line 1 column 2034)
+
+Exception Type: SyntaxError
+
+Error Stack   : SyntaxError: Unterminated string in JSON at position 2033 (line 1 column 2034)
+    at JSON.parse (<anonymous>)
+    at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:963:21)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_prepare_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 11/27/2025, 4:50:16 PM-----------------
+
+Error Line No : at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:956:22)
+
+Error Message : rows is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: rows is not defined
+    at exports.policy_prepare_list (E:\Renewal\source\Controller\Policy_renewalController.js:956:22)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_prepare_list
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/8/2025, 12:39:19 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:199:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=5AA32829571C494%20
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/8/2025, 12:47:43 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:199:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=5AA32829571C494%20
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/8/2025, 12:49:27 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:199:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=5AA32829571C494%20
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/8/2025, 12:52:59 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:199:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=5AA32829571C494
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/8/2025, 12:53:19 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:199:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=5AA32829571C494
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/8/2025, 12:54:07 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:199:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=5AA32829571C494
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
