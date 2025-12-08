@@ -117,13 +117,21 @@ exports.KYC_process = async (req, res) => {
     const insertedid = result[0].insertedid;
 
     // ⭐ Check success or failure based on OUTPUT value
-    if (insertedid && insertedid > 0) {
+    if (insertedid > 0) {
       return res.status(200).json({
         success: true,
         message: "Thanks! Your KYC details are now updated.",
         insertedid: insertedid
       });
-    } else {
+    }
+    else  if (insertedid == 0) {
+      return res.status(200).json({
+        success: true,
+        message: "Thanks! Your KYC details are already submitted.",
+        insertedid: insertedid
+      });
+    }    
+    else {
       return res.status(400).json({
         success: false,
         message: "KYC insertion failed",
@@ -322,6 +330,199 @@ exports.massive_update_ids = async (req, res) => {
     res.status(500).json({
       success: false,
       error: err.message,
+    });
+  }
+};
+exports.support_reply = async (req, res) => {
+  try {
+    // ✅ Combine destructuring into one line
+    const { supportid, message,createby,mobileno } = req.body;         
+  
+    const query = `
+  DECLARE @insertedid INT;
+  EXEC support_reply
+      @createby = :createby,
+      @support_id = :supportid,
+      @message = :message,
+      @mobile = :mobile,
+      @insertedid = @insertedid OUTPUT;
+  SELECT @insertedid AS insertedid;
+`;
+
+const results = await sequelize.query(query, {
+  replacements: {
+    createby,
+    supportid,
+    message,
+    mobile: mobileno
+  },
+  type: sequelize.QueryTypes.SELECT
+});
+
+// results is an array like: [ { insertedid: 12 } ]
+const insertedId = results?.[0]?.insertedid ?? null;
+
+    if (insertedId > 0) {
+
+    let whatsappResponse = null;
+
+      try {
+        const url = "https://api.aoc-portal.com/v1/whatsapp";
+
+        const payload = {
+          from: "+919344118986",
+          campaignName: "api-test",
+          to: `+91${mobileno}`,
+          templateName: "support_reply",
+          components: {
+            body: {
+              params: ["Customer.", message]
+            },
+            header: {
+              type: "text",
+              text: "text value"
+            }
+          },
+          type: "template"
+        };
+
+        const headers = {
+          apikey: "fXsUv7l3Uhxo4YR9ADsx6CTp1TjcX6",
+          "Content-Type": "application/json"
+        };
+
+        const response = await axios.post(url, payload, { headers });
+        whatsappResponse = response.data;
+
+      } catch (whatsErr) {
+        whatsappResponse = {
+          success: false,
+          error: whatsErr.response?.data || whatsErr.message
+        };
+      }
+
+      return res.json({
+        success: true,
+        message: "Your support reply has been sent successfully.",
+        insertedId,
+        whatsapp: whatsappResponse
+      });    
+    }
+    else if (insertedId == 0) {
+      return res.status(200).json({
+        success: false,
+        message: "This support response is already recorded",
+        insertedid: insertedId
+      });
+    }    
+    else {
+      return res.json({
+        success: false,
+        message: 'Support Reply failed to inserted',
+      });
+    }
+  } catch (err) {
+    console.error('❌ operation_policy_save error:', err);
+    res.status(500).json({
+      success: false,
+      message: 'Internal server error',
+      error: err.message,
+    });
+  }
+};
+exports.support_reply_view = async (req, res) => {
+  try {
+    // ✅ Combine destructuring into one line
+    const { transactionid } = req.body;      
+     
+     // Query
+   const [results] = await sequelize.query(
+  `EXEC support_reply_view @transactionid = :transactionid`,
+  {
+    replacements: {
+      transactionid: transactionid     
+    },
+  }
+); 
+res.status(200).json({
+      success: true,
+      message: 'Support Data fetched successfully',
+      count: results.length,
+      data: results,
+    });
+    
+  } catch (err) {
+    console.error('❌ operation_policy_save error:', err);
+    res.status(500).json({
+      success: false,
+      message: 'Internal server error',
+      error: err.message,
+    });
+  }
+};
+exports.dashboard_list = async (req, res) => {
+  try {
+
+    // Get inputs
+    const { month, year, userid } = req.body;
+
+    if (!month || !year) {
+      return res.status(400).json({
+        success: false,
+        message: "month and year are required"
+      });
+    }
+
+   
+    // Stored Procedure call
+    const query = `
+      EXEC dashboard_list 
+        @month = :month,
+        @year   = :year,
+        @userid   = :userid
+    `;
+
+    const results = await sequelize.query(query, {
+      replacements: { month,year, userid },
+      type: sequelize.QueryTypes.SELECT
+    });
+
+    // SQL returns multiple resultsets → Sequelize flattens them
+    // So we must group them manually
+    
+    const response = {
+      today: {
+        linkopen: results[0]?.today_linkopen ?? 0,
+        payment_success: results[1]?.today_Payment_Success ?? 0,
+        payment_failed: results[2]?.today_Payment_Failed ?? 0,
+        kyc: results[3]?.today_KYC ?? 0,
+        policy_open: results[4]?.today_Policy_Open ?? 0,
+        policy_waiting: results[5]?.today_Policy_waiting ?? 0,
+        policy: results[6]?.today_Policy ?? 0
+      },
+      month: {
+        linkopen: results[7]?.month_linkopen ?? 0,
+        payment_success: results[8]?.month_Payment_Success ?? 0,
+        payment_failed: results[9]?.month_Payment_Failed ?? 0,
+        kyc: results[10]?.month_KYC ?? 0,
+        policy_open: results[11]?.month_Policy_Open ?? 0,
+        policy_waiting: results[12]?.month_Policy_waiting ?? 0,
+        policy: results[13]?.month_Policy ?? 0
+      }
+    };
+
+    return res.json({
+      success: true,
+      message: "Dashboard data loaded successfully",
+      data: response
+    });
+
+  } catch (err) {
+    console.error("❌ dashboard_list error:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: err.message
     });
   }
 };

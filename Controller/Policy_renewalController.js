@@ -16,34 +16,34 @@ const upload = multer({
 
 // ---------------------------- testing links ----------------------------
 
-// const OAUTH_TOKEN_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
-// const CHECKOUT_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/pay';
-// const tokenUrl = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
-// const phonepe_success_Url ='https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order';
+const OAUTH_TOKEN_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
+const CHECKOUT_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/pay';
+const tokenUrl = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
+const phonepe_success_Url ='https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order';
 
-// const AUTH_PAYLOAD = {
-//     client_id: 'TEST-M22AIQQJG6USL_25090',
-//     client_version: 1,
-//     client_secret: 'ZmUyY2YwOWQtYmJjOC00ZjU2LTliMjAtN2VmNGNmZTc4ZGI2',
-//     grant_type: 'client_credentials',
-// };
+const AUTH_PAYLOAD = {
+    client_id: 'TEST-M22AIQQJG6USL_25090',
+    client_version: 1,
+    client_secret: 'ZmUyY2YwOWQtYmJjOC00ZjU2LTliMjAtN2VmNGNmZTc4ZGI2',
+    grant_type: 'client_credentials',
+};
 
 // --------------------------------------------------------------------
 
 // ---------------------------- live links ----------------------------
 
-const OAUTH_TOKEN_URL = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
-const CHECKOUT_URL = 'https://api.phonepe.com/apis/pg/checkout/v2/pay';
-const tokenUrl = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
-const phonepe_success_Url ='https://api.phonepe.com/apis/pg/checkout/v2/order';
-const kyc_url = "https://api.aoc-portal.com/v1/whatsapp";
+// const OAUTH_TOKEN_URL = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
+// const CHECKOUT_URL = 'https://api.phonepe.com/apis/pg/checkout/v2/pay';
+// const tokenUrl = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
+// const phonepe_success_Url ='https://api.phonepe.com/apis/pg/checkout/v2/order';
+// const kyc_url = "https://api.aoc-portal.com/v1/whatsapp";
 
-const AUTH_PAYLOAD = {
-    client_id: 'SU2511111525407992747471',
-    client_version: 1,
-    client_secret: '6aa255b8-59f2-457d-aa02-c96bdbcfd532',
-    grant_type: 'client_credentials',
-};
+// const AUTH_PAYLOAD = {
+//     client_id: 'SU2511111525407992747471',
+//     client_version: 1,
+//     client_secret: '6aa255b8-59f2-457d-aa02-c96bdbcfd532',
+//     grant_type: 'client_credentials',
+// };
 
 // --------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ async function initiatePayment(accessToken, orderDetails) {
             "type": "PG_CHECKOUT",
             "message": `Payment for Policy ID: ${orderDetails.id}`,
             "merchantUrls": {
-                "redirectUrl": "https://pa1innovsource.com/success.html?txnid=" + orderDetails.transactionid + "&excelid=" + orderDetails.id+ "&merchantOrderId=" + merchantOrderId,
+                "redirectUrl": "https://renewal.jipolicy.com/success.html?txnid=" + orderDetails.transactionid + "&excelid=" + orderDetails.id+ "&merchantOrderId=" + merchantOrderId,
             },
             // "paymentModeConfig": {
             //     "disabledPaymentModes": [
