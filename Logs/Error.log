@@ -863,3 +863,123 @@ User Host IP  : ::1
 
 --------------------------------*End*------------------------------------------
 
+-----------Exception Details on 12/8/2025, 12:39:19 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:199:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=5AA32829571C494%20
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/8/2025, 12:47:43 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:199:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=5AA32829571C494%20
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/8/2025, 12:49:27 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:199:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=5AA32829571C494%20
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/8/2025, 12:52:59 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:199:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=5AA32829571C494
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/8/2025, 12:53:19 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:199:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=5AA32829571C494
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/8/2025, 12:54:07 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:199:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=5AA32829571C494
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
