@@ -16,34 +16,43 @@ const upload = multer({
 
 // ---------------------------- testing links ----------------------------
 
-const OAUTH_TOKEN_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
-const CHECKOUT_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/pay';
-const tokenUrl = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
-const phonepe_success_Url ='https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order';
+// const OAUTH_TOKEN_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
+// const CHECKOUT_URL = 'https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/pay';
+// const tokenUrl = 'https://api-preprod.phonepe.com/apis/pg-sandbox/v1/oauth/token';
+// const phonepe_success_Url ='https://api-preprod.phonepe.com/apis/pg-sandbox/checkout/v2/order';
 
-const AUTH_PAYLOAD = {
-    client_id: 'TEST-M22AIQQJG6USL_25090',
-    client_version: 1,
-    client_secret: 'ZmUyY2YwOWQtYmJjOC00ZjU2LTliMjAtN2VmNGNmZTc4ZGI2',
-    grant_type: 'client_credentials',
-};
+// const AUTH_PAYLOAD = {
+//     client_id: 'TEST-M22AIQQJG6USL_25090',
+//     client_version: 1,
+//     client_secret: 'ZmUyY2YwOWQtYmJjOC00ZjU2LTliMjAtN2VmNGNmZTc4ZGI2',
+//     grant_type: 'client_credentials',
+// };
 
 // --------------------------------------------------------------------
 
 // ---------------------------- live links ----------------------------
 
-// const OAUTH_TOKEN_URL = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
-// const CHECKOUT_URL = 'https://api.phonepe.com/apis/pg/checkout/v2/pay';
-// const tokenUrl = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
-// const phonepe_success_Url ='https://api.phonepe.com/apis/pg/checkout/v2/order';
-// const kyc_url = "https://api.aoc-portal.com/v1/whatsapp";
+const OAUTH_TOKEN_URL = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
+const CHECKOUT_URL = 'https://api.phonepe.com/apis/pg/checkout/v2/pay';
+const tokenUrl = 'https://api.phonepe.com/apis/identity-manager/v1/oauth/token';
+const phonepe_success_Url ='https://api.phonepe.com/apis/pg/checkout/v2/order';
+const kyc_url = "https://api.aoc-portal.com/v1/whatsapp";
 
+//pa innovo
 // const AUTH_PAYLOAD = {
 //     client_id: 'SU2511111525407992747471',
 //     client_version: 1,
 //     client_secret: '6aa255b8-59f2-457d-aa02-c96bdbcfd532',
 //     grant_type: 'client_credentials',
 // };
+
+
+const AUTH_PAYLOAD = {
+    client_id: 'SU2512111728325297739676',
+    client_version: 1,
+    client_secret: 'b09f9db6-ea83-4323-bd7e-5de0e8c74d98',
+    grant_type: 'client_credentials',
+};
 
 // --------------------------------------------------------------------
 
@@ -1085,7 +1094,7 @@ exports.payment_success_redirect = async (req, res) => {
             const waSuccess = await axios.post(
               kyc_url,
               {
-                from: "+919344118986",
+                from: "+918925944072",
                 campaignName: "api-test",
                 to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
                 templateName: "paymentconfirmation",
@@ -1097,7 +1106,7 @@ exports.payment_success_redirect = async (req, res) => {
               },
               {
                 headers: {
-                  apikey: "fXsUv7l3Uhxo4YR9ADsx6CTp1TjcX6",
+                  apikey: "nKjli6lnG8M2yl99igTj5ofzZZTIVD",
                   "Content-Type": "application/json",
                 },
               }
@@ -1122,7 +1131,7 @@ exports.payment_success_redirect = async (req, res) => {
             const safeCustomer = customername || "";
             const safeVehicle = vehicleno || "";
           const payload = {
-    from: "+919344118986",
+    from: "+918925944072",
     campaignName: "api-test",
     to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
     templateName: "kyc_update",
@@ -1131,7 +1140,7 @@ exports.payment_success_redirect = async (req, res) => {
         params: [
           safeCustomer,
           safeVehicle,
-          `https://pa1innovsource.com/kyc.html?tnxid=${transactionid}&excelid=${excelid}`
+          `https://renewal.jipolicy.com/kyc.html?tnxid=${transactionid}&excelid=${excelid}`
         ]
       },
       header: {
@@ -1145,7 +1154,7 @@ exports.payment_success_redirect = async (req, res) => {
   try {
     const response = await axios.post(kyc_url, payload, {
       headers: {
-        apikey: "fXsUv7l3Uhxo4YR9ADsx6CTp1TjcX6",
+        apikey: "nKjli6lnG8M2yl99igTj5ofzZZTIVD",
         "Content-Type": "application/json"
       }
     });
@@ -1159,12 +1168,12 @@ exports.payment_success_redirect = async (req, res) => {
         else {
           try {
             const safeCustomer = customername || "";
-            const paymentLink = `https://pa1innovsource.com/payment?txnid=${transactionid}`;
+            const paymentLink = `https://renewal.jipolicy.com/payment?txnid=${transactionid}`;
 
             const waFail = await axios.post(
               kyc_url,
               {
-                from: "+919344118986",
+                from: "+918925944072",
                 campaignName: "api-test",
                 to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
                 templateName: "payment_faied",
@@ -1176,7 +1185,7 @@ exports.payment_success_redirect = async (req, res) => {
               },
               {
                 headers: {
-                  apikey: "fXsUv7l3Uhxo4YR9ADsx6CTp1TjcX6",
+                  apikey: "nKjli6lnG8M2yl99igTj5ofzZZTIVD",
                   "Content-Type": "application/json",
                 },
               }
@@ -1234,7 +1243,7 @@ exports.operation_policy_save = async (req, res) => {
     // ✅ Combine destructuring into one line
     const { policyid, amount, transactionid, merchentorderid,
       od,tp,netpremium,grosspremium,
-      company,policyno,ncb,policystartdate,policyenddate,remarks, createby,mobile } = req.body;    
+      company,policyno,ncb,policystartdate,policyenddate,remarks, createby,mobile,difference_amount } = req.body;    
       
       const pdfFile = req.file; 
 
@@ -1260,6 +1269,7 @@ exports.operation_policy_save = async (req, res) => {
       @enddate = '${policyendate1}',
       @remarks = '${remarks}',
       @createby = ${createby},
+      @difference_amount = ${difference_amount},
       @insertedid = @insertedid OUTPUT;
 
   SELECT @insertedid AS insertedid;
@@ -1292,9 +1302,9 @@ exports.operation_policy_save = async (req, res) => {
     if (insertedId) {
 
 
-  const finalRedirectUrl = `https://pa1innovsource.com/pdfdownload.html?policyid=${insertedId}`;
+  const finalRedirectUrl = `https://renewal.jipolicy.com/pdfdownload.html?policyid=${insertedId}`;
   const whatsappPayload = {
-    from: "+919344118986",
+    from: "+918925944072",
     campaignName: "api-test",
    to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
     templateName: "policy_pdf",
@@ -1316,7 +1326,7 @@ exports.operation_policy_save = async (req, res) => {
       whatsappPayload,
       {
         headers: {
-          apikey: "fXsUv7l3Uhxo4YR9ADsx6CTp1TjcX6",
+          apikey: "nKjli6lnG8M2yl99igTj5ofzZZTIVD",
           "Content-Type": "application/json"
         }
       }
