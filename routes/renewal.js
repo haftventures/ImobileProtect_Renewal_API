@@ -13,5 +13,7 @@ router.post('/renewal/massive_update_ids', RenewalController.massive_update_ids)
 router.post('/renewal/support_reply', RenewalController.support_reply);
 router.post('/renewal/support_reply_view', RenewalController.support_reply_view);
 router.post('/renewal/dashboard_list', RenewalController.dashboard_list);
+router.get('/renewal/report_policy_done_details', RenewalController.report_policy_done_details);
+router.post('/renewal/report_policy_done_excel', RenewalController.report_policy_done_excel);
 
 module.exports = router;    

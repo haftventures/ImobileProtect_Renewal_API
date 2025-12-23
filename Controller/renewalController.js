@@ -526,3 +526,71 @@ exports.dashboard_list = async (req, res) => {
     });
   }
 };
+exports.report_policy_done_details = async (req, res) => {
+  try {
+
+    // Get inputs
+    const { report_id } = req.query;
+
+    // Stored Procedure call
+    const query = `
+      EXEC report_policy_done_details 
+        @report_id = :report_id       
+    `;
+
+    const results = await sequelize.query(query, {
+      replacements: { report_id },
+      type: sequelize.QueryTypes.SELECT
+    });
+
+    return res.json({
+      success: true,
+      message: "data loaded successfully",
+      data: results
+    });
+
+  } catch (err) {
+    console.error("❌ report_policy_done_details error:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: err.message
+    });
+  }
+};
+exports.report_policy_done_excel = async (req, res) => {
+  try {
+
+    // Get inputs
+    const { userid,status,fromdate,todate } = req.body;
+    const fromdate1=convertDate(fromdate);
+    const todate1=convertDate(todate);
+    // Stored Procedure call
+    const query = `
+      EXEC report_policy_done_excel 
+        @userid = :userid,
+        @status = :status,
+        @fromdate = :fromdate,
+        @todate = :todate
+    `;
+
+    const results = await sequelize.query(query, {
+      replacements: { userid,status,fromdate:fromdate1,todate:todate1 },
+      type: sequelize.QueryTypes.SELECT
+    });
+
+    return res.json({
+      success: true,
+      message: "data loaded successfully",
+      data: results
+    });
+
+  } catch (err) {
+    console.error("❌ report_policy_done_excel error:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: err.message
+    });
+  }
+};

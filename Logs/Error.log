@@ -983,3 +983,381 @@ User Host IP  : ::1
 
 --------------------------------*End*------------------------------------------
 
+-----------Exception Details on 12/17/2025, 6:12:10 PM-----------------
+
+Error Line No : at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+
+Error Message : Named replacement ":status" has no entry in the replacement map.
+
+Exception Type: Error
+
+Error Stack   : Error: Named replacement ":status" has no entry in the replacement map.
+    at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+    at Sequelize.query (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:286:13)
+    at exports.make_verified (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:86:36)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:295:15
+    at processParams (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:582:12)
+
+Error Page Url: /api/make/make_verified
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/17/2025, 6:12:18 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.make_verified (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:86:20)
+
+Error Page Url: /api/make/make_verified
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/17/2025, 6:13:37 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.make_verified (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:86:20)
+
+Error Page Url: /api/make/make_verified
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/17/2025, 6:15:03 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.make_verified (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:86:20)
+
+Error Page Url: /api/make/make_verified
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/17/2025, 6:15:53 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.make_verified (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:86:20)
+
+Error Page Url: /api/make/make_verified
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/17/2025, 6:16:12 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : N/A
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.make_verified (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:86:20)
+
+Error Page Url: /api/make/make_verified
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/22/2025, 4:21:58 PM-----------------
+
+Error Line No : at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+
+Error Message : Named replacement ":ids" has no entry in the replacement map.
+
+Exception Type: Error
+
+Error Stack   : Error: Named replacement ":ids" has no entry in the replacement map.
+    at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+    at Sequelize.query (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:286:13)
+    at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:183:36)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:295:15
+    at processParams (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:582:12)
+
+Error Page Url: /api/make/make_search
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+[2025-12-22T10:52:41.604Z] DB CONNECTION ERROR: Failed to connect to 202.83.25.185:1433 in 15000ms
+-----------Exception Details on 12/22/2025, 4:23:03 PM-----------------
+
+Error Line No : at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+
+Error Message : Cannot read properties of undefined (reading 'status')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'status')
+    at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/make/make_search
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/22/2025, 4:23:54 PM-----------------
+
+Error Line No : at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+
+Error Message : Cannot read properties of undefined (reading 'status')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'status')
+    at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/make/make_search
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/22/2025, 4:24:38 PM-----------------
+
+Error Line No : at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+
+Error Message : Cannot read properties of undefined (reading 'status')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'status')
+    at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/make/make_search
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/22/2025, 4:25:07 PM-----------------
+
+Error Line No : at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+
+Error Message : Cannot read properties of undefined (reading 'status')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'status')
+    at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/make/make_search
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/22/2025, 4:28:38 PM-----------------
+
+Error Line No : at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+
+Error Message : Cannot read properties of undefined (reading 'status')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'status')
+    at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/make/make_search
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+[2025-12-22T10:59:07.954Z] DB CONNECTION ERROR: Failed to connect to 202.83.25.185:1433 in 15000ms
+-----------Exception Details on 12/22/2025, 4:30:22 PM-----------------
+
+Error Line No : at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+
+Error Message : Cannot read properties of undefined (reading 'status')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'status')
+    at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/make/make_search
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/22/2025, 4:31:11 PM-----------------
+
+Error Line No : at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+
+Error Message : Cannot read properties of undefined (reading 'status')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'status')
+    at exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:192:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/make/make_search
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/22/2025, 4:33:49 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Failed to cancel request in 5000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.make_search (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:181:20)
+
+Error Page Url: /api/make/make_search
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+[2025-12-22T11:05:52.524Z] DB CONNECTION ERROR: Failed to connect to 202.83.25.185:1433 in 15000ms
+-----------Exception Details on 12/22/2025, 4:42:09 PM-----------------
+
+Error Line No : at exports.make_delete (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:221:17)
+
+Error Message : Cannot read properties of undefined (reading 'status')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'status')
+    at exports.make_delete (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:221:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/make/make_delete
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/22/2025, 4:42:20 PM-----------------
+
+Error Line No : at exports.make_delete (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:221:17)
+
+Error Message : Cannot read properties of undefined (reading 'status')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'status')
+    at exports.make_delete (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:221:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/make/make_delete
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+[2025-12-22T11:13:35.463Z] DB CONNECTION ERROR: Failed to connect to 202.83.25.185:1433 in 15000ms
+-----------Exception Details on 12/22/2025, 4:49:58 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Could not find stored procedure 'Excel_Make_save'.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.make_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:241:20)
+
+Error Page Url: /api/make/make_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/23/2025, 10:58:56 AM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'make_verified' expects parameter '@insert_method', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.make_verified (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Make_Controller.js:117:20)
+
+Error Page Url: /api/make/make_verified
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+

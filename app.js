@@ -1,42 +1,44 @@
 // app.js
 const express = require('express');
-const dotenv = require('dotenv');
+const path = require('path');
+const cors = require('cors');
 require('dotenv').config({ path: './config/config.env' });
+
 const { connectDB } = require('./config/connectdatabase');
-const path = require("path");
-const cors = require("cors");
-// ✅ Import your router file directly
+
+// Routes
 const PolicyRenewalRoutes = require('./routes/Policy_renewal');
 const RenewalRoutes = require('./routes/renewal');
+const MakeRoutes = require('./routes/make');
+
 const app = express();
+
+// Middlewares
 app.use(express.json());
 app.use(cors());
 
-// Serve the Gallery folder publicly
+// Static files
 app.use('/Gallery', express.static(path.join(__dirname, 'Gallery')));
 
-// ✅ Mount the router
+// Routes
 app.use('/api', PolicyRenewalRoutes);
 app.use('/api', RenewalRoutes);
+app.use('/api', MakeRoutes);
 
-const PORT = process.env.PORT || 8000;
-const HOST = process.env.HOST || 'localhost';
-
-// ✅ Root test (optional)
+// Health check
 app.get('/', (req, res) => {
   res.send('Server is running ✅');
 });
 
+// ❗ IIS requires PORT only
+const PORT = process.env.PORT || 8000;
 
 async function startServer() {
-  try {
-    await connectDB();
-    app.listen(PORT, HOST, () => {
-      console.log(`✅ Server running at http://${HOST}:${PORT}`);
-    });
-  } catch (err) {
-    console.error('❌ Failed to connect to DB:', err.message);
-  }
+  await connectDB();
+
+  app.listen(PORT, () => {
+    console.log(`✅ Server running on port ${PORT}`);
+  });
 }
 
 startServer();

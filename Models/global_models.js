@@ -10,7 +10,7 @@ function errorlog(error, req = null) {
   const logDir = path.join(__dirname, '..', 'Logs');
   const logFile = path.join(logDir, 'Error.log');
   const now = new Date().toLocaleString();
-  const lineBreak = '\n\n';
+  const lineBreak = '\r\n\r\n';
 
   const errorLineNo = error.stack ? error.stack.split('\n')[1]?.trim() : 'N/A';
   const errorMsg = error.message || 'N/A';

@@ -5,6 +5,7 @@ const router = express.Router();
 const routeFiles = [  
   './Policy_renewal',
   './renewal',
+  './make',
 ];
 
 // Import and use all route modules
