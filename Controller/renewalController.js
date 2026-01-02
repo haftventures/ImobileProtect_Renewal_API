@@ -259,6 +259,7 @@ exports.show_policy_count = async (req, res) => {
     const fromdate1 = convertDate(fromdate); // 2025-11-14
     const todate1 = convertDate(todate);     // 2025-11-14
 
+    
     const [results] = await sequelize.query(
       `exec get_policy_count 
         @userid = :userid,
@@ -498,16 +499,18 @@ exports.dashboard_list = async (req, res) => {
         kyc: results[3]?.today_KYC ?? 0,
         policy_open: results[4]?.today_Policy_Open ?? 0,
         policy_waiting: results[5]?.today_Policy_waiting ?? 0,
-        policy: results[6]?.today_Policy ?? 0
+        policy: results[6]?.today_Policy ?? 0,
+        Sms_count: results[7]?.today_sms_count ?? 0
       },
       month: {
-        linkopen: results[7]?.month_linkopen ?? 0,
-        payment_success: results[8]?.month_Payment_Success ?? 0,
-        payment_failed: results[9]?.month_Payment_Failed ?? 0,
-        kyc: results[10]?.month_KYC ?? 0,
-        policy_open: results[11]?.month_Policy_Open ?? 0,
-        policy_waiting: results[12]?.month_Policy_waiting ?? 0,
-        policy: results[13]?.month_Policy ?? 0
+        month_linkopen: results[8]?.month_linkopen ?? 0,
+        month_payment_success: results[9]?.month_Payment_Success ?? 0,
+        month_payment_failed: results[10]?.month_Payment_Failed ?? 0,
+        month_kyc: results[11]?.month_KYC ?? 0,
+        month_policy_open: results[12]?.month_Policy_Open ?? 0,
+        month_policy_waiting: results[13]?.month_Policy_waiting ?? 0,
+        month_policy: results[14]?.month_Policy ?? 0,
+        month_Sms_count: results[15]?.month_sms_count ?? 0
       }
     };
 
@@ -591,6 +594,113 @@ exports.report_policy_done_excel = async (req, res) => {
       success: false,
       message: "Internal Server Error",
       error: err.message
+    });
+  }
+};
+exports.policy_details_save = async (req, res) => {
+  try {
+    // 🔹 Mandatory fields (match SP exactly)
+    const requiredFields = [
+      "customername",
+      "mobile",
+      "vehicleno",
+      "make",
+      "model",
+      "regdate",
+      "policyenddate",
+      "engineno",
+      "chasisno",
+      "oneyear",
+      "twoyear",
+      "threeyear",
+      "address"
+    ];
+
+    // 🔍 Find missing fields
+    const missingFields = requiredFields.filter(
+      field => req.body[field] === undefined || req.body[field] === null || req.body[field] === ""
+    );
+
+    if (missingFields.length > 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing mandatory fields",
+        missingFields
+      });
+    }
+
+    // 🔹 Destructure
+    const {
+      customername,
+      mobile,
+      vehicleno,
+      make,
+      model,
+      regdate,
+      policyenddate,
+      engineno,
+      chasisno,
+      oneyear,
+      twoyear,
+      threeyear,
+      address
+    } = req.body;
+
+    // 🔹 SQL call (matches SP exactly)
+    const sql = `
+     DECLARE @insertedid INT;
+      EXEC dbo.SP_Insert_T_Uplodpolicy_excel
+        @customername  = :customername,
+        @mobile        = :mobile,
+        @vehicleno     = :vehicleno,
+        @make          = :make,
+        @model         = :model,
+        @regdate       = :regdate,
+        @policyenddate = :policyenddate,
+        @engineno      = :engineno,
+        @chasisno      = :chasisno,
+        @oneyear       = :oneyear,
+        @twoyear       = :twoyear,
+        @threeyear     = :threeyear,
+        @address       = :address,
+        @insertedid   = @insertedid OUTPUT;
+
+      SELECT @insertedid AS insertedid;
+    `;
+
+    const result = await sequelize.query(sql, {
+  replacements: {
+    customername,
+    mobile,
+    vehicleno,
+    make,
+    model,
+    regdate,
+    policyenddate,
+    engineno,
+    chasisno,
+    oneyear,
+    twoyear,
+    threeyear,
+    address
+  },
+  type: sequelize.QueryTypes.SELECT
+});
+
+const insertedId = result[0]?.insertedid ?? null;
+
+
+    return res.json({
+      success: true,
+      message: "Policy saved successfully",
+      insertedId
+    });
+
+  } catch (error) {
+    console.error("❌ policy_details_save error:", error);
+    return res.status(500).json({
+      success: false,
+      error: error.message
     });
   }
 };

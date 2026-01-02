@@ -1361,3 +1361,263 @@ User Host IP  : ::1
 
 --------------------------------*End*------------------------------------------
 
+-----------Exception Details on 12/25/2025, 3:11:51 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/25/2025, 3:12:17 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/25/2025, 3:15:23 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/25/2025, 3:23:46 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/25/2025, 3:23:51 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/25/2025, 3:24:02 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/25/2025, 3:24:15 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/25/2025, 3:24:27 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/25/2025, 3:24:45 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/25/2025, 3:25:37 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/25/2025, 3:25:49 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/25/2025, 3:27:59 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 12/25/2025, 3:28:41 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_details_save (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\renewalController.js:647:22)
+
+Error Page Url: /api/renewal/policy_details_save
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+

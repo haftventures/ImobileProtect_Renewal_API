@@ -1090,13 +1090,15 @@ exports.payment_success_redirect = async (req, res) => {
             const safeAmount = amount ? amount.toString() : "0";
             const safeCustomer = customername || "";
             const safeVehicle = vehicleno || "";
+            const primaryMobile = mobile.startsWith("+91") ? mobile : `+91${mobile}`;
 
             const waSuccess = await axios.post(
               kyc_url,
+              
               {
                 from: "+918925944072",
                 campaignName: "api-test",
-                to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
+                to: [primaryMobile, "+919884668668"],
                 templateName: "paymentconfirmation",
                 components: {
                   body: { params: [safeCustomer, safeAmount, safeVehicle] },
@@ -1133,7 +1135,7 @@ exports.payment_success_redirect = async (req, res) => {
           const payload = {
     from: "+918925944072",
     campaignName: "api-test",
-    to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
+    to: [primaryMobile, "+919884668668"],
     templateName: "kyc_update",
     components: {
       body: {
@@ -1175,7 +1177,7 @@ exports.payment_success_redirect = async (req, res) => {
               {
                 from: "+918925944072",
                 campaignName: "api-test",
-                to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
+                to: [primaryMobile, "+919884668668"],
                 templateName: "payment_faied",
                 components: {
                   body: { params: [safeCustomer, paymentLink] },
@@ -1243,7 +1245,7 @@ exports.operation_policy_save = async (req, res) => {
     // ✅ Combine destructuring into one line
     const { policyid, amount, transactionid, merchentorderid,
       od,tp,netpremium,grosspremium,
-      company,policyno,ncb,policystartdate,policyenddate,remarks, createby,mobile,difference_amount } = req.body;    
+      company,policyno,ncb,policystartdate,policyenddate,remarks,createby,mobile,difference_amount } = req.body;    
       
       const pdfFile = req.file; 
 
@@ -1508,4 +1510,51 @@ exports.get_pdf_path = async (req, res) => {
   }
 };
 
+exports.not_interested = async (req, res) => {
+  try {
+    const { txnid } = req.body;   
 
+    const result = await sequelize.query(
+      "EXEC Transaction_delete @transid = :txnid ",
+      {
+        replacements: { txnid },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );   
+
+    
+    return res.status(200).json({
+      success: true,
+      message: "You Marked Not Interested.Thanks",
+      
+    });
+  
+  
+  } catch (err) {
+    console.error(err);
+    errorlog(err, req);
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+exports.policy_company_list = async (req, res) => {
+  try {   
+    
+    const [results] = await sequelize.query(
+      `exec [dbo].[get_companyname]`     
+    );
+
+    res.status(200).json({
+      success: true,
+      message: 'policy company list fetched successfully',
+      count: results.length,
+      data: results,
+    });
+  } catch (err) {
+    console.error('❌ /policy_company_list controller error:', err);
+    errorlog(err, req);
+    res.status(500).json({
+      success: false,
+      error: err.message || 'Unexpected error',
+    });
+  }
+};

@@ -34,6 +34,8 @@ router.post('/Policy_renewal/login_website', policyRenewalController.login_websi
 router.get('/Policy_renewal/policy_status', policyRenewalController.policy_status);
 router.post('/Policy_renewal/policy_report', policyRenewalController.policy_report);
 router.get('/Policy_renewal/get_pdf_path', policyRenewalController.get_pdf_path);
+router.post('/Policy_renewal/not_interested', policyRenewalController.not_interested);
+router.get('/Policy_renewal/policy_company_list', policyRenewalController.policy_company_list);
 
 router.post(
   "/Policy_renewal/operation_policy_save",
