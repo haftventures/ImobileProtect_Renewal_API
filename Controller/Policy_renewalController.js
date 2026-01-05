@@ -1084,28 +1084,58 @@ exports.payment_success_redirect = async (req, res) => {
           insertedId,
         });
 
+        // Normalize mobile numbers
+        const mobileList = [mobile, "9884668668","8939415262"];
         // ⭐ If DB insert success → send success WhatsApp
         if (responseObj_status =="COMPLETED"){
+          for (const number of mobileList) {
+            // 1️⃣ Check existing process
+        const [checkResult] = await sequelize.query(
+        ` DECLARE @AllowSend INT;
+        EXEC dbo.[whatsup_check_and_allow]
+        @transactionid       = :transactionid,
+        @templatename        = :templatename,
+        @mobileno            = :mobileno,
+        @status              = :status ,
+        @AllowSend           = @AllowSend OUTPUT;
+        SELECT @AllowSend AS AllowSend;
+       `,
+  {
+    replacements: {
+      transactionid: txnid,      
+      templatename:'paymentconfirmation',
+      mobileno: number,
+      status  :responseObj_status
+    },
+    type: sequelize.QueryTypes.SELECT
+  }
+);
+
+         const AllowSend = Number(checkResult?.AllowSend ?? 0);
+
+
+          if (AllowSend==0){
           try {
             const safeAmount = amount ? amount.toString() : "0";
             const safeCustomer = customername || "";
             const safeVehicle = vehicleno || "";
-            const primaryMobile = mobile.startsWith("+91") ? mobile : `+91${mobile}`;
+            // const primaryMobile = mobile.startsWith("+91") ? mobile : `+91${mobile}`;
+            // const mobileList = [ primaryMobile, "+9198846333668"];
+const requestPayload = {
+  from: "+918925944072",
+  campaignName: "api-test",
+  to: mobile.startsWith("+91") ? number : `+91${number}`,
+  templateName: "paymentconfirmation",
+  components: {
+    body: { params: [safeCustomer, safeAmount, safeVehicle] },
+    header: { type: "text", text: "Payment Confirmation" },
+  },
+  type: "template",
+};
 
             const waSuccess = await axios.post(
-              kyc_url,
-              
-              {
-                from: "+918925944072",
-                campaignName: "api-test",
-                to: [primaryMobile, "+919884668668"],
-                templateName: "paymentconfirmation",
-                components: {
-                  body: { params: [safeCustomer, safeAmount, safeVehicle] },
-                  header: { type: "text", text: "Payment Confirmation" },
-                },
-                type: "template",
-              },
+              kyc_url,              
+              requestPayload,
               {
                 headers: {
                   apikey: "nKjli6lnG8M2yl99igTj5ofzZZTIVD",
@@ -1113,13 +1143,41 @@ exports.payment_success_redirect = async (req, res) => {
                 },
               }
             );
+let responsePayload = null;
 
+responsePayload = waSuccess.data;
             whatsappResults.push({
               transactionId: transactionid,
               status: "success",
               message: waSuccess.data?.message || "WhatsApp sent successfully",
               response: waSuccess.data,
             });
+
+                // 🔹 SQL call (matches SP exactly)
+    const sql = `
+     DECLARE @insertedid INT;
+      EXEC dbo.insert_whatsup_details
+        @transactionid  = :transactionid,
+        @templatename   = :templatename,
+        @mobileno       = :mobileno,
+        @excelid        = :excelid,
+        @sms_status     = :sms_status,
+        @sms_input      = :sms_input,
+        @sms_output     = :sms_output;
+        
+    `;
+
+    const result = await sequelize.query(sql, {
+  replacements: {
+    transactionid: txnid,
+    templatename: 'paymentconfirmation',
+    mobileno: number,
+    excelid: excelid,
+    sms_status: responseObj_status,
+    sms_input: JSON.stringify(requestPayload),
+    sms_output: JSON.stringify(responsePayload)
+  }  
+});
           } catch (waErr) {
             console.error(`❌ WhatsApp send failed for ${transactionid}:`, waErr.message);
             whatsappResults.push({
@@ -1128,14 +1186,38 @@ exports.payment_success_redirect = async (req, res) => {
               error: waErr.message,
             });
           }
+        }
+      }
 
+      const [checkResult1] = await sequelize.query(
+  ` DECLARE @AllowSend INT;
+  EXEC dbo.[whatsup_check_and_allow]
+        @transactionid       = :transactionid,
+        @templatename        = :templatename,
+        @mobileno            = :mobileno,
+        @status              = :status ,
+        @AllowSend           = @AllowSend OUTPUT;
+        SELECT @AllowSend AS AllowSend;
+  `,
+  {
+    replacements: {
+      transactionid: txnid,      
+      templatename:'kyc_update',
+      mobileno: mobile,
+      status  :responseObj_status
+    },
+    type: sequelize.QueryTypes.SELECT
+  }
+);
 
+const AllowSend1 = Number(checkResult1?.AllowSend ?? 0);
+if(AllowSend1==0){
             const safeCustomer = customername || "";
             const safeVehicle = vehicleno || "";
           const payload = {
     from: "+918925944072",
     campaignName: "api-test",
-    to: [primaryMobile, "+919884668668"],
+    to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
     templateName: "kyc_update",
     components: {
       body: {
@@ -1161,10 +1243,38 @@ exports.payment_success_redirect = async (req, res) => {
       }
     });
 
-    console.log("API Response:", response.data);
+      // 🔹 SQL call (matches SP exactly)
+    const sql = `
+     DECLARE @insertedid INT;
+      EXEC dbo.insert_whatsup_details
+        @transactionid  = :transactionid,
+        @templatename   = :templatename,
+        @mobileno       = :mobileno,
+        @excelid        = :excelid,
+        @sms_status     = :sms_status,
+        @sms_input      = :sms_input,
+        @sms_output     = :sms_output;        
+    `;
+
+    const result = await sequelize.query(sql, {
+  replacements: {
+    transactionid: txnid,
+    templatename: 'kyc_update',
+    mobileno: mobile,
+    excelid: excelid,
+    sms_status: responseObj_status,
+    sms_input: JSON.stringify(payload),
+     sms_output: JSON.stringify({
+          status: response.status,
+          data: response.data
+        })   
+      }  
+});
+    // console.log("API Response:", response.data);
   } catch (err) {
     console.error("Error:", err.response ? err.response.data : err.message);
   }
+}
 }
         // ⭐ If DB insert failed → send failure WhatsApp
         else {
@@ -1177,7 +1287,7 @@ exports.payment_success_redirect = async (req, res) => {
               {
                 from: "+918925944072",
                 campaignName: "api-test",
-                to: [primaryMobile, "+919884668668"],
+                to: mobile.startsWith("+91") ? number : `+91${number}`,
                 templateName: "payment_faied",
                 components: {
                   body: { params: [safeCustomer, paymentLink] },
@@ -1209,6 +1319,7 @@ exports.payment_success_redirect = async (req, res) => {
             });
           }
         }
+      
       } catch (err) {
         console.error(`❌ Error checking ${merchantorderid}:`, err.message);
         errorlog(err, req);
@@ -1223,7 +1334,7 @@ exports.payment_success_redirect = async (req, res) => {
       insertedRecords: insertedIds,
       whatsappResults,
     });
-  }
+    }
   else{
      res.json({
       success: false,
@@ -1466,10 +1577,16 @@ exports.policy_report = async (req, res) => {
       }
     );
 
+   const total = results.reduce((sum, row) => {
+  return sum + Number(row.amount || 0);
+}, 0);
+
+
     res.status(200).json({
       success: true,
       message: 'Data fetched successfully',
       count: results.length,
+      totalamount : total.toLocaleString('en-IN'),
       data: results,
     });
   } catch (err) {

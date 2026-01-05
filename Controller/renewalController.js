@@ -97,6 +97,22 @@ exports.KYC_process = async (req, res) => {
       });
     }
 
+    const checkQuery = `
+      	 select COUNT(*) AS countt from T_KYC where excelid=:excelid and
+          transactionid=:transactionid and statuss=1`;
+
+    const [checkResult] = await sequelize.query(checkQuery, {
+      replacements: { excelid:excelid,transactionid: txnid },
+      type: sequelize.QueryTypes.SELECT,
+    });
+
+    if (Number(checkResult.countt) > 0) {
+    return res.status(200).json({
+    success: false, 
+    message: "KYC already done for this transaction ID"    
+  });
+}
+
     const query = `
       DECLARE @output INT;
       EXEC KYC_process 

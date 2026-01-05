@@ -1621,3 +1621,297 @@ User Host IP  : ::1
 
 --------------------------------*End*------------------------------------------
 
+-----------Exception Details on 1/5/2026, 11:11:05 AM-----------------
+
+Error Line No : at E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1477:36
+
+Error Message : row.amount.replace is not a function
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: row.amount.replace is not a function
+    at E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1477:36
+    at Array.reduce (<anonymous>)
+    at exports.policy_report (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1476:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_report
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 11:11:51 AM-----------------
+
+Error Line No : at E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1477:36
+
+Error Message : row.amount.replace is not a function
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: row.amount.replace is not a function
+    at E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1477:36
+    at Array.reduce (<anonymous>)
+    at exports.policy_report (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1476:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/policy_report
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 1:45:48 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'SP_Insert_T_Uplodpolicy_excel' expects parameter '@insertedid', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1095:23)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 1:47:18 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1206:17)
+
+Error Message : number is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: number is not defined
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1206:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 3:01:42 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1206:17)
+
+Error Message : number is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: number is not defined
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1206:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 3:01:58 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1116:34)
+
+Error Message : Cannot read properties of undefined (reading 'AllowSend')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'AllowSend')
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1116:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 3:02:30 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1116:34)
+
+Error Message : Cannot read properties of undefined (reading 'AllowSend')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'AllowSend')
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1116:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 3:03:19 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1206:17)
+
+Error Message : number is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: number is not defined
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1206:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 3:03:38 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1116:34)
+
+Error Message : Cannot read properties of undefined (reading 'AllowSend')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'AllowSend')
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1116:34)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 3:18:25 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+
+Error Message : number is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: number is not defined
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 3:20:39 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+
+Error Message : number is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: number is not defined
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 3:26:14 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+
+Error Message : number is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: number is not defined
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 3:56:48 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+
+Error Message : number is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: number is not defined
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 4:00:24 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+
+Error Message : number is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: number is not defined
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 4:09:27 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+
+Error Message : number is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: number is not defined
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/5/2026, 4:13:58 PM-----------------
+
+Error Line No : at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+
+Error Message : number is not defined
+
+Exception Type: ReferenceError
+
+Error Stack   : ReferenceError: number is not defined
+    at exports.payment_success_redirect (E:\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:1207:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/payment_success_redirect
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
