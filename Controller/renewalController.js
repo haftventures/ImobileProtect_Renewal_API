@@ -353,8 +353,29 @@ exports.massive_update_ids = async (req, res) => {
 exports.support_reply = async (req, res) => {
   try {
     // ✅ Combine destructuring into one line
-    const { supportid, message,createby,mobileno } = req.body;         
-  
+    const { supportid, message,createby } = req.body;      
+    
+    const checkQuery = `
+      select excelid from T_support where id=:supportid and statuss=1 order by id desc
+    `;
+    const [checkResult] = await sequelize.query(checkQuery, {
+      replacements: { supportid },
+      type: sequelize.QueryTypes.SELECT,
+    });
+   
+    const excelid=checkResult.excelid;
+
+    const checkQuery1 = `
+      select mobile from T_Uplodpolicy_excel where id=:excelid order by id desc
+    `;
+    const [checkResult1] = await sequelize.query(checkQuery1, {
+      replacements: { excelid },
+      type: sequelize.QueryTypes.SELECT,
+    });
+
+   const mobileno=checkResult1.mobile;
+
+
     const query = `
   DECLARE @insertedid INT;
   EXEC support_reply
@@ -387,7 +408,7 @@ const insertedId = results?.[0]?.insertedid ?? null;
         const url = "https://api.aoc-portal.com/v1/whatsapp";
 
         const payload = {
-          from: "+919344118986",
+          from: "+918925944072",
           campaignName: "api-test",
           to: `+91${mobileno}`,
           templateName: "support_reply",
@@ -404,7 +425,7 @@ const insertedId = results?.[0]?.insertedid ?? null;
         };
 
         const headers = {
-          apikey: "fXsUv7l3Uhxo4YR9ADsx6CTp1TjcX6",
+          apikey: "nKjli6lnG8M2yl99igTj5ofzZZTIVD",
           "Content-Type": "application/json"
         };
 
@@ -717,6 +738,39 @@ const insertedId = result[0]?.insertedid ?? null;
     return res.status(500).json({
       success: false,
       error: error.message
+    });
+  }
+};
+exports.search_by_vehicle = async (req, res) => {
+  try {
+
+    // Get inputs
+    const { vehicleno,userid } = req.body;
+
+    // Stored Procedure call
+    const query = `
+      EXEC search_by_vehicle
+        @vehicleno = :vehicleno,
+        @userid    = :userid  
+    `;
+
+    const results = await sequelize.query(query, {
+      replacements: { vehicleno,userid },
+      type: sequelize.QueryTypes.SELECT
+    });
+
+    return res.json({
+      success: true,
+      message: "data loaded successfully",
+      data: results
+    });
+
+  } catch (err) {
+    console.error("❌ search_by_vehicle error:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: err.message
     });
   }
 };

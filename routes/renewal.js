@@ -16,5 +16,6 @@ router.post('/renewal/dashboard_list', RenewalController.dashboard_list);
 router.get('/renewal/report_policy_done_details', RenewalController.report_policy_done_details);
 router.post('/renewal/report_policy_done_excel', RenewalController.report_policy_done_excel);
 router.post('/renewal/policy_details_save', RenewalController.policy_details_save);
+router.post('/renewal/search_by_vehicle', RenewalController.search_by_vehicle);
 
 module.exports = router;    
