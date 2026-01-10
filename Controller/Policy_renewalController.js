@@ -1359,7 +1359,8 @@ exports.operation_policy_save = async (req, res) => {
       company,policyno,ncb,policystartdate,policyenddate,remarks,createby,mobile,difference_amount } = req.body;    
       
       const pdfFile = req.file; 
-
+      const service_operation_id=0;
+      const service_operation='whatsup';
     const policystartdate1=convertDate(policystartdate);
     const policyendate1=convertDate(policyenddate);    
     const amount1 = amount === "" || amount == null ? 0 : amount;
@@ -1383,6 +1384,8 @@ exports.operation_policy_save = async (req, res) => {
       @remarks = '${remarks}',
       @createby = ${createby},
       @difference_amount = ${difference_amount},
+      @service_operation ='${service_operation}',
+      @service_operation_id =${service_operation_id},
       @insertedid = @insertedid OUTPUT;
 
   SELECT @insertedid AS insertedid;
@@ -1432,9 +1435,9 @@ exports.operation_policy_save = async (req, res) => {
     },
     type: "template"
   };
-
+let whatsappResponse = null;
   try {
-    await axios.post(
+    const response =await axios.post(
       kyc_url,
       whatsappPayload,
       {
@@ -1444,11 +1447,36 @@ exports.operation_policy_save = async (req, res) => {
         }
       }
     );
-
+ whatsappResponse = response.data;
     // console.log("📩 WhatsApp Redirect Link sent");
   } catch (err) {
     console.error("❌ WhatsApp sending failed:", err.message);
   }
+
+      const sql = `
+     DECLARE @insertedid INT;
+      EXEC dbo.insert_whatsup_details
+        @transactionid  = :transactionid,
+        @templatename   = :templatename,
+        @mobileno       = :mobileno,
+        @excelid        = :excelid,
+        @sms_status     = :sms_status,
+        @sms_input      = :sms_input,
+        @sms_output     = :sms_output;
+        
+    `;
+
+    const result = await sequelize.query(sql, {
+  replacements: {
+    transactionid: transactionid,
+    templatename: 'policy_pdf',
+    mobileno: mobile,
+    excelid: policyid,
+    sms_status: 'COMPLETED',
+    sms_input: JSON.stringify(whatsappPayload),
+    sms_output: JSON.stringify(whatsappResponse)
+  }  
+});
 
       return res.json({
         success: true,

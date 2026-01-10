@@ -724,8 +724,51 @@ exports.policy_details_save = async (req, res) => {
   type: sequelize.QueryTypes.SELECT
 });
 
-const insertedId = result[0]?.insertedid ?? null;
+const insertedId = result[2]?.insertedid ?? null;
+const customername_whatsup=result[1]?.customername ?? null;
+const mobile_whatsup=result[1]?.mobile ?? null;
+const vehicleno_whatsup=result[1]?.vehicleno ?? null;
+const regdate_whatsup=result[1]?.regdate ?? null;
+const paymentlink_whatsup=result[1]?.paymentlink ?? null;
 
+let whatsappResponse = null;
+
+      try {
+        const url = "https://api.aoc-portal.com/v1/whatsapp";
+
+        const payload = {
+          from: "+918925944072",
+          campaignName: "api-test",
+          to: `+91${mobile_whatsup}`,
+          templateName: "invoice_status",
+          components: {
+            body: {
+              params: [customername_whatsup,vehicleno_whatsup,regdate_whatsup,
+                      paymentlink_whatsup       
+              ]
+            },
+            header: {
+              type: "text",
+              text: "text value"
+            }
+          },
+          type: "template"
+        };
+
+        const headers = {
+          apikey: "nKjli6lnG8M2yl99igTj5ofzZZTIVD",
+          "Content-Type": "application/json"
+        };
+
+        const response = await axios.post(url, payload, { headers });
+        whatsappResponse = response.data;
+
+      } catch (whatsErr) {
+        whatsappResponse = {
+          success: false,
+          error: whatsErr.response?.data || whatsErr.message
+        };
+      }
 
     return res.json({
       success: true,
@@ -741,6 +784,7 @@ const insertedId = result[0]?.insertedid ?? null;
     });
   }
 };
+
 exports.search_by_vehicle = async (req, res) => {
   try {
 
@@ -767,6 +811,39 @@ exports.search_by_vehicle = async (req, res) => {
 
   } catch (err) {
     console.error("❌ search_by_vehicle error:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+      error: err.message
+    });
+  }
+};
+exports.policy_status_report = async (req, res) => {
+  try {
+
+    // Get inputs
+   const { date,userid } = req.body;
+   const date1=convertDate(date);
+    // Stored Procedure call
+    const query = `
+      EXEC policy_status_report
+        @date      = :date,
+        @userid    = :userid  
+    `;
+
+    const results = await sequelize.query(query, {
+      replacements: { date:date1,userid },
+      type: sequelize.QueryTypes.SELECT
+    });
+
+    return res.json({
+      success: true,
+      message: "data loaded successfully",
+      data: results
+    });
+
+  } catch (err) {
+    console.error("❌ policy_overall_report error:", err);
     return res.status(500).json({
       success: false,
       message: "Internal Server Error",
