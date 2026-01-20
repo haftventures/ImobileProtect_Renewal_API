@@ -10,7 +10,7 @@ const { connectDB } = require('./config/connectdatabase');
 const PolicyRenewalRoutes = require('./routes/Policy_renewal');
 const RenewalRoutes = require('./routes/renewal');
 const MakeRoutes = require('./routes/make');
-
+const DB_DataRoutes = require('./routes/DB_Data');
 const app = express();
 
 // Middlewares
@@ -24,7 +24,7 @@ app.use('/Gallery', express.static(path.join(__dirname, 'Gallery')));
 app.use('/api', PolicyRenewalRoutes);
 app.use('/api', RenewalRoutes);
 app.use('/api', MakeRoutes);
-
+app.use('/api', DB_DataRoutes);
 // Health check
 app.get('/', (req, res) => {
   res.send('Server is running ✅');

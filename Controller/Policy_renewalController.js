@@ -1103,7 +1103,7 @@ exports.payment_success_redirect = async (req, res) => {
   {
     replacements: {
       transactionid: txnid,      
-      templatename:'paymentconfirmation',
+      templatename:'confirmation_new1',
       mobileno: number,
       status  :responseObj_status
     },
@@ -1116,8 +1116,8 @@ exports.payment_success_redirect = async (req, res) => {
 
           if (AllowSend==0){
           try {
-            const safeAmount = amount ? amount.toString() : "0";
-            const safeCustomer = customername || "";
+            const kyclink = "https://renewal.jipolicy.com/kyc.html?tnxid="+txnid+"&excelid="+excelid+"";   
+            const transactionId =txnid || "";
             const safeVehicle = vehicleno || "";
             // const primaryMobile = mobile.startsWith("+91") ? mobile : `+91${mobile}`;
             // const mobileList = [ primaryMobile, "+9198846333668"];
@@ -1125,10 +1125,10 @@ const requestPayload = {
   from: "+918925944072",
   campaignName: "api-test",
   to: mobile.startsWith("+91") ? number : `+91${number}`,
-  templateName: "paymentconfirmation",
+  templateName: "confirmation_new1",
   components: {
-    body: { params: [safeCustomer, safeAmount, safeVehicle] },
-    header: { type: "text", text: "Payment Confirmation" },
+    body: { params: [transactionId, safeVehicle, kyclink] },
+    header: { type: "text", text: "text value" },
   },
   type: "template",
 };
@@ -1170,7 +1170,7 @@ responsePayload = waSuccess.data;
     const result = await sequelize.query(sql, {
   replacements: {
     transactionid: txnid,
-    templatename: 'paymentconfirmation',
+    templatename: 'confirmation_new1',
     mobileno: number,
     excelid: excelid,
     sms_status: responseObj_status,
@@ -1189,93 +1189,7 @@ responsePayload = waSuccess.data;
         }
       }
 
-      const [checkResult1] = await sequelize.query(
-  ` DECLARE @AllowSend INT;
-  EXEC dbo.[whatsup_check_and_allow]
-        @transactionid       = :transactionid,
-        @templatename        = :templatename,
-        @mobileno            = :mobileno,
-        @status              = :status ,
-        @AllowSend           = @AllowSend OUTPUT;
-        SELECT @AllowSend AS AllowSend;
-  `,
-  {
-    replacements: {
-      transactionid: txnid,      
-      templatename:'kyc_update',
-      mobileno: mobile,
-      status  :responseObj_status
-    },
-    type: sequelize.QueryTypes.SELECT
-  }
-);
-
-const AllowSend1 = Number(checkResult1?.AllowSend ?? 0);
-if(AllowSend1==0){
-            const safeCustomer = customername || "";
-            const safeVehicle = vehicleno || "";
-          const payload = {
-    from: "+918925944072",
-    campaignName: "api-test",
-    to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
-    templateName: "kyc_update",
-    components: {
-      body: {
-        params: [
-          safeCustomer,
-          safeVehicle,
-          `https://renewal.jipolicy.com/kyc.html?tnxid=${transactionid}&excelid=${excelid}`
-        ]
-      },
-      header: {
-        type: "text",
-        text: "text value"
-      }
-    },
-    type: "template"
-  };
-
-  try {
-    const response = await axios.post(kyc_url, payload, {
-      headers: {
-        apikey: "nKjli6lnG8M2yl99igTj5ofzZZTIVD",
-        "Content-Type": "application/json"
-      }
-    });
-
-      // 🔹 SQL call (matches SP exactly)
-    const sql = `
-     DECLARE @insertedid INT;
-      EXEC dbo.insert_whatsup_details
-        @transactionid  = :transactionid,
-        @templatename   = :templatename,
-        @mobileno       = :mobileno,
-        @excelid        = :excelid,
-        @sms_status     = :sms_status,
-        @sms_input      = :sms_input,
-        @sms_output     = :sms_output;        
-    `;
-
-    const result = await sequelize.query(sql, {
-  replacements: {
-    transactionid: txnid,
-    templatename: 'kyc_update',
-    mobileno: mobile,
-    excelid: excelid,
-    sms_status: responseObj_status,
-    sms_input: JSON.stringify(payload),
-     sms_output: JSON.stringify({
-          status: response.status,
-          data: response.data
-        })   
-      }  
-});
-    // console.log("API Response:", response.data);
-  } catch (err) {
-    console.error("Error:", err.response ? err.response.data : err.message);
-  }
-}
-}
+    }
         // ⭐ If DB insert failed → send failure WhatsApp
         else {
           try {
@@ -1356,7 +1270,7 @@ exports.operation_policy_save = async (req, res) => {
     // ✅ Combine destructuring into one line
     const { policyid, amount, transactionid, merchentorderid,
       od,tp,netpremium,grosspremium,
-      company,policyno,ncb,policystartdate,policyenddate,remarks,createby,mobile,difference_amount } = req.body;    
+      company,policyno,ncb,policystartdate,policyenddate,remarks,createby,mobile,difference_amount,customername,vehicleno } = req.body;    
       
       const pdfFile = req.file; 
       const service_operation_id=0;
@@ -1385,7 +1299,7 @@ exports.operation_policy_save = async (req, res) => {
       @createby = ${createby},
       @difference_amount = ${difference_amount},
       @service_operation ='${service_operation}',
-      @service_operation_id =${service_operation_id},
+      @service_operation_id =${service_operation_id},      
       @insertedid = @insertedid OUTPUT;
 
   SELECT @insertedid AS insertedid;
@@ -1416,25 +1330,58 @@ exports.operation_policy_save = async (req, res) => {
       // console.log("PDF Saved:", filepath);
     }
     if (insertedId) {
+ const [allowSendResult] = await sequelize.query(
+        `
+        DECLARE @AllowSend INT;
+        EXEC dbo.whatsup_check_and_allow
+          @transactionid = :transactionid,
+          @templatename  = :templatename,
+          @mobileno      = :mobileno,
+          @status        = :status,
+          @AllowSend     = @AllowSend OUTPUT;
+        SELECT @AllowSend AS AllowSend;
+        `,
+        {
+          replacements: {
+            transactionid: transactionid,
+            templatename: "policy_copy_new",
+            mobileno: mobile,
+            status: "COMPLETED"
+          },
+          type: sequelize.QueryTypes.SELECT
+        }
+      );
 
+      const AllowSend = Number(allowSendResult?.AllowSend || 0);
 
-  const finalRedirectUrl = `https://renewal.jipolicy.com/pdfdownload.html?policyid=${insertedId}`;
-  const whatsappPayload = {
-    from: "+918925944072",
-    campaignName: "api-test",
-   to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
-    templateName: "policy_pdf",
-    components: {
-      body: {
-        params: ["Customer", finalRedirectUrl]
-      },
-      header: {
-        type: "text",
-        text: "Policy PDF"
+      if (AllowSend === 0) {
+
+  //const finalRedirectUrl = `https://renewal.jipolicy.com/pdfdownload.html?policyid=${insertedId}`;
+const whatsappPayload = {
+  from: "+918925944072",
+  campaignName: "api-test",
+  to: mobile.startsWith("+91") ? mobile : `+91${mobile}`,
+ 
+  templateName: "policy_copy_new",
+  components: {
+    header: {
+      type: "document",
+      document: {
+        link: `https://renewalapi.jipolicy.com/Gallery/Policy_pdf/${insertedId}/${insertedId}.pdf`,
+        filename: `${insertedId}.pdf`
       }
     },
-    type: "template"
-  };
+    body: {
+      params: [
+        customername,
+        vehicleno
+      ]
+    }
+  },
+  type: "template",
+};
+
+
 let whatsappResponse = null;
   try {
     const response =await axios.post(
@@ -1448,12 +1395,7 @@ let whatsappResponse = null;
       }
     );
  whatsappResponse = response.data;
-    // console.log("📩 WhatsApp Redirect Link sent");
-  } catch (err) {
-    console.error("❌ WhatsApp sending failed:", err.message);
-  }
-
-      const sql = `
+  const sql = `
      DECLARE @insertedid INT;
       EXEC dbo.insert_whatsup_details
         @transactionid  = :transactionid,
@@ -1462,14 +1404,13 @@ let whatsappResponse = null;
         @excelid        = :excelid,
         @sms_status     = :sms_status,
         @sms_input      = :sms_input,
-        @sms_output     = :sms_output;
-        
+        @sms_output     = :sms_output;        
     `;
 
     const result = await sequelize.query(sql, {
-  replacements: {
+    replacements: {
     transactionid: transactionid,
-    templatename: 'policy_pdf',
+    templatename: 'policy_copy_new',
     mobileno: mobile,
     excelid: policyid,
     sms_status: 'COMPLETED',
@@ -1477,7 +1418,11 @@ let whatsappResponse = null;
     sms_output: JSON.stringify(whatsappResponse)
   }  
 });
-
+    // console.log("📩 WhatsApp Redirect Link sent");
+  } catch (err) {
+    console.error("❌ WhatsApp sending failed:", err.message);
+  }
+}    
       return res.json({
         success: true,
         message: 'Policy saved successfully',
@@ -1687,12 +1632,22 @@ exports.policy_company_list = async (req, res) => {
     const [results] = await sequelize.query(
       `exec [dbo].[get_companyname]`     
     );
+     const [results1] = await sequelize.query(
+      `exec [dbo].[get_vehicletype]`     
+    );
+     const [results2] = await sequelize.query(
+      `exec [dbo].[get_policytype]`     
+    );
 
     res.status(200).json({
       success: true,
       message: 'policy company list fetched successfully',
-      count: results.length,
-      data: results,
+      Company_count: results.length,
+      Company_data: results,
+      Vehicle_type_count: results1.length,
+      Vehicle_type_data: results1,
+      Policy_type_count: results2.length,
+      Policy_type_data: results2,
     });
   } catch (err) {
     console.error('❌ /policy_company_list controller error:', err);

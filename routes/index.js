@@ -6,6 +6,7 @@ const routeFiles = [
   './Policy_renewal',
   './renewal',
   './make',
+  './DB_Data',
 ];
 
 // Import and use all route modules

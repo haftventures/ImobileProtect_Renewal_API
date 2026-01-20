@@ -90,6 +90,9 @@ exports.KYC_process = async (req, res) => {
   try {
     const { txnid, excelid, pan, dob, name } = req.body;
 
+    /* =========================
+       1. Basic Validation
+    ========================== */
     if (!txnid || !excelid || !pan || !dob || !name) {
       return res.status(400).json({
         success: false,
@@ -97,63 +100,188 @@ exports.KYC_process = async (req, res) => {
       });
     }
 
-    const checkQuery = `
-      	 select COUNT(*) AS countt from T_KYC where excelid=:excelid and
-          transactionid=:transactionid and statuss=1`;
+    /* =========================
+       2. Check KYC Already Done
+    ========================== */
+    const [kycCheck] = await sequelize.query(
+      `SELECT COUNT(*) AS countt
+       FROM T_KYC
+       WHERE excelid = :excelid
+         AND transactionid = :transactionid
+         AND statuss = 1`,
+      {
+        replacements: { excelid, transactionid: txnid },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );
 
-    const [checkResult] = await sequelize.query(checkQuery, {
-      replacements: { excelid:excelid,transactionid: txnid },
-      type: sequelize.QueryTypes.SELECT,
-    });
+    if (Number(kycCheck.countt) > 0) {
+      return res.status(200).json({
+        success: false,
+        message: "KYC already done for this transaction ID"
+      });
+    }
 
-    if (Number(checkResult.countt) > 0) {
-    return res.status(200).json({
-    success: false, 
-    message: "KYC already done for this transaction ID"    
-  });
-}
+    /* =========================
+       3. Execute KYC Procedure
+    ========================== */
+    const dob1 = convertDate(dob);
 
-    const query = `
+    const [kycResult] = await sequelize.query(
+      `
       DECLARE @output INT;
-      EXEC KYC_process 
-          @txnid = :txnid,
-          @excelid = :excelid,
-          @pan = :pan,
-          @dob = :dob,
-          @name = :name,
-          @insertedid = @output OUTPUT;
+      EXEC KYC_process
+        @txnid = :txnid,
+        @excelid = :excelid,
+        @pan = :pan,
+        @dob = :dob,
+        @name = :name,
+        @insertedid = @output OUTPUT;
       SELECT @output AS insertedid;
-    `;
-    const dob1=convertDate(dob);
-    const result = await sequelize.query(query, {
-      replacements: { txnid, excelid, pan,dob:dob1, name },
-      type: sequelize.QueryTypes.SELECT
-    });
+      `,
+      {
+        replacements: { txnid, excelid, pan, dob: dob1, name },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );
 
-    const insertedid = result[0].insertedid;
+    const insertedid = Number(kycResult.insertedid || 0);
 
-    // ⭐ Check success or failure based on OUTPUT value
+    /* =========================
+       4. Fetch Mobile Number
+    ========================== */
+    const [mobileResult] = await sequelize.query(
+      `SELECT mobile
+       FROM T_Uplodpolicy_excel
+       WHERE id = :excelid
+         AND transactionid = :transactionid`,
+      {
+        replacements: { excelid, transactionid: txnid },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );
+
+    const mobileno = mobileResult?.mobile;
+
+    /* =========================
+       5. Holiday Check
+    ========================== */
+    const [holidayResult] = await sequelize.query(
+      `EXEC dbo.get_holiday`,
+      { type: sequelize.QueryTypes.SELECT }
+    );
+
+    const Daystatus = holidayResult?.DayStatus ?? '0';
+
+    /* =========================
+       6. WhatsApp Trigger Logic
+    ========================== */
+    if (Daystatus === '1') {
+
+      const [allowSendResult] = await sequelize.query(
+        `
+        DECLARE @AllowSend INT;
+        EXEC dbo.whatsup_check_and_allow
+          @transactionid = :transactionid,
+          @templatename  = :templatename,
+          @mobileno      = :mobileno,
+          @status        = :status,
+          @AllowSend     = @AllowSend OUTPUT;
+        SELECT @AllowSend AS AllowSend;
+        `,
+        {
+          replacements: {
+            transactionid: txnid,
+            templatename: "while_customer_waiting_time",
+            mobileno,
+            status: "COMPLETED"
+          },
+          type: sequelize.QueryTypes.SELECT
+        }
+      );
+
+      const AllowSend = Number(allowSendResult?.AllowSend || 0);
+
+      if (AllowSend === 0) {
+        try {
+          const requestPayload = {
+            from: "+918925944072",
+            campaignName: "api-test",
+            to: mobileno.startsWith("+91") ? mobileno : `+91${mobileno}`,
+            templateName: "while_customer_waiting_time",
+            components: {
+              body: { params: [name] },
+              header: { type: "text", text: "text value" }
+            },
+            type: "template"
+          };
+
+          const waResponse = await axios.post(
+            kyc_url,
+            requestPayload,
+            {
+              headers: {
+                apikey: "nKjli6lnG8M2yl99igTj5ofzZZTIVD",
+                "Content-Type": "application/json"
+              }
+            }
+          );
+
+          /* ===== Save WhatsApp Log ===== */
+          await sequelize.query(
+            `
+            EXEC dbo.insert_whatsup_details
+              @transactionid = :transactionid,
+              @templatename  = :templatename,
+              @mobileno      = :mobileno,
+              @excelid       = :excelid,
+              @sms_status    = :sms_status,
+              @sms_input     = :sms_input,
+              @sms_output    = :sms_output;
+            `,
+            {
+              replacements: {
+                transactionid: txnid,
+                templatename: "while_customer_waiting_time",
+                mobileno,
+                excelid,
+                sms_status: "COMPLETED",
+                sms_input: JSON.stringify(requestPayload),
+                sms_output: JSON.stringify(waResponse.data)
+              }
+            }
+          );
+
+        } catch (waErr) {
+          console.error("❌ WhatsApp failed:", waErr.message);
+        }
+      }
+    }
+
+    /* =========================
+       7. Final Response
+    ========================== */
     if (insertedid > 0) {
       return res.status(200).json({
         success: true,
         message: "Thanks! Your KYC details are now updated.",
-        insertedid: insertedid
+        insertedid
       });
     }
-    else  if (insertedid == 0) {
+
+    if (insertedid === 0) {
       return res.status(200).json({
         success: true,
         message: "Thanks! Your KYC details are already submitted.",
-        insertedid: insertedid
-      });
-    }    
-    else {
-      return res.status(400).json({
-        success: false,
-        message: "KYC insertion failed",
-        insertedid: 0
+        insertedid
       });
     }
+
+    return res.status(400).json({
+      success: false,
+      message: "KYC insertion failed",
+      insertedid: 0
+    });
 
   } catch (err) {
     console.error(err);
@@ -165,6 +293,7 @@ exports.KYC_process = async (req, res) => {
     });
   }
 };
+
 exports.support_process = async (req, res) => {
   try {
     const { txnid, excelid,name,description } = req.body;
@@ -784,7 +913,6 @@ let whatsappResponse = null;
     });
   }
 };
-
 exports.search_by_vehicle = async (req, res) => {
   try {
 
@@ -847,6 +975,58 @@ exports.policy_status_report = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal Server Error",
+      error: err.message
+    });
+  }
+};
+exports.policy_reverse = async (req, res) => {
+  try {
+    const { id, userid } = req.body;
+
+    if (!id || !userid) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required fields"
+      });
+    }
+
+    const query = `
+      DECLARE @output INT;
+      EXEC policy_reverse 
+          @id = :id,
+          @userid = :userid,
+          @output = @output OUTPUT;
+      SELECT @output AS insertedid;
+    `;
+    
+    const result = await sequelize.query(query, {
+      replacements: { id, userid },
+      type: sequelize.QueryTypes.SELECT
+    });
+
+    const insertedid = result[0].insertedid;
+
+    // ⭐ Check success or failure based on OUTPUT value
+    if (insertedid > 0) {
+      return res.status(200).json({
+        success: true,
+        message: "Policy Reverse Suceessfully.",
+        insertedid: insertedid
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Support insertion failed",
+        insertedid: 0
+      });
+    }
+
+  } catch (err) {
+    console.error(err);
+    errorlog(err, req);
+    return res.status(500).json({
+      success: false,
+      message: "Server Error",
       error: err.message
     });
   }

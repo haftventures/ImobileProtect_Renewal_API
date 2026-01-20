@@ -1915,3 +1915,164 @@ User Host IP  : ::1
 
 --------------------------------*End*------------------------------------------
 
+-----------Exception Details on 1/12/2026, 5:34:13 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Could not find stored procedure 'bulk_data_update_table'.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_citylist (E:\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:54:20)
+
+Error Page Url: /api/DB_Data/get_citylist
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/12/2026, 5:35:47 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to date.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.get_citylist (E:\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:54:20)
+
+Error Page Url: /api/DB_Data/get_citylist
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/12/2026, 5:43:04 PM-----------------
+
+Error Line No : at injectReplacements (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+
+Error Message : Named replacement ":searchtext" has no entry in the replacement map.
+
+Exception Type: Error
+
+Error Stack   : Error: Named replacement ":searchtext" has no entry in the replacement map.
+    at injectReplacements (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+    at Sequelize.query (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:286:13)
+    at exports.DB_get_modellist (E:\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:77:36)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Jubiliant_Renewal Api\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Jubiliant_Renewal Api\source\node_modules\router\index.js:295:15
+    at processParams (E:\Jubiliant_Renewal Api\source\node_modules\router\index.js:582:12)
+
+Error Page Url: /api/DB_Data/DB_get_modellist
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/12/2026, 5:55:51 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Incorrect syntax near ':'.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.bulk_data_move_count (E:\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:10:20)
+
+Error Page Url: /api/DB_Data/bulk_data_move_count
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/13/2026, 4:12:02 PM-----------------
+
+Error Line No : at exports.bulk_data_move_table (E:\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:142:33)
+
+Error Message : Cannot read properties of undefined (reading 'countt')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'countt')
+    at exports.bulk_data_move_table (E:\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:142:33)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/DB_Data/bulk_data_move_table
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/13/2026, 4:13:53 PM-----------------
+
+Error Line No : at exports.bulk_data_move_table (E:\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:142:33)
+
+Error Message : Cannot read properties of undefined (reading 'countt')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'countt')
+    at exports.bulk_data_move_table (E:\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:142:33)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/DB_Data/bulk_data_move_table
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/13/2026, 4:14:26 PM-----------------
+
+Error Line No : at exports.bulk_data_move_table (E:\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:142:33)
+
+Error Message : Cannot read properties of undefined (reading 'countt')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'countt')
+    at exports.bulk_data_move_table (E:\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:142:33)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/DB_Data/bulk_data_move_table
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+[2026-01-14T06:15:02.902Z] DB CONNECTION ERROR: Failed to connect to 202.83.25.185:1433 - Could not connect (sequence)
+-----------Exception Details on 1/20/2026, 5:39:53 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'policy_reverse' expects parameter '@output', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.policy_reverse (E:\Jubiliant_Renewal Api\source\Controller\renewalController.js:1002:20)
+
+Error Page Url: /api/renewal/policy_reverse
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
