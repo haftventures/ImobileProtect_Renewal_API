@@ -1085,7 +1085,7 @@ exports.payment_success_redirect = async (req, res) => {
         });
 
         // Normalize mobile numbers
-        const mobileList = [mobile, "9884668668","8939415262"];
+        const mobileList = [mobile, "9884668668"];
         // ⭐ If DB insert success → send success WhatsApp
         if (responseObj_status =="COMPLETED"){
           for (const number of mobileList) {

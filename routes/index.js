@@ -7,6 +7,7 @@ const routeFiles = [
   './renewal',
   './make',
   './DB_Data',
+  './Payment',
 ];
 
 // Import and use all route modules

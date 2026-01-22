@@ -2076,3 +2076,42 @@ User Host IP  : ::1
 
 --------------------------------*End*------------------------------------------
 
+-----------Exception Details on 1/22/2026, 1:09:20 PM-----------------
+
+Error Line No : at JSON.parse (<anonymous>)
+
+Error Message : "undefined" is not valid JSON
+
+Exception Type: SyntaxError
+
+Error Stack   : SyntaxError: "undefined" is not valid JSON
+    at JSON.parse (<anonymous>)
+    at exports.payment_verify (E:\Jubiliant_Renewal Api\source\Controller\Payment_Controller.js:27:27)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Payment/payment_verify
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 1/22/2026, 1:36:39 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to date.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.payment_verify (E:\Jubiliant_Renewal Api\source\Controller\Payment_Controller.js:10:20)
+
+Error Page Url: /api/Payment/payment_verify
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
