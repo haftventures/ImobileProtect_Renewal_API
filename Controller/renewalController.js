@@ -857,7 +857,7 @@ const insertedId = result[2]?.insertedid ?? null;
 const customername_whatsup=result[1]?.customername ?? null;
 const mobile_whatsup=result[1]?.mobile ?? null;
 const vehicleno_whatsup=result[1]?.vehicleno ?? null;
-const regdate_whatsup=result[1]?.regdate ?? null;
+const policyenddate_whatsup=result[1]?.policyenddate ?? null;
 const paymentlink_whatsup=result[1]?.paymentlink ?? null;
 
 let whatsappResponse = null;
@@ -872,7 +872,7 @@ let whatsappResponse = null;
           templateName: "invoice_status",
           components: {
             body: {
-              params: [customername_whatsup,vehicleno_whatsup,regdate_whatsup,
+              params: [customername_whatsup,vehicleno_whatsup,policyenddate_whatsup,
                       paymentlink_whatsup       
               ]
             },

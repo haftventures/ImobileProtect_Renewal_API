@@ -36,11 +36,17 @@ router.post('/Policy_renewal/policy_report', policyRenewalController.policy_repo
 router.get('/Policy_renewal/get_pdf_path', policyRenewalController.get_pdf_path);
 router.post('/Policy_renewal/not_interested', policyRenewalController.not_interested);
 router.get('/Policy_renewal/policy_company_list', policyRenewalController.policy_company_list);
-
+router.post("/Policy_renewal/Policyentry_save",upload.single("pdfFile"),policyRenewalController.Policyentry_save);
+router.post("/Policy_renewal/policy_deails_show",policyRenewalController.policy_deails_show);
 router.post(
   "/Policy_renewal/operation_policy_save",
   upload.single("pdfFile"),
   policyRenewalController.operation_policy_save
+);
+router.post(
+  "/Policy_renewal/Policyentry_save_ocr",
+  upload.single("pdfFile"),
+  policyRenewalController.Policyentry_save_ocr
 );
 
 

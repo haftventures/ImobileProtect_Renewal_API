@@ -127,6 +127,7 @@ const query = `
         @merchantorderid = :merchantorderid,     
         @excelid = :excelid,
         @amount=:amount,
+        @policy_duration=:policy_duration,
         @idd = @output_id OUTPUT;
     SELECT @output_id AS inserted_id;
 `;
@@ -137,7 +138,8 @@ const [result] = await sequelize.query(query, {
         request: JSON.stringify(requestBody),
         merchantorderid: merchantOrderId,
         excelid: orderDetails.id,
-        amount: orderDetails.amount
+        amount: orderDetails.amount,
+        policy_duration:orderDetails.year
     },
 });
     try {
@@ -1265,6 +1267,7 @@ responsePayload = waSuccess.data;
     });
   }
 };
+
 exports.operation_policy_save = async (req, res) => {
   try {
     // ✅ Combine destructuring into one line
@@ -1311,24 +1314,63 @@ exports.operation_policy_save = async (req, res) => {
     const [result] = await sequelize.query(query);
     const insertedId = result?.[0]?.insertedid || null;
 
-     // 1️⃣ Save Base64 PDF
-     // 2️⃣ Save actual PDF on server
-    if (pdfFile) {
-      const folderPath = path.join(__dirname, "../Gallery/Policy_pdf/", String(insertedId));
 
-      // Create folder if not exists
-      if (!fs.existsSync(folderPath)) {
-        fs.mkdirSync(folderPath, { recursive: true });
-      }
+if (pdfFile) {
+  const now = new Date();
 
-      const filename = `${insertedId}.pdf`;
-      const filepath = path.join(folderPath, filename);
+  const year = now.getFullYear().toString();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
 
-      // Save the binary PDF file
-      fs.writeFileSync(filepath, pdfFile.buffer);
+  // -------- First Path (Without Date) --------
+  const folderPath1 = path.join(
+    __dirname,
+    "../Gallery/Policy_pdf/",
+    String(insertedId)
+    
+  );
 
-      // console.log("PDF Saved:", filepath);
-    }
+  //  // -------- First Path (Without Date) --------
+  // const folderPath1 = path.join(
+  //   __dirname,
+  //   "../Gallery/Policy_pdf/",year,
+  //   month,
+  //   day,
+  //   String(insertedId)
+    
+  // );
+
+  // -------- Second Path (With Date) --------
+  const folderPath2 = path.resolve(
+    "E:/Elixir_Data/Renewal_PDF",
+    year,
+    month,
+    day,
+    String(insertedId)
+  );
+
+  // Create folders if not exists
+  if (!fs.existsSync(folderPath1)) {
+    fs.mkdirSync(folderPath1, { recursive: true });
+  }
+
+  if (!fs.existsSync(folderPath2)) {
+    fs.mkdirSync(folderPath2, { recursive: true });
+  }
+
+  const filename = `${insertedId}.pdf`;
+
+  const filePath1 = path.join(folderPath1, filename);
+  const filePath2 = path.join(folderPath2, filename);
+
+  // Save in both locations
+  fs.writeFileSync(filePath1, pdfFile.buffer);
+  fs.writeFileSync(filePath2, pdfFile.buffer);
+}
+
+ 
+
+
     if (insertedId) {
  const [allowSendResult] = await sequelize.query(
         `
@@ -1443,6 +1485,7 @@ let whatsappResponse = null;
     });
   }
 };
+
 exports.login_website = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -1651,6 +1694,333 @@ exports.policy_company_list = async (req, res) => {
     });
   } catch (err) {
     console.error('❌ /policy_company_list controller error:', err);
+    errorlog(err, req);
+    res.status(500).json({
+      success: false,
+      error: err.message || 'Unexpected error',
+    });
+  }
+};
+
+
+exports.Policyentry_save = async (req, res) => {
+  try {
+    // -----------------------------
+    // READ BODY + FILE
+    // -----------------------------
+    const {
+      vehicletype, policytype, company, customername, vehicleno,
+      mobile, email, address, pincode, policyno, idv, od, tp,
+      netpremium, grosspremium, make, model, varient, cc,
+      engineno, chasisno, regdate, year, ncb,
+      risk_start_date, risk_end_date, userid
+    } = req.body;
+
+    const pdfFile = req.file;
+    let regdate1 = null;
+
+    if (regdate && regdate.trim() !== "") {
+    regdate1 = convertDate(regdate);
+    }
+    const risk_start_date1 = convertDate(risk_start_date);
+    const risk_end_date1 = convertDate(risk_end_date);
+
+    // -----------------------------
+    // SQL QUERY (PARAMETERIZED)
+    // -----------------------------
+    const query = `
+      DECLARE @insertedid INT;
+
+      EXEC dbo.policy_details_save
+        @vehicletype = :vehicletype,
+        @policytype = :policytype,
+        @company = :company,
+        @customername = :customername,
+        @vehicleno = :vehicleno,
+        @mobile = :mobile,
+        @email = :email,
+        @address = :address,
+        @pincode = :pincode,
+        @policyno = :policyno,
+        @idv = :idv,
+        @od = :od,
+        @tp = :tp,
+        @netpremium = :netpremium,
+        @grosspremium = :grosspremium,
+        @make = :make,
+        @model = :model,
+        @varient = :varient,
+        @cc = :cc,
+        @engineno = :engineno,
+        @chasisno = :chasisno,
+        @regdate = :regdate,
+        @year = :year,
+        @ncb = :ncb,
+        @risk_start_date = :risk_start_date,
+        @risk_end_date = :risk_end_date,
+        @userid = :userid,
+        @insertedid = @insertedid OUTPUT;
+
+      SELECT @insertedid AS insertedid;
+    `;
+
+    // -----------------------------
+    // EXECUTE QUERY
+    // -----------------------------
+    const [result] = await sequelize.query(query, {
+      replacements: {
+        vehicletype,
+        policytype,
+        company,
+        customername,
+        vehicleno,
+        mobile,
+        email,
+        address,
+        pincode,
+        policyno,
+        idv,
+        od,
+        tp,
+        netpremium,
+        grosspremium,
+        make,
+        model,
+        varient,
+        cc,
+        engineno,
+        chasisno,
+        regdate: regdate1,
+        year,
+        ncb,
+        risk_start_date: risk_start_date1,
+        risk_end_date: risk_end_date1,
+        userid
+      }
+    });
+
+    const insertedId =
+      result?.[0]?.insertedid ??
+      result?.[0]?.[0]?.insertedid ??
+      null;
+
+    // -----------------------------
+    // SAVE PDF
+    // -----------------------------
+    if (insertedId === 0) {
+      return res.json({
+        success: false,
+        message: "Policy already Available.Please check now"
+      });
+    }
+if (insertedId > 0) {
+    if (pdfFile) {
+      const folderPath = path.join(
+        __dirname,
+        "../Gallery/OCR_pdf/",
+        String(insertedId)
+      );
+
+      if (!fs.existsSync(folderPath)) {
+        fs.mkdirSync(folderPath, { recursive: true });
+      }
+
+      const filepath = path.join(folderPath, `${insertedId}.pdf`);
+      fs.writeFileSync(filepath, pdfFile.buffer);
+    }
+  }
+    return res.json({
+      success: true,
+      message: "Policy saved successfully",
+      insertedId
+    });
+
+  } catch (err) {
+    console.error("❌ Policyentry_save error:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: err.message
+    });
+  }
+};
+exports.Policyentry_save_ocr = async (req, res) => {
+  try {
+    // -----------------------------
+    // READ BODY + FILE
+    // -----------------------------
+    const {
+      vehicletype, policytype, company, customername, vehicleno,
+      mobile, email, address, pincode, policyno, idv, od, tp,
+      netpremium, grosspremium, make, model, varient, cc,
+      engineno, chasisno, regdate, year, ncb,
+      risk_start_date, risk_end_date, userid
+    } = req.body;
+
+    const pdfFile = req.file;
+    let regdate1 = null;
+
+    if (regdate && regdate.trim() !== "") {
+    regdate1 = convertDate(regdate);
+    }
+    const risk_start_date1 = convertDate(risk_start_date);
+    const risk_end_date1 = convertDate(risk_end_date);
+
+    // -----------------------------
+    // SQL QUERY (PARAMETERIZED)
+    // -----------------------------
+    const query = `
+      DECLARE @insertedid INT;
+
+      EXEC dbo.policy_details_save
+        @vehicletype = :vehicletype,
+        @policytype = :policytype,
+        @company = :company,
+        @customername = :customername,
+        @vehicleno = :vehicleno,
+        @mobile = :mobile,
+        @email = :email,
+        @address = :address,
+        @pincode = :pincode,
+        @policyno = :policyno,
+        @idv = :idv,
+        @od = :od,
+        @tp = :tp,
+        @netpremium = :netpremium,
+        @grosspremium = :grosspremium,
+        @make = :make,
+        @model = :model,
+        @varient = :varient,
+        @cc = :cc,
+        @engineno = :engineno,
+        @chasisno = :chasisno,
+        @regdate = :regdate,
+        @year = :year,
+        @ncb = :ncb,
+        @risk_start_date = :risk_start_date,
+        @risk_end_date = :risk_end_date,
+        @userid = :userid,
+        @insertedid = @insertedid OUTPUT;
+
+      SELECT @insertedid AS insertedid;
+    `;
+
+    // -----------------------------
+    // EXECUTE QUERY
+    // -----------------------------
+    const [result] = await sequelize.query(query, {
+      replacements: {
+        vehicletype,
+        policytype,
+        company,
+        customername,
+        vehicleno,
+        mobile,
+        email,
+        address,
+        pincode,
+        policyno,
+        idv,
+        od,
+        tp,
+        netpremium,
+        grosspremium,
+        make,
+        model,
+        varient,
+        cc,
+        engineno,
+        chasisno,
+        regdate: regdate1,
+        year,
+        ncb,
+        risk_start_date: risk_start_date1,
+        risk_end_date: risk_end_date1,
+        userid
+      }
+    });
+
+    const insertedId =
+      result?.[0]?.insertedid ??
+      result?.[0]?.[0]?.insertedid ??
+      null;
+
+    // -----------------------------
+    // SAVE PDF
+    // -----------------------------
+    if (insertedId == 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Policy already Available.Please check now"
+      });
+    }
+
+    if (pdfFile && insertedId) {
+      const folderPath = path.join(
+        __dirname,
+        "../Gallery/OCR_pdf/",
+        String(insertedId)
+      );
+
+      if (!fs.existsSync(folderPath)) {
+        fs.mkdirSync(folderPath, { recursive: true });
+      }
+
+      const filepath = path.join(folderPath, `${insertedId}.pdf`);
+      fs.writeFileSync(filepath, pdfFile.buffer);
+    }
+
+    return res.json({
+      success: true,
+      message: "Policy saved successfully",
+      insertedId
+    });
+
+  } catch (err) {
+    console.error("❌ Policyentry_save error:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: err.message
+    });
+  }
+};
+
+exports.policy_deails_show = async (req, res) => {
+  try {
+    const { fromdate, todate,status,userid } = req.body;
+    
+    // Validation
+    if (!fromdate || !todate || !status) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid or missing date parameters or status',
+      });
+    }   
+    const fromdate1 = convertDate(fromdate);
+    const todate1 = convertDate(todate);
+
+    // Query
+    const [results] = await sequelize.query(
+      ` exec [policy_details_show] @fromdate = :fromdate, @todate = :todate, @status = :status , @userid = :userid`,      
+      {
+        replacements: { fromdate: fromdate1, todate: todate1,status:status , userid:userid  },
+      }
+    );
+
+//    const total = results.reduce((sum, row) => {
+//   return sum + Number(row.amount || 0);
+// }, 0);
+
+
+    res.status(200).json({
+      success: true,
+      message: 'Data fetched successfully',
+      count: results.length,
+      data: results,
+    });
+  } catch (err) {
+    console.error('❌ /renewalList controller error:', err);
     errorlog(err, req);
     res.status(500).json({
       success: false,
