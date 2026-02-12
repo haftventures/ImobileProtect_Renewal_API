@@ -15,5 +15,8 @@ router.post('/DB_Data/DB_get_uploadexcel_rtolist', DB_DataController.DB_get_uplo
 router.post('/DB_Data/DB_uploadexcel_bulk_data_move_count', DB_DataController.DB_uploadexcel_bulk_data_move_count);
 router.post('/DB_Data/DB_uploadexcel_bulk_data_move_table', DB_DataController.DB_uploadexcel_bulk_data_move_table);
 
+router.post('/DB_Data/DB_get_statelist', DB_DataController.DB_get_statelist);
+router.post('/DB_Data/DB_get_uploadexcel_statelist', DB_DataController.DB_get_uploadexcel_statelist);
+
 
 module.exports = router;    

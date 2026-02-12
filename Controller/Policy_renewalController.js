@@ -98,13 +98,13 @@ async function initiatePayment(accessToken, orderDetails) {
             "udf2": "",
             "udf3": orderDetails.transactionid,
             "udf4": orderDetails.amount,
-            "udf5": orderDetails.id
+            "udf5": orderDetails.uploadId
         },
         "paymentFlow": {
             "type": "PG_CHECKOUT",
-            "message": `Payment for Policy ID: ${orderDetails.id}`,
+            "message": `Payment for Policy ID: ${orderDetails.uploadId}`,
             "merchantUrls": {
-                "redirectUrl": "https://renewal.jipolicy.com/success.html?txnid=" + orderDetails.transactionid + "&excelid=" + orderDetails.id+ "&merchantOrderId=" + merchantOrderId,
+                "redirectUrl": "https://renewal.jipolicy.com/success.html?txnid=" + orderDetails.transactionid + "&excelid=" + orderDetails.uploadId+ "&merchantOrderId=" + merchantOrderId,
             },
             // "paymentModeConfig": {
             //     "disabledPaymentModes": [
@@ -137,7 +137,7 @@ const [result] = await sequelize.query(query, {
         transactionid: orderDetails.transactionid,        
         request: JSON.stringify(requestBody),
         merchantorderid: merchantOrderId,
-        excelid: orderDetails.id,
+        excelid: orderDetails.uploadId,
         amount: orderDetails.amount,
         policy_duration:orderDetails.year
     },
@@ -174,7 +174,10 @@ exports.getrenewaldata = async (req, res) => {
         message: 'Invalid or missing Transaction ID parameter',
       });
     }
+    const [transactionId, masterId] = txnid.split("-");
 
+
+  
     // ✅ 1️⃣ Check if payment is already completed
     const checkQuery = `
       SELECT COUNT(*) AS countt
@@ -183,17 +186,17 @@ exports.getrenewaldata = async (req, res) => {
     `;
 
     const [checkResult] = await sequelize.query(checkQuery, {
-      replacements: { transactionid: txnid },
+      replacements: { transactionid: transactionId},
       type: sequelize.QueryTypes.SELECT,
     });
 
     if (checkResult.countt > 0) {
 
   const [resultss] = await sequelize.query(
-    `EXEC payment_done @transactionid = :transactionid`,
+    `EXEC payment_done @transactionid = :transactionid,@masterid = :masterid`,
   {
     replacements: {
-      transactionid: txnid       
+      transactionid: transactionId,masterid:masterId       
     },
   }
   );
@@ -208,10 +211,10 @@ exports.getrenewaldata = async (req, res) => {
 
     // ✅ 2️⃣ If not paid, fetch renewal data
     const [results] = await sequelize.query(
-      `EXEC [getrenewaldata] @transactionid = :transactionid`,
+      `EXEC [getrenewaldata1] @transactionid = :transactionid,@masterid = :masterid`,
   {
     replacements: {
-      transactionid: txnid       
+      transactionid: transactionId,masterid:masterId       
     },
   }
     );
@@ -494,6 +497,8 @@ exports.duration_based_amount = async (req, res) => {
 exports.paymentlink_duration_based = async (req, res) => {
   try {
     const { customername, mobile, transactionid, id, amount, year } = req.body;
+    
+ 
 
     // ✅ Validate input
     if (!customername || !transactionid || !mobile || !id || !amount || !year) {
@@ -503,6 +508,19 @@ exports.paymentlink_duration_based = async (req, res) => {
           'Invalid or missing parameters (customername, mobile, transactionid, id, amount, and year are required)',
       });
     }
+
+    // ✅ 1️⃣ Check if payment is already completed
+    const checkQuery1 = `
+        select top 1 id from T_Uplodpolicy_excel where dataid= :masterid order by id desc
+    `;
+
+   const [checkResult1] = await sequelize.query(checkQuery1, {
+  replacements: { masterid: id },
+  type: sequelize.QueryTypes.SELECT,
+   }); 
+
+  const uploadId = checkResult1?.id || null;
+
 
     // ✅ 1️⃣ Check if payment already done for this transactionid
     const checkQuery = `
@@ -522,6 +540,32 @@ exports.paymentlink_duration_based = async (req, res) => {
       });
     }
 
+    const checkQuery2 = `
+    IF EXISTS (
+        SELECT 1
+        FROM T_Uplodpolicy_excel UE
+        INNER JOIN T_Policy_Report PR
+            ON UE.id = PR.policyid
+        WHERE REPLACE(UE.vehicleno,'-','') = REPLACE(:vehicleno,'-','')
+        AND PR.datee BETWEEN DATEADD(MONTH, -10, GETDATE()) AND GETDATE()
+    )
+    SELECT 1 AS isExists
+    ELSE
+    SELECT 0 AS isExists
+`;
+
+const result1 = await sequelize.query(checkQuery2, {
+  replacements: { vehicleno },
+  type: sequelize.QueryTypes.SELECT,
+});
+
+if (result1[0].isExists === 1) {
+  return res.status(200).json({
+    success: false,
+    message: 'Payment already done for this Vehicleno',
+  });
+}
+
     // ✅ 2️⃣ Proceed with payment if not done already
     const accessToken = await getAccessToken();
 
@@ -529,7 +573,7 @@ exports.paymentlink_duration_based = async (req, res) => {
       customername,
       mobile,
       transactionid,
-      id,
+      uploadId,
       amount,
       year,
     };
@@ -988,6 +1032,7 @@ exports.policy_prepare_list = async (req, res) => {
 exports.payment_success_redirect = async (req, res) => {
   try {
     const { txnid, excelid,merchantOrderId } = req.body;
+     const [transactionId, masterId] = txnid.split("-");
     let  responseObj_status="";
     if (!txnid || !excelid || !merchantOrderId) {
       return res.status(400).json({
@@ -1023,7 +1068,7 @@ exports.payment_success_redirect = async (req, res) => {
         tu.mobile 
       FROM T_Payment_getway tg
       INNER JOIN T_Uplodpolicy_excel tu ON tg.excelid = tu.id
-      WHERE tg.transactionid='${txnid}'
+      WHERE tg.transactionid='${transactionId}'
         AND tg.excelid='${excelid}'
         and tg.merchantorderid='${merchantOrderId}'
       ORDER BY tg.id DESC
@@ -1196,7 +1241,7 @@ responsePayload = waSuccess.data;
         else {
           try {
             const safeCustomer = customername || "";
-            const paymentLink = `https://renewal.jipolicy.com/payment?txnid=${transactionid}`;
+            const paymentLink = `https://renewal.jipolicy.com/payment?txnid=${transactionid}-${masterId}`;
 
             const waFail = await axios.post(
               kyc_url,
@@ -1551,9 +1596,13 @@ exports.login_website = async (req, res) => {
 };
 exports.policy_status = async (req, res) => {
   try {   
-    
+    const userid = req.query.userid;   
+
     const [results] = await sequelize.query(
-      `select id,policy_status from M_Policy_Status where statuss=1 `     
+      ` exec [get_policy_status] @userid = :userid`,      
+      {
+        replacements: { userid: userid  },
+      }
     );
 
     res.status(200).json({
@@ -1642,7 +1691,6 @@ exports.get_pdf_path = async (req, res) => {
     return res.json({ success: false, message: err.message });
   }
 };
-
 exports.not_interested = async (req, res) => {
   try {
     const { txnid } = req.body;   

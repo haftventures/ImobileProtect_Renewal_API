@@ -4,13 +4,13 @@ const axios = require('axios');
 
 exports.bulk_data_move_count = async (req, res) => {
   try {
-   const { fromdate,todate,city,model,rto,userid } = req.body;
+   const { fromdate,todate,city,model,rto,state,userid } = req.body;
     const date1=convertDate(fromdate);
      const date2=convertDate(todate);
     const result = await sequelize.query(
-      "EXEC bulk_data_move_count @fromdate = :fromdate,@todate = :todate,@citylist=:citylist,@modellist = :modellist,@rtolist = :rtolist,@userid = :userid",
+      "EXEC bulk_data_move_count @fromdate = :fromdate,@todate = :todate,@citylist=:citylist,@modellist = :modellist,@rtolist = :rtolist,@statelist = :statelist,@userid = :userid",
       {
-        replacements: { fromdate:date1,todate:date2,citylist:city,modellist:model,rtolist:rto,userid },
+        replacements: { fromdate:date1,todate:date2,citylist:city,modellist:model,rtolist:rto,statelist:state,userid },
         type: sequelize.QueryTypes.SELECT
       }
     );       
@@ -50,6 +50,29 @@ exports.bulk_data_update_table = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Data update successfully",
+      data:result
+    });  
+  } catch (err) {
+    console.error(err);
+    errorlog(err, req);
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+exports.DB_get_statelist = async (req, res) => {
+  try {
+    const { fromdate,todate,userid,search_state } = req.body;
+    const date1=convertDate(fromdate);
+    const date2=convertDate(todate);
+    const result = await sequelize.query(
+      "EXEC get_statelist @fromdate = :fromdate,@todate = :todate,@userid = :userid,@searchtext = :searchtext",
+      {
+        replacements: { fromdate:date1,todate:date2,userid,searchtext:search_state },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );       
+    return res.status(200).json({
+      success: true,
+      message: "State data get successfully",
       data:result
     });  
   } catch (err) {
@@ -129,13 +152,13 @@ exports.DB_get_rtolist = async (req, res) => {
 };
 exports.bulk_data_move_table = async (req, res) => {
   try {
-   const { fromdate,todate,city,model,rto,userid,totalcount } = req.body;
+   const { fromdate,todate,city,model,rto,state,userid,totalcount } = req.body;
     const date1=convertDate(fromdate);
      const date2=convertDate(todate);
     const result = await sequelize.query(
-      "EXEC bulk_data_move_table @fromdate = :fromdate,@todate = :todate,@citylist=:citylist,@modellist = :modellist,@rtolist = :rtolist,@userid = :userid,@countt=:countt",
+      "EXEC bulk_data_move_table @fromdate = :fromdate,@todate = :todate,@citylist=:citylist,@modellist = :modellist,@rtolist = :rtolist,@statelist = :statelist,@userid = :userid,@countt=:countt",
       {
-        replacements: { fromdate:date1,todate:date2,citylist:city,modellist:model,rtolist:rto,userid,countt:totalcount },
+        replacements: { fromdate:date1,todate:date2,citylist:city,modellist:model,rtolist:rto,statelist:state,userid,countt:totalcount },
         type: sequelize.QueryTypes.SELECT
       }
     );       
@@ -238,6 +261,29 @@ exports.DB_get_uploadexcel_citylist = async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 };
+exports.DB_get_uploadexcel_statelist = async (req, res) => {
+  try {
+    const { fromdate,todate,userid,search_state } = req.body;
+    const date1=convertDate(fromdate);
+    const date2=convertDate(todate);
+    const result = await sequelize.query(
+      "EXEC get_uploadexcel_statelist @fromdate = :fromdate,@todate = :todate,@userid = :userid,@searchtext = :searchtext",
+      {
+        replacements: { fromdate:date1,todate:date2,userid,searchtext:search_state },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );       
+    return res.status(200).json({
+      success: true,
+      message: "State data get successfully",
+      data:result
+    });  
+  } catch (err) {
+    console.error(err);
+    errorlog(err, req);
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
 exports.DB_get_uploadexcel_rtolist = async (req, res) => {
   try {
     const { fromdate,todate,userid,search_rto } = req.body;
@@ -263,13 +309,13 @@ exports.DB_get_uploadexcel_rtolist = async (req, res) => {
 };
 exports.DB_uploadexcel_bulk_data_move_count = async (req, res) => {
   try {
-   const { fromdate,todate,city,model,rto,userid } = req.body;
+   const { fromdate,todate,city,model,rto,state,userid } = req.body;
     const date1=convertDate(fromdate);
      const date2=convertDate(todate);
     const result = await sequelize.query(
-      "EXEC uploadexcel_bulk_data_move_count @fromdate = :fromdate,@todate = :todate,@citylist=:citylist,@modellist = :modellist,@rtolist = :rtolist,@userid = :userid",
+      "EXEC uploadexcel_bulk_data_move_count @fromdate = :fromdate,@todate = :todate,@citylist=:citylist,@modellist = :modellist,@rtolist = :rtolist,@statelist = :statelist,@userid = :userid",
       {
-        replacements: { fromdate:date1,todate:date2,citylist:city,modellist:model,rtolist:rto,userid },
+        replacements: { fromdate:date1,todate:date2,citylist:city,modellist:model,rtolist:rto,statelist:state,userid },
         type: sequelize.QueryTypes.SELECT
       }
     );       
@@ -297,13 +343,13 @@ exports.DB_uploadexcel_bulk_data_move_count = async (req, res) => {
 };
 exports.DB_uploadexcel_bulk_data_move_table = async (req, res) => {
   try {
-   const { fromdate,todate,city,model,rto,userid,totalcount } = req.body;
+   const { fromdate,todate,city,model,rto,state,userid,totalcount } = req.body;
     const date1=convertDate(fromdate);
      const date2=convertDate(todate);
     const result = await sequelize.query(
-      "EXEC uploadexcel_bulk_data_move_table @fromdate = :fromdate,@todate = :todate,@citylist=:citylist,@modellist = :modellist,@rtolist = :rtolist,@userid = :userid,@countt=:countt",
+      "EXEC uploadexcel_bulk_data_move_table @fromdate = :fromdate,@todate = :todate,@citylist=:citylist,@modellist = :modellist,@rtolist = :rtolist,@statelist = :statelist,@userid = :userid,@countt=:countt",
       {
-        replacements: { fromdate:date1,todate:date2,citylist:city,modellist:model,rtolist:rto,userid,countt:totalcount },
+        replacements: { fromdate:date1,todate:date2,citylist:city,modellist:model,rtolist:rto,statelist:state,userid,countt:totalcount },
         type: sequelize.QueryTypes.SELECT
       }
     );       

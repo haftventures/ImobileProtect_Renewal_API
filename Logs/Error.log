@@ -2115,3 +2115,529 @@ User Host IP  : ::1
 
 --------------------------------*End*------------------------------------------
 
+-----------Exception Details on 2/4/2026, 6:04:44 PM-----------------
+
+Error Line No : at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+
+Error Message : Named replacement ":searchtext" has no entry in the replacement map.
+
+Exception Type: Error
+
+Error Stack   : Error: Named replacement ":searchtext" has no entry in the replacement map.
+    at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+    at Sequelize.query (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:286:13)
+    at exports.DB_get_uploadexcel_statelist (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:269:36)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:295:15
+    at processParams (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:582:12)
+
+Error Page Url: /api/DB_Data/DB_get_uploadexcel_statelist
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/4/2026, 6:59:00 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'bulk_data_move_count' expects parameter '@statelist', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.bulk_data_move_count (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:10:20)
+
+Error Page Url: /api/DB_Data/bulk_data_move_count
+
+User Host IP  : IP not available
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/4/2026, 7:01:23 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'bulk_data_move_count' expects parameter '@statelist', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.bulk_data_move_count (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:10:20)
+
+Error Page Url: /api/DB_Data/bulk_data_move_count
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/4/2026, 7:03:23 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'bulk_data_move_count' expects parameter '@statelist', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.bulk_data_move_count (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:10:20)
+
+Error Page Url: /api/DB_Data/bulk_data_move_count
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/4/2026, 7:04:30 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'bulk_data_move_count' expects parameter '@statelist', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.bulk_data_move_count (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:10:20)
+
+Error Page Url: /api/DB_Data/bulk_data_move_count
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/4/2026, 7:08:42 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'bulk_data_move_count' expects parameter '@statelist', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.bulk_data_move_count (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:10:20)
+
+Error Page Url: /api/DB_Data/bulk_data_move_count
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/4/2026, 7:14:51 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'bulk_data_move_table' expects parameter '@statelist', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.bulk_data_move_table (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:158:20)
+
+Error Page Url: /api/DB_Data/bulk_data_move_table
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/5/2026, 11:11:56 AM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'uploadexcel_bulk_data_move_table' expects parameter '@statelist', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.DB_uploadexcel_bulk_data_move_table (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:349:20)
+
+Error Page Url: /api/DB_Data/DB_uploadexcel_bulk_data_move_table
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/5/2026, 11:11:58 AM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function 'uploadexcel_bulk_data_move_table' expects parameter '@statelist', which was not supplied.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.DB_uploadexcel_bulk_data_move_table (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:349:20)
+
+Error Page Url: /api/DB_Data/DB_uploadexcel_bulk_data_move_table
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/5/2026, 11:12:38 AM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.DB_uploadexcel_bulk_data_move_count (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:315:20)
+
+Error Page Url: /api/DB_Data/DB_uploadexcel_bulk_data_move_count
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/5/2026, 11:17:30 AM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.DB_uploadexcel_bulk_data_move_count (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:315:20)
+
+Error Page Url: /api/DB_Data/DB_uploadexcel_bulk_data_move_count
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/5/2026, 11:48:58 AM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.DB_uploadexcel_bulk_data_move_count (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:315:20)
+
+Error Page Url: /api/DB_Data/DB_uploadexcel_bulk_data_move_count
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/5/2026, 12:33:05 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Timeout: Request failed to complete in 15000ms
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.DB_uploadexcel_bulk_data_move_count (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:315:20)
+
+Error Page Url: /api/DB_Data/DB_uploadexcel_bulk_data_move_count
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/5/2026, 1:12:19 PM-----------------
+
+Error Line No : at Function.values (<anonymous>)
+
+Error Message : Cannot convert undefined or null to object
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot convert undefined or null to object
+    at Function.values (<anonymous>)
+    at exports.DB_uploadexcel_bulk_data_move_table (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:356:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/DB_Data/DB_uploadexcel_bulk_data_move_table
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/5/2026, 1:12:53 PM-----------------
+
+Error Line No : at Function.values (<anonymous>)
+
+Error Message : Cannot convert undefined or null to object
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot convert undefined or null to object
+    at Function.values (<anonymous>)
+    at exports.DB_uploadexcel_bulk_data_move_table (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:356:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/DB_Data/DB_uploadexcel_bulk_data_move_table
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/5/2026, 1:13:29 PM-----------------
+
+Error Line No : at Function.values (<anonymous>)
+
+Error Message : Cannot convert undefined or null to object
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot convert undefined or null to object
+    at Function.values (<anonymous>)
+    at exports.DB_uploadexcel_bulk_data_move_table (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:356:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/DB_Data/DB_uploadexcel_bulk_data_move_table
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/6/2026, 10:22:42 AM-----------------
+
+Error Line No : at Function.values (<anonymous>)
+
+Error Message : Cannot convert undefined or null to object
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot convert undefined or null to object
+    at Function.values (<anonymous>)
+    at exports.bulk_data_move_table (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:165:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/DB_Data/bulk_data_move_table
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/6/2026, 10:26:20 AM-----------------
+
+Error Line No : at Function.values (<anonymous>)
+
+Error Message : Cannot convert undefined or null to object
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot convert undefined or null to object
+    at Function.values (<anonymous>)
+    at exports.bulk_data_move_table (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:165:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/DB_Data/bulk_data_move_table
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/6/2026, 6:00:36 PM-----------------
+
+Error Line No : at Function.values (<anonymous>)
+
+Error Message : Cannot convert undefined or null to object
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot convert undefined or null to object
+    at Function.values (<anonymous>)
+    at exports.bulk_data_move_table (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:165:30)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/DB_Data/bulk_data_move_table
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/11/2026, 1:34:28 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function getrenewaldata has too many arguments specified.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getrenewaldata (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:211:23)
+
+Error Page Url: /api/Policy_renewal/getrenewaldata?txnid=9E742EC3656F452-11506050
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/11/2026, 6:59:05 PM-----------------
+
+Error Line No : at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+
+Error Message : Named replacement ":excelid" has no entry in the replacement map.
+
+Exception Type: Error
+
+Error Stack   : Error: Named replacement ":excelid" has no entry in the replacement map.
+    at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+    at Sequelize.query (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:286:13)
+    at initiatePayment (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:135:34)
+    at exports.paymentlink_duration_based (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:555:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/paymentlink_duration_based
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/11/2026, 7:00:27 PM-----------------
+
+Error Line No : at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+
+Error Message : Named replacement ":excelid" has no entry in the replacement map.
+
+Exception Type: Error
+
+Error Stack   : Error: Named replacement ":excelid" has no entry in the replacement map.
+    at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+    at Sequelize.query (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:286:13)
+    at initiatePayment (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:135:34)
+    at exports.paymentlink_duration_based (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:555:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/paymentlink_duration_based
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/11/2026, 7:00:53 PM-----------------
+
+Error Line No : at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+
+Error Message : Named replacement ":excelid" has no entry in the replacement map.
+
+Exception Type: Error
+
+Error Stack   : Error: Named replacement ":excelid" has no entry in the replacement map.
+    at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+    at Sequelize.query (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:286:13)
+    at initiatePayment (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:135:34)
+    at exports.paymentlink_duration_based (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:555:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/paymentlink_duration_based
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/11/2026, 7:02:36 PM-----------------
+
+Error Line No : at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+
+Error Message : Named replacement ":excelid" has no entry in the replacement map.
+
+Exception Type: Error
+
+Error Stack   : Error: Named replacement ":excelid" has no entry in the replacement map.
+    at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+    at Sequelize.query (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:286:13)
+    at initiatePayment (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:135:34)
+    at exports.paymentlink_duration_based (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:555:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/paymentlink_duration_based
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/11/2026, 7:04:04 PM-----------------
+
+Error Line No : at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+
+Error Message : Named replacement ":excelid" has no entry in the replacement map.
+
+Exception Type: Error
+
+Error Stack   : Error: Named replacement ":excelid" has no entry in the replacement map.
+    at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+    at Sequelize.query (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:286:13)
+    at initiatePayment (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:135:34)
+    at exports.paymentlink_duration_based (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:555:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/paymentlink_duration_based
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/11/2026, 7:04:55 PM-----------------
+
+Error Line No : at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+
+Error Message : Named replacement ":excelid" has no entry in the replacement map.
+
+Exception Type: Error
+
+Error Stack   : Error: Named replacement ":excelid" has no entry in the replacement map.
+    at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+    at Sequelize.query (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:286:13)
+    at initiatePayment (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:135:34)
+    at exports.paymentlink_duration_based (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\Policy_renewalController.js:555:56)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+
+Error Page Url: /api/Policy_renewal/paymentlink_duration_based
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
