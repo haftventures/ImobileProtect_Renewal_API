@@ -18,5 +18,12 @@ router.post('/DB_Data/DB_uploadexcel_bulk_data_move_table', DB_DataController.DB
 router.post('/DB_Data/DB_get_statelist', DB_DataController.DB_get_statelist);
 router.post('/DB_Data/DB_get_uploadexcel_statelist', DB_DataController.DB_get_uploadexcel_statelist);
 
+router.post('/DB_Data/DB_get_statelist_amount', DB_DataController.DB_get_statelist_amount);
+router.post('/DB_Data/DB_get_citylist_amount', DB_DataController.DB_get_citylist_amount);
+router.post('/DB_Data/DB_get_modellist_amount', DB_DataController.DB_get_modellist_amount);
+router.post('/DB_Data/DB_get_rtolist_amount', DB_DataController.DB_get_rtolist_amount);
+router.post('/DB_Data/bulk_data_amount_count', DB_DataController.bulk_data_amount_count);
+router.post('/DB_Data/bulk_amount_update', DB_DataController.bulk_amount_update);
+router.post('/DB_Data/bulk_sms_status_update', DB_DataController.bulk_sms_status_update);
 
 module.exports = router;    

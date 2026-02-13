@@ -2641,3 +2641,121 @@ User Host IP  : ::1
 
 --------------------------------*End*------------------------------------------
 
+-----------Exception Details on 2/12/2026, 1:46:59 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Error converting data type nvarchar to date.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.DB_get_statelist (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:66:20)
+
+Error Page Url: /api/DB_Data/DB_get_statelist
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/12/2026, 1:47:54 PM-----------------
+
+Error Line No : at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+
+Error Message : Procedure or function get_citylist has too many arguments specified.
+
+Exception Type: SequelizeDatabaseError
+
+Error Stack   : Error
+    at Query.run (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\dialects\mssql\query.js:107:25)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:315:28
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.DB_get_citylist (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:89:20)
+
+Error Page Url: /api/DB_Data/DB_get_citylist
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/12/2026, 3:11:38 PM-----------------
+
+Error Line No : at convertDate (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Models\global_models.js:5:42)
+
+Error Message : Cannot read properties of undefined (reading 'split')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'split')
+    at convertDate (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Models\global_models.js:5:42)
+    at exports.DB_get_rtolist (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:133:17)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:295:15
+    at processParams (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:582:12)
+    at next (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:291:5)
+
+Error Page Url: /api/DB_Data/DB_get_rtolist
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/12/2026, 3:15:27 PM-----------------
+
+Error Line No : at convertDate (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Models\global_models.js:5:42)
+
+Error Message : Cannot read properties of undefined (reading 'split')
+
+Exception Type: TypeError
+
+Error Stack   : TypeError: Cannot read properties of undefined (reading 'split')
+    at convertDate (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Models\global_models.js:5:42)
+    at exports.DB_get_rtolist (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:133:17)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:295:15
+    at processParams (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:582:12)
+    at next (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:291:5)
+
+Error Page Url: /api/DB_Data/DB_get_rtolist
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+
+-----------Exception Details on 2/12/2026, 6:05:29 PM-----------------
+
+Error Line No : at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+
+Error Message : Named replacement ":citylist" has no entry in the replacement map.
+
+Exception Type: Error
+
+Error Stack   : Error: Named replacement ":citylist" has no entry in the replacement map.
+    at injectReplacements (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\utils\sql.js:131:15)
+    at Sequelize.query (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\sequelize\lib\sequelize.js:286:13)
+    at exports.bulk_amount_update (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\Controller\DB_Data_Controller.js:388:36)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at next (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:157:13)
+    at Route.dispatch (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\route.js:117:3)
+    at handle (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:435:11)
+    at Layer.handleRequest (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\lib\layer.js:152:17)
+    at E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:295:15
+    at processParams (E:\Jubiliant_Renewal Api\Jubiliant_Renewal Api\source\node_modules\router\index.js:582:12)
+
+Error Page Url: /api/DB_Data/bulk_amount_update
+
+User Host IP  : ::1
+
+--------------------------------*End*------------------------------------------
+

@@ -83,13 +83,13 @@ exports.DB_get_statelist = async (req, res) => {
 };
 exports.DB_get_citylist = async (req, res) => {
   try {
-    const { fromdate,todate,userid,search_city } = req.body;
+    const { fromdate,todate,userid,search_state,search_city } = req.body;
     const date1=convertDate(fromdate);
     const date2=convertDate(todate);
     const result = await sequelize.query(
-      "EXEC get_citylist @fromdate = :fromdate,@todate = :todate,@userid = :userid,@searchtext = :searchtext",
+      "EXEC get_citylist @fromdate = :fromdate,@todate = :todate,@userid = :userid,@searchstate = :searchstate,@searchtext = :searchtext",
       {
-        replacements: { fromdate:date1,todate:date2,userid,searchtext:search_city },
+        replacements: { fromdate:date1,todate:date2,userid,searchstate:search_state,searchtext:search_city },
         type: sequelize.QueryTypes.SELECT
       }
     );       
@@ -106,13 +106,13 @@ exports.DB_get_citylist = async (req, res) => {
 };
 exports.DB_get_modellist = async (req, res) => {
   try {
-    const { fromdate,todate,userid,search_model } = req.body;
+    const { fromdate,todate,userid,search_state,search_city,search_model } = req.body;
     const date1=convertDate(fromdate);
     const date2=convertDate(todate);
     const result = await sequelize.query(
-      "EXEC get_modellist @fromdate = :fromdate,@todate = :todate,@userid = :userid,@searchtext = :searchtext",
+      "EXEC get_modellist @fromdate = :fromdate,@todate = :todate,@userid = :userid,@searchstate = :searchstate,@searchcity = :searchcity,@searchtext = :searchtext",
       {
-        replacements: { fromdate:date1,todate:date2,userid,searchtext:search_model },
+        replacements: { fromdate:date1,todate:date2,userid,searchstate:search_state,searchcity:search_city,searchtext:search_model },
         type: sequelize.QueryTypes.SELECT
       }
     );       
@@ -129,13 +129,13 @@ exports.DB_get_modellist = async (req, res) => {
 };
 exports.DB_get_rtolist = async (req, res) => {
   try {
-    const { fromdate,todate,userid,search_rto } = req.body;
+    const { fromdate,todate,userid,search_state,search_city,search_model,search_rto } = req.body;
     const date1=convertDate(fromdate);
     const date2=convertDate(todate);
     const result = await sequelize.query(
-      "EXEC get_rtolist @fromdate = :fromdate,@todate = :todate,@userid = :userid,@searchtext = :searchtext",
+      "EXEC get_rtolist @fromdate = :fromdate,@todate = :todate,@userid = :userid,@searchstate = :searchstate,@searchcity = :searchcity,@searchmodel = :searchmodel,@searchtext = :searchtext",
       {
-        replacements: { fromdate:date1,todate:date2,userid,searchtext:search_rto },
+        replacements: { fromdate:date1,todate:date2,userid,searchstate:search_state,searchcity:search_city,searchmodel:search_model,searchtext:search_rto },
         type: sequelize.QueryTypes.SELECT
       }
     );       
@@ -369,6 +369,247 @@ exports.DB_uploadexcel_bulk_data_move_table = async (req, res) => {
       Total_Count
     });  
   }
+  } catch (err) {
+    console.error(err);
+    errorlog(err, req);
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+
+// amount update 
+
+exports.DB_get_statelist_amount = async (req, res) => {
+  try {
+    const { fromdate,todate,userid,search_state } = req.body;
+    const date1=convertDate(fromdate);
+    const date2=convertDate(todate);
+    const result = await sequelize.query(
+      "EXEC get_statelist_amount @fromdate = :fromdate,@todate = :todate,@userid = :userid,@searchtext = :searchtext",
+      {
+        replacements: { fromdate:date1,todate:date2,userid,searchtext:search_state },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );       
+    return res.status(200).json({
+      success: true,
+      message: "State data get successfully",
+      data:result
+    });  
+  } catch (err) {
+    console.error(err);
+    errorlog(err, req);
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+exports.DB_get_citylist_amount = async (req, res) => {
+  try {
+    const { fromdate,todate,userid,search_state,search_city } = req.body;
+    const date1=convertDate(fromdate);
+    const date2=convertDate(todate);
+    const result = await sequelize.query(
+      "EXEC get_citylist_amount @fromdate = :fromdate,@todate = :todate,@userid = :userid,@searchstate = :searchstate,@searchtext = :searchtext",
+      {
+        replacements: { fromdate:date1,todate:date2,userid,searchstate:search_state,searchtext:search_city },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );       
+    return res.status(200).json({
+      success: true,
+      message: "city data get successfully",
+      data:result
+    });  
+  } catch (err) {
+    console.error(err);
+    errorlog(err, req);
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+exports.DB_get_modellist_amount = async (req, res) => {
+  try {
+    const { fromdate,todate,userid,search_state,search_city,search_model } = req.body;
+    const date1=convertDate(fromdate);
+    const date2=convertDate(todate);
+    const result = await sequelize.query(
+      "EXEC get_modellist_amount @fromdate = :fromdate,@todate = :todate,@userid = :userid,@searchstate = :searchstate,@searchcity = :searchcity,@searchtext = :searchtext",
+      {
+        replacements: { fromdate:date1,todate:date2,userid,searchstate:search_state,searchcity:search_city,searchtext:search_model },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );       
+    return res.status(200).json({
+      success: true,
+      message: "Model data get successfully",
+      data:result
+    });  
+  } catch (err) {
+    console.error(err);
+    errorlog(err, req);
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+exports.DB_get_rtolist_amount = async (req, res) => {
+  try {
+    const { fromdate,todate,userid,search_state,search_city,search_model,search_rto } = req.body;
+    const date1=convertDate(fromdate);
+    const date2=convertDate(todate);
+    const result = await sequelize.query(
+      "EXEC get_rtolist_amount @fromdate = :fromdate,@todate = :todate,@userid = :userid,@searchstate = :searchstate,@searchcity = :searchcity,@searchmodel = :searchmodel,@searchtext = :searchtext",
+      {
+        replacements: { fromdate:date1,todate:date2,userid,searchstate:search_state,searchcity:search_city,searchmodel:search_model,searchtext:search_rto },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );       
+    return res.status(200).json({
+      success: true,
+      message: "RTO data get successfully",
+      data:result
+    });  
+  } catch (err) {
+    console.error(err);
+    errorlog(err, req);
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+exports.bulk_data_amount_count = async (req, res) => {
+  try {
+   const { fromdate,todate,city,model,rto,state,userid } = req.body;
+    const date1=convertDate(fromdate);
+     const date2=convertDate(todate);
+    const result = await sequelize.query(
+      "EXEC bulk_data_amount_count @fromdate = :fromdate,@todate = :todate,@citylist=:citylist,@modellist = :modellist,@rtolist = :rtolist,@statelist = :statelist,@userid = :userid",
+      {
+        replacements: { fromdate:date1,todate:date2,citylist:city,modellist:model,rtolist:rto,statelist:state,userid },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );       
+    const Total_Count=result[0].countt;
+    if(Total_Count>0)
+    {
+    return res.status(200).json({
+      success: true,
+      message: "Data count fetched successfully.",
+      Total_Count
+    });  
+  }
+  else{
+      return res.status(200).json({
+      success: true,
+      message: "No records found.",
+      Total_Count
+    });  
+  }
+  } catch (err) {
+    console.error(err);
+    errorlog(err, req);
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+exports.bulk_amount_update = async (req, res) => {
+  try {
+    const { fromdate, todate, city, model, rto, state, userid, oneyear, twoyear, threeyear } = req.body;
+
+    const date1 = convertDate(fromdate);
+    const date2 = convertDate(todate);
+
+    const result = await sequelize.query(
+      `EXEC bulk_amount_update 
+        @fromdate = :fromdate,
+        @todate = :todate,
+        @citylist = :citylist,
+        @modellist = :modellist,
+        @rtolist = :rtolist,
+        @statelist = :statelist,
+        @userid = :userid,
+        @oneyear = :oneyear,
+        @twoyear = :twoyear,
+        @threeyear = :threeyear`,
+      {
+        replacements: {
+          fromdate: date1,
+          todate: date2,
+          citylist: city,
+          modellist: model,
+          rtolist: rto,
+          statelist: state,
+          userid,
+          oneyear,
+          twoyear,
+          threeyear
+        },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );
+
+    // ✅ Safe way to read returned count
+    const UpdatedRowCount = result?.[0]?.UpdatedRowCount || 0;
+
+    if (UpdatedRowCount > 0) {
+      return res.status(200).json({
+        success: true,
+        message: "Amount updated successfully.",
+        UpdatedRowCount
+      });
+    } else {
+      return res.status(200).json({
+        success: true,
+        message: "No records matched for update.",
+        UpdatedRowCount: 0
+      });
+    }
+
+  } catch (err) {
+    console.error(err);
+    errorlog(err, req);
+    res.status(500).json({ success: false, error: err.message });
+  }
+};
+exports.bulk_sms_status_update = async (req, res) => {
+  try {
+    const { fromdate, todate, city, model, rto, state, userid } = req.body;
+
+    const date1 = convertDate(fromdate);
+    const date2 = convertDate(todate);
+
+    const result = await sequelize.query(
+      `EXEC bulk_smsstatus_update 
+        @fromdate = :fromdate,
+        @todate = :todate,
+        @citylist = :citylist,
+        @modellist = :modellist,
+        @rtolist = :rtolist,
+        @statelist = :statelist,
+        @userid = :userid `,
+      {
+        replacements: {
+          fromdate: date1,
+          todate: date2,
+          citylist: city,
+          modellist: model,
+          rtolist: rto,
+          statelist: state,
+          userid          
+        },
+        type: sequelize.QueryTypes.SELECT
+      }
+    );
+
+    // ✅ Safe way to read returned count
+    const UpdatedRowCount = result?.[0]?.UpdatedRowCount || 0;
+
+    if (UpdatedRowCount > 0) {
+      return res.status(200).json({
+        success: true,
+        message: "Sms status updated successfully.",
+        UpdatedRowCount
+      });
+    } else {
+      return res.status(200).json({
+        success: true,
+        message: "No records matched for update.",
+        UpdatedRowCount: 0
+      });
+    }
+
   } catch (err) {
     console.error(err);
     errorlog(err, req);
